@@ -9,6 +9,8 @@ initial release focuses on making the project easy to understand and follow.
 The project document is available now; source code, examples, and additional
 release artifacts will be added progressively.
 
+[💻 GitHub Repo](https://github.com/AI45Lab/Safin-1) · [🤗 AI45Research Collections](https://huggingface.co/AI45Research/collections) · [📜 MARCH arXiv](https://arxiv.org/abs/2608.12435) · 🌳 Arch Space (coming soon)
+
 ## Project overview
 
 Safin-1 is an ongoing project. Detailed information about its architecture,
