@@ -11,6 +11,8 @@ release artifacts will be added progressively.
 
 [💻 GitHub Repo](https://github.com/AI45Lab/Safin-1) · [🤗 AI45Research Collections](https://huggingface.co/AI45Research/collections) · [📜 MARCH arXiv](https://arxiv.org/abs/2608.12435) · [🌳 Arch Space](https://github.com/InternLM/archspace)
 
+> 📄 **[Read the Safin-1 Technical Document (PDF)](./docs/Safin-1.pdf)**
+
 ## Project overview
 
 Safin-1 is an ongoing project. Detailed information about its architecture,
