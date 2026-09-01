@@ -11,7 +11,7 @@ release artifacts will be added progressively.
 
 [💻 GitHub Repo](https://github.com/AI45Lab/Safin-1) · [🤗 AI45Research Collections](https://huggingface.co/AI45Research/collections) · [📜 MARCH arXiv](https://arxiv.org/abs/2608.12435) · [🌳 Arch Space](https://github.com/InternLM/archspace)
 
-> 📄 **[Read the Safin-1 Technical Document (PDF)](./docs/Safin-1.pdf)**
+> 📄 **[Read the Safin-1 Technical Document (PDF)](./Safin-1.pdf)**
 
 ## Project overview
 
@@ -23,7 +23,7 @@ the corresponding release materials.
 
 The current Safin-1 PDF is available here:
 
-[Read Safin-1.pdf](./docs/Safin-1.pdf)
+[Read Safin-1.pdf](./Safin-1.pdf)
 
 The source code is not included yet and remains **coming soon**.
 
