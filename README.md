@@ -21,9 +21,7 @@ the corresponding release materials.
 
 ## Technical document
 
-The current Safin-1 PDF is available here:
-
-[Read Safin-1.pdf](./Safin-1.pdf)
+The current Safin-1 PDF is available from the highlighted link above.
 
 The source code is not included yet and remains **coming soon**.
 
