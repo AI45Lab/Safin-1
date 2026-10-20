@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-17",
+  "code_license": "Apache-2.0",
+  "scope": "Code release license consistency and retained upstream notices; weights and datasets remain separate",
+  "user_decision": "Proceed with retaining Apache-2.0 for the code and component-specific licenses",
+  "root_license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "root_notice_sha256": "ed5e280fbf79af197117e4ca578539341e3044fbd239ef9bddc0c29bd1286304",
+  "retained_landing_notice": {
+    "path": "LICENSES/AI45Lab-Safin-1-MIT.txt",
+    "source": "https://raw.githubusercontent.com/AI45Lab/Safin-1/main/LICENSE",
+    "sha256": "299c1153cb1740c980f83d8aad3d72c29aa650214beb1eb5cc8e0097e1e68fd4",
+    "unchanged": true
+  },
+  "remote_modified": false,
+  "vendor_components": 6,
+  "package_license_files": [
+    "LICENSE",
+    "NOTICE",
+    "LICENSES/*.txt"
+  ],
+  "package_validation": {
+    "status": "passed",
+    "wheel": "ms_swift-4.2.0.dev0+march.0.1.0-py3-none-any.whl",
+    "wheel_sha256": "6eee8c27e3f1cb39a64f320c6746cf0b7c1886c3b45115423196cddc28fa7229",
+    "license": "Apache-2.0",
+    "files_byte_equal": {
+      "LICENSE": {
+        "wheel_path": "ms_swift-4.2.0.dev0+march.0.1.0.dist-info/licenses/LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      "NOTICE": {
+        "wheel_path": "ms_swift-4.2.0.dev0+march.0.1.0.dist-info/licenses/NOTICE",
+        "sha256": "ed5e280fbf79af197117e4ca578539341e3044fbd239ef9bddc0c29bd1286304"
+      },
+      "LICENSES/AI45Lab-Safin-1-MIT.txt": {
+        "wheel_path": "ms_swift-4.2.0.dev0+march.0.1.0.dist-info/licenses/LICENSES/AI45Lab-Safin-1-MIT.txt",
+        "sha256": "299c1153cb1740c980f83d8aad3d72c29aa650214beb1eb5cc8e0097e1e68fd4"
+      },
+      "march/kernels/_flashqla/LICENSE": {
+        "sha256": "d0b7a111f48dc0207c7e057c810ae0e2fdbc807ba654eb669ade998b2cdc3438"
+      },
+      "march/kernels/_flashqla/NOTICE": {
+        "sha256": "40895d383b3424325849768d937472d99f6de941fd4ce134178aaad0c8888ae5"
+      }
+    },
+    "vendor_attribution_components_checked": 6
+  }
+}

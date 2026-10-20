@@ -1,0 +1,226 @@
+{
+  "date": "2026-10-17",
+  "status": "partial; CPT provenance unresolved",
+  "scope": "Sanitized inventory reconstructed from the four original SFT and CPT args.json files; no dataset contents redistributed",
+  "maintainer_input": "No public Intern-S2 provenance/permission record or formal paper evaluation table supplied",
+  "identical_sft_dataset_specs_across_four": true,
+  "cpt": {
+    "name": "Intern-S2-derived text corpus",
+    "public_dataset_id": null,
+    "training_snapshot_revision": null,
+    "license": null,
+    "redistribution_review": "pending",
+    "evidence": "Original CPT args use the internal Arrow text registration; run names identify the Intern-S2 recipe",
+    "preprocessing_and_filtering_audit": "not available; recipe naming alone does not verify applied filters"
+  },
+  "sft": {
+    "dataset_id": "nvidia/Nemotron-Cascade-2-SFT-Data",
+    "public_source": "https://huggingface.co/datasets/nvidia/Nemotron-Cascade-2-SFT-Data",
+    "source_identification": "Recorded dataset directory and relative filenames match the named upstream; local content identity is not verified",
+    "training_snapshot_revision": null,
+    "license": "nvidia-open-model-license",
+    "license_url": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/",
+    "files": [
+      {
+        "file": "math/math_notool.jsonl",
+        "requested_samples": 780000
+      },
+      {
+        "file": "math/math_proof.jsonl",
+        "requested_samples": 195000
+      },
+      {
+        "file": "science/science.jsonl",
+        "requested_samples": 1245000
+      },
+      {
+        "file": "chat/chat_part_1.jsonl",
+        "requested_samples": 846000
+      },
+      {
+        "file": "chat/chat_part_2.jsonl",
+        "requested_samples": 846000
+      },
+      {
+        "file": "chat/chat_part_3.jsonl",
+        "requested_samples": 846000
+      },
+      {
+        "file": "chat/chat_part_4.jsonl",
+        "requested_samples": 846000
+      },
+      {
+        "file": "instruction_following/instruction_following.jsonl",
+        "requested_samples": null
+      },
+      {
+        "file": "safety/safety.jsonl",
+        "requested_samples": null
+      },
+      {
+        "file": "swe/swe_agentless.jsonl",
+        "requested_samples": 215000
+      }
+    ],
+    "sampling_semantics": "#N is the recorded sampling request, not an observed unique-example count; null means no request suffix",
+    "local_preprocessing_and_content_hashes": "not available in the current model delivery"
+  },
+  "models": [
+    {
+      "name": "Safin-1-4B",
+      "model_id": "AI45Research/Safin-1-4B",
+      "upstream_family": "Qwen/Qwen3.5-4B",
+      "upstream_training_snapshot_revision": null,
+      "cpt_step": 5961,
+      "cpt_global_batch_size": 256,
+      "cpt_packing_length": 32768,
+      "cpt_packed_token_upper_bound": 50004492288,
+      "sft_step": 3600,
+      "sft_recipe": {
+        "global_batch_size": 256,
+        "max_length": 32768,
+        "packing": true,
+        "packing_length": 32768,
+        "seed": 42,
+        "data_seed": 42,
+        "lr": 1e-05,
+        "min_lr": 1e-06,
+        "lr_decay_style": "cosine",
+        "lr_warmup_fraction": 0.05,
+        "dataset_shuffle": true,
+        "streaming": false,
+        "split_dataset_ratio": 0.0
+      },
+      "sft_packed_token_upper_bound": 30198988800,
+      "original_sft_args_sha256": "449846edac06b3a99f30e0f97b84fbfdcf6bded3951fcc6d2b1505411583c8fb",
+      "original_cpt_args_sha256": "1a79dd3047141def5526a2b1fd6dce94f6077b9588721f164a337301a9acbbe6"
+    },
+    {
+      "name": "Safin-1-35B-A3B",
+      "model_id": "AI45Research/Safin-1-35B-A3B",
+      "upstream_family": "Qwen/Qwen3.5-35B-A3B",
+      "upstream_training_snapshot_revision": null,
+      "cpt_step": 5961,
+      "cpt_global_batch_size": 256,
+      "cpt_packing_length": 32768,
+      "cpt_packed_token_upper_bound": 50004492288,
+      "sft_step": 7200,
+      "sft_recipe": {
+        "global_batch_size": 128,
+        "max_length": 32768,
+        "packing": true,
+        "packing_length": 32768,
+        "seed": 42,
+        "data_seed": 42,
+        "lr": 1e-05,
+        "min_lr": 1e-06,
+        "lr_decay_style": "cosine",
+        "lr_warmup_fraction": 0.05,
+        "dataset_shuffle": true,
+        "streaming": false,
+        "split_dataset_ratio": 0.0
+      },
+      "sft_packed_token_upper_bound": 30198988800,
+      "original_sft_args_sha256": "40882bcd571d4b7f4b216cb6a99ae29a565aacbd2e748e2c0daf60dcced19c0a",
+      "original_cpt_args_sha256": "584b35f05e5d3108f4d5c672ef1b842af0c6ac43b2c37449eda72d420fc52936"
+    },
+    {
+      "name": "Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "upstream_family": "Qwen/Qwen3.5-4B",
+      "upstream_training_snapshot_revision": null,
+      "cpt_step": 5961,
+      "cpt_global_batch_size": 256,
+      "cpt_packing_length": 32768,
+      "cpt_packed_token_upper_bound": 50004492288,
+      "sft_step": 3600,
+      "sft_recipe": {
+        "global_batch_size": 256,
+        "max_length": 32768,
+        "packing": true,
+        "packing_length": 32768,
+        "seed": 42,
+        "data_seed": 42,
+        "lr": 1e-05,
+        "min_lr": 1e-06,
+        "lr_decay_style": "cosine",
+        "lr_warmup_fraction": 0.05,
+        "dataset_shuffle": true,
+        "streaming": false,
+        "split_dataset_ratio": 0.0
+      },
+      "sft_packed_token_upper_bound": 30198988800,
+      "original_sft_args_sha256": "64a6e1ed0b1cf654e5805f186bce0b2ca98b7e614d9a93c4ad67fc03a58b4670",
+      "original_cpt_args_sha256": "7a5e1bcb8382aac22d5410c3850db50c387c5c80aba43fc46d421ac4374e3cdb"
+    },
+    {
+      "name": "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "upstream_family": "Qwen/Qwen3.5-35B-A3B",
+      "upstream_training_snapshot_revision": null,
+      "cpt_step": 5961,
+      "cpt_global_batch_size": 256,
+      "cpt_packing_length": 32768,
+      "cpt_packed_token_upper_bound": 50004492288,
+      "sft_step": 7200,
+      "sft_recipe": {
+        "global_batch_size": 128,
+        "max_length": 32768,
+        "packing": true,
+        "packing_length": 32768,
+        "seed": 42,
+        "data_seed": 42,
+        "lr": 1e-05,
+        "min_lr": 1e-06,
+        "lr_decay_style": "cosine",
+        "lr_warmup_fraction": 0.05,
+        "dataset_shuffle": true,
+        "streaming": false,
+        "split_dataset_ratio": 0.0
+      },
+      "sft_packed_token_upper_bound": 30198988800,
+      "original_sft_args_sha256": "322053afa0b9682075ee6f12655f34c1137d87a4abdb14cb9bcc83c049e46e0b",
+      "original_cpt_args_sha256": "94ae7ade60cd9d000d4fa197835783ec20d7413615d3b293df7dbfe684dc1e25"
+    }
+  ],
+  "upstream_observations": [
+    {
+      "repo_id": "Qwen/Qwen3.5-4B",
+      "repo_type": "model",
+      "observed_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "observation_is_training_snapshot": false,
+      "readme_url": "https://huggingface.co/Qwen/Qwen3.5-4B/blob/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/README.md",
+      "file_sha256": {
+        "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+        "README.md": "1406be1b6b8fd8a6545870da516912804756593628a1d0fb0a7965211e82a7bb"
+      }
+    },
+    {
+      "repo_id": "Qwen/Qwen3.5-35B-A3B",
+      "repo_type": "model",
+      "observed_revision": "59d61f3ce65a6d9863b86d2e96597125219dc754",
+      "observation_is_training_snapshot": false,
+      "readme_url": "https://huggingface.co/Qwen/Qwen3.5-35B-A3B/blob/59d61f3ce65a6d9863b86d2e96597125219dc754/README.md",
+      "file_sha256": {
+        "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+        "README.md": "71c3bbc2eadadd5980bbdbb15df958c27d42ede24821015602a021109aacf492"
+      }
+    },
+    {
+      "repo_id": "nvidia/Nemotron-Cascade-2-SFT-Data",
+      "repo_type": "dataset",
+      "observed_revision": "9f36020daf067f1a8b39336bf619fe30af30bb02",
+      "observation_is_training_snapshot": false,
+      "readme_url": "https://huggingface.co/datasets/nvidia/Nemotron-Cascade-2-SFT-Data/blob/9f36020daf067f1a8b39336bf619fe30af30bb02/README.md",
+      "file_sha256": {
+        "README.md": "1a271eb44cb9137ce9fa430a1d84cec9ef815f98e0ed7c76639ac13975e505f6"
+      }
+    }
+  ],
+  "token_accounting": "step times global batch times packing length gives a packed-position upper bound, not measured non-padding or unique text tokens",
+  "remaining": [
+    "CPT public provenance and applicable permission/license evidence",
+    "Training dataset snapshot identities and preprocessing/filtering manifest",
+    "Weight-release data review decision; a public data card is not a completed review"
+  ]
+}

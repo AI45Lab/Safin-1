@@ -1,0 +1,105 @@
+{
+  "name": "march_0p8b_32gpu",
+  "model_config": "hsd_gdn_0p8b_readq32.json",
+  "initialization": {
+    "method": "random",
+    "seed": 42,
+    "tokenizer_vocab_size": 32000
+  },
+  "distributed": {
+    "nodes": 4,
+    "gpus_per_node": 8,
+    "world_size": 32,
+    "global_batch_size": 256,
+    "launcher": "torchrun"
+  },
+  "inputs": {
+    "model": "MODEL",
+    "dataset": "DATASET",
+    "output_root": "OUTPUT_DIR"
+  },
+  "training": {
+    "model_type": "hsd_gated_deltanet",
+    "tuner_type": "full",
+    "torch_dtype": "bfloat16",
+    "streaming": false,
+    "max_length": 16384,
+    "max_steps": 11921,
+    "per_device_train_batch_size": 2,
+    "gradient_accumulation_steps": 4,
+    "learning_rate": 0.0004,
+    "lr_scheduler_type": "warmup_stable_decay",
+    "lr_scheduler_kwargs": {
+      "num_decay_steps": 1192,
+      "decay_type": "cosine",
+      "min_lr_ratio": 0.1
+    },
+    "warmup_steps": 256,
+    "weight_decay": 0.1,
+    "optim": "adamw_torch_fused",
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.95,
+    "adam_epsilon": 1e-08,
+    "max_grad_norm": 1.0,
+    "seed": 42,
+    "data_seed": 42,
+    "gradient_checkpointing": false,
+    "ddp_find_unused_parameters": false,
+    "ddp_timeout": 3600,
+    "packing": true,
+    "packing_length": 16384,
+    "packing_num_proc": 8,
+    "truncation_strategy": "split",
+    "attn_impl": "flash_attn",
+    "padding_free": true,
+    "dataset_num_proc": 8,
+    "dataloader_num_workers": 8,
+    "train_dataloader_shuffle": true,
+    "save_steps": 2048,
+    "save_total_limit": 2,
+    "logging_steps": 32,
+    "report_to": [
+      "none"
+    ],
+    "split_dataset_ratio": 0.0,
+    "eval_strategy": "no",
+    "use_logits_to_keep": true,
+    "add_version": false,
+    "deepspeed": "zero2"
+  },
+  "environment": {
+    "OFFLINE": "1",
+    "HF_HUB_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "HF_EVALUATE_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "SWIFT_SINGLE_DEVICE_MODE": "0",
+    "FUSE_CROSS_ENTROPY": "true",
+    "HSD_TRAIN_SCAN_BACKEND": "flashqla_tile",
+    "HSD_FLASHQLA_TILE_BWD_BACKEND": "optimized",
+    "HSD_FUSED_GLOBAL_READ": "1",
+    "HSD_FUSED_GLOBAL_READ_STRICT": "1",
+    "HSD_DEBUG_STATS": "0",
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "HSD_FUSED_GLOBAL_READ_BACKEND": "tile_online"
+  },
+  "budget": {
+    "nominal_packed_token_slots": 50000297984,
+    "meaning": "world_size * micro_batch * gradient_accumulation * max_length * max_steps; not an audited unique-token count"
+  },
+  "hardware": {
+    "gpu": "NVIDIA H200",
+    "cuda_runtime": "12.9"
+  },
+  "software": {
+    "torch": "2.11.0+cu129",
+    "transformers": "5.5.4",
+    "datasets": "3.6.0",
+    "deepspeed": "0.19.0",
+    "triton": "3.6.0",
+    "tilelang": "0.1.9",
+    "accelerate": "1.13.0"
+  },
+  "scope": "Dense MARCH 0.8B full-parameter training recipe for 32 Hopper GPUs."
+}

@@ -1,0 +1,19 @@
+name: Formal MARCH release readiness
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/march/check_public_release.py . --history
+      - run: python scripts/march/check_vendor_manifest.py --strict-provenance
+      - run: python scripts/march/check_operator_correctness.py
+      - run: python scripts/march/check_installation_evidence.py
+      - run: python scripts/march/check_publication.py --scope all

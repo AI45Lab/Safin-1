@@ -1,0 +1,6 @@
+# Core HF versions observed in the production smoke environment.
+transformers==5.5.4
+tokenizers==0.22.2
+safetensors==0.7.0
+accelerate==1.13.0
+peft==0.19.1

@@ -1,0 +1,2 @@
+{"messages":[{"role":"user","content":"What is MARCH?"},{"role":"assistant","content":"MARCH is an architecture that routes queries to compact historical summary states."}]}
+{"messages":[{"role":"user","content":"Which Safin-1 variants are supported?"},{"role":"assistant","content":"The supported variants are Safin-1 4B and Safin-1 35B-A3B."}]}

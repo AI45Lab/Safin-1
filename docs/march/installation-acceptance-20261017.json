@@ -1,0 +1,433 @@
+{
+  "date": "2026-10-17",
+  "source_repository": "https://github.com/AI45Lab/Safin-1",
+  "source_archive_sha256": "a28dee8dc18cd2c7fe373b5d9ad1d2b315f26d155d9d2ff4de3624d99c98af67",
+  "environment": {
+    "python": "3.11",
+    "isolation": "fresh venv; system-site-packages disabled",
+    "torch": "2.11.0+cu129",
+    "transformers": "5.5.4",
+    "peft": "0.19.1",
+    "gpu_used": false
+  },
+  "cpu_hf": {
+    "status": "passed",
+    "offline": true,
+    "installation": "Public hf installer from cached public wheels, then actual noneditable project wheel",
+    "pip_check": "passed",
+    "wheel_source_files_byte_equal": 452,
+    "model_registry": "passed",
+    "flashqla_notice": "present",
+    "ui": "absent",
+    "fixtures": [
+      {
+        "model_type": "safin1_4b",
+        "parameters": 59670,
+        "loss": 4.165843963623047,
+        "anchor_embedding_updated": true,
+        "reload_max_abs_error": 0.0,
+        "cached_decode_max_abs_error": {
+          "511": 7.450580596923828e-08,
+          "512": 4.470348358154297e-08,
+          "513": 5.960464477539063e-08
+        }
+      },
+      {
+        "model_type": "safin1_35b_a3b",
+        "parameters": 78422,
+        "loss": 4.172867774963379,
+        "anchor_embedding_updated": true,
+        "reload_max_abs_error": 0.0,
+        "cached_decode_max_abs_error": {
+          "511": 3.725290298461914e-08,
+          "512": 2.9802322387695312e-08,
+          "513": 5.960464477539063e-08
+        }
+      }
+    ],
+    "sdk_preflight": {
+      "symbols_checked": 92,
+      "missing": 0,
+      "supplement": "openai-harmony==0.0.8 installed only for the additional vLLM SDK check; it is not an HF-profile dependency",
+      "initial_failure_preserved": true
+    }
+  },
+  "package_metadata": {
+    "status": "passed",
+    "home_page": "https://github.com/AI45Lab/Safin-1",
+    "project_urls": [
+      "Source, https://github.com/AI45Lab/Safin-1",
+      "Issues, https://github.com/AI45Lab/Safin-1/issues",
+      "Upstream, https://github.com/modelscope/ms-swift"
+    ],
+    "license": "Apache-2.0",
+    "flashqla_notice": true,
+    "wheel_sha256": "21d6f1638df466e6657848c819cb597f84d2b3a6d1f048d1dfb2963b2bbb96cc"
+  },
+  "offline_native_preflight": {
+    "status": "passed",
+    "python_artifacts": 266,
+    "artifact_bytes": 5875697196,
+    "resolved_dependency_closure_packages": 244,
+    "source_cache_projects": 6,
+    "required_hopper_submodule_sources": "prepared at pinned revisions",
+    "inherited_vllm_native_binaries": 0,
+    "source_manifest_files": 21809
+  },
+  "gpu_clean_build": {
+    "status": "passed",
+    "hardware_requested": "one H200 GPU",
+    "native_build": "vLLM source compiled and eight extension origins/hashes verified; TE source built through public training installer",
+    "planned_checks": [
+      "training/vllm public offline installers and pip check",
+      "Transformer Engine PyTorch bindings and vLLM native source builds",
+      "installed framework wheel and tiny HF fixture",
+      "4B full / 35B-A3B LoRA one-step SFT, export and HF reload",
+      "4B / 35B-A3B TP1 DP1 API boundary/concurrency smoke"
+    ],
+    "first_attempt_training_install": "failed: Transformer Engine binding build searched only the system CUDA include directory and did not find cuDNN headers already present in NVIDIA wheels",
+    "repair": "Public training installer combines complete CUDA SDK and NVIDIA wheel headers, forces TE source compilation and includes the pinned Qwen processor dependencies. Fresh offline installation, full-size one-step SFT/save and strict HF reload passed for both model families.",
+    "vllm_install": "passed: public offline source build; eight native origins verified; initial missing external FLA dependency repaired in an isolated copy of the newly built environment",
+    "hardware": "one NVIDIA H200",
+    "cuda_toolkit": "12.9.86",
+    "training_install": {
+      "status": "passed",
+      "elapsed_s": 195.38175432942808,
+      "source_archive_sha256": "a7007d5762fe8f20484282cb9705ae9e8e5b95ebd612feeb0ab67f2d83d87b68",
+      "pip_check": "passed",
+      "project_wheel_install": "passed",
+      "installed_package_verification": "passed",
+      "tiny_hf_fixture": "passed"
+    },
+    "training_full_size": {
+      "status": "passed",
+      "previous_attempt": "Current remote-code checkpoint copies passed; training then stopped before model construction because inherited Qwen processor dependencies were absent",
+      "repair": "Training profile now includes qwen-vl-utils 0.0.14, decord 0.6.0 and matching CUDA torchvision 0.26.0; CPU environment check with --model runs the real processor/tokenizer loader",
+      "recipe": "one-step 4B full / 35B-A3B LoRA SFT, save and strict HF reload",
+      "optimizer_steps_completed": 2,
+      "repair_source_revision": "3c644d9edadd060e58da6f9aabea700bc6543f4c",
+      "fresh_repaired_install": "passed: full CPU-prepared offline installation, then both full-size GPU SFT/save/strict-HF-reload chains",
+      "source_revision": "3c644d9edadd060e58da6f9aabea700bc6543f4c",
+      "source_archive_sha256": "3b3aed6571b33a58bb5cbef72669149cb9ab53ca8c319e1adb4f9fe98e957024",
+      "job_id": "march-clean-training-1017-a4-84dcb9a095",
+      "gpu_count": 1,
+      "offline": true,
+      "sequence_length": 1024,
+      "tensor_parallel_size": 1,
+      "expert_parallel_size": 1,
+      "precision": "bfloat16",
+      "input_weights_and_saved_runtime_unchanged": true,
+      "source_runtime_matches_current_public_tree": true,
+      "cases": [
+        {
+          "model": "4B",
+          "status": "passed",
+          "tuner": "full",
+          "optimizer_steps": 1,
+          "loss": 0.04232541,
+          "grad_norm": 2.87084937,
+          "reported_peak_memory_gib": 96.77,
+          "reported_first_step_s": 94.424047,
+          "smoke_elapsed_s": 455.59206342324615,
+          "model_type": "safin1_4b",
+          "text_model_type": "safin1_4b_text",
+          "weight_shards": 3,
+          "weight_keys": 812,
+          "loaded_all_weights": true,
+          "missing_unexpected_mismatched_weights": 0,
+          "finite_reload_logits": true,
+          "greedy_generated_tokens": 8,
+          "seed": 123,
+          "exported_saved_runtime_keys_preserved": 78,
+          "legacy_summary_config_keys": 0,
+          "runtime": {
+            "anchor_chunk_size": 512,
+            "anchor_token_num": 1,
+            "hsd_read_block_size": 32768,
+            "hsd_global_read_layers": "10-30",
+            "hsd_read_topk": 4
+          },
+          "training_args_sha256": "d77cdba2e52cf89d054c66fa7a3053e7a41f4e77fef96cefd068e9c020eecb72",
+          "training_log_sha256": "63ca56102c002f5966c02b0248895674b0a66b78ce088ebedadb4a947f1be9e2",
+          "reload_validation_sha256": "b2b1e1c86ba031be32acf77b093188eb67cd814a6be60743e5995de21d772197"
+        },
+        {
+          "model": "35B-A3B",
+          "status": "passed",
+          "tuner": "lora",
+          "optimizer_steps": 1,
+          "loss": 0.10080661,
+          "grad_norm": 0.09530572,
+          "reported_peak_memory_gib": 73.6,
+          "reported_first_step_s": 10.018219,
+          "smoke_elapsed_s": 534.4815904665738,
+          "model_type": "safin1_35b_a3b",
+          "text_model_type": "safin1_35b_a3b_text",
+          "weight_shards": 17,
+          "weight_keys": 1121,
+          "loaded_all_weights": true,
+          "missing_unexpected_mismatched_weights": 0,
+          "finite_reload_logits": true,
+          "greedy_generated_tokens": 8,
+          "seed": 123,
+          "exported_saved_runtime_keys_preserved": 75,
+          "legacy_summary_config_keys": 0,
+          "runtime": {
+            "anchor_chunk_size": 512,
+            "anchor_token_num": 1,
+            "hsd_read_block_size": 32768,
+            "hsd_global_read_layers": "10-30",
+            "hsd_read_topk": 4
+          },
+          "lora_rank": 8,
+          "target_modules": [
+            "linear_qkv",
+            "linear_proj"
+          ],
+          "merged_full_weight_export": true,
+          "training_args_sha256": "3671bd7fa0bc53df9467b4d65c756107ca894da937c4f4fb91b368d450f3f0ad",
+          "training_log_sha256": "731ea105a61373964b1cada416763e54f3dc6d9eeb9b7e07f3c89f0af4dfb400",
+          "reload_validation_sha256": "644f075b24fc7f47eacac93a416990f50f95c88d18cc715388f1e626b501b20c"
+        }
+      ],
+      "completion_receipt_sha256": "299055c03e0fcbded7e081296d8b80b73b81f35202104680c24dd9065e536839",
+      "source_manifest_sha256": "6a532cca3747367ae691d0d4a678ef273e69f6dd401e0974eb80a647fa2da5ea",
+      "environment_receipt_sha256": "22c88f282842e6eb3849688afdc2fc9b752824dd54d96842137682d454d39147",
+      "pip_check": "passed",
+      "task": "sft"
+    },
+    "vllm_serving": {
+      "status": "passed",
+      "source_archive_sha256": "a28dee8dc18cd2c7fe373b5d9ad1d2b315f26d155d9d2ff4de3624d99c98af67",
+      "environment_origin": "isolated clone of clean source-build environment with only missing FLA dependencies added",
+      "native_extensions": 8,
+      "native_receipt_sha256": "15774c1ac03c8f7f84869f10359fe826ca136d5e07029475b77c65ce26165247",
+      "api_results_sha256": "122f6ae6295dbf36c22eaa6800c1e4448436f5d8158de119ddf98edeacdce456",
+      "cases": [
+        {
+          "model": "4B",
+          "tp": 1,
+          "dp": 1,
+          "api_requests_checked": 13,
+          "serial_prompt_lengths": [
+            511,
+            512,
+            513,
+            4096,
+            8000
+          ],
+          "concurrency": 8,
+          "passed": true,
+          "graph_dispatches": {
+            "FULL": 48
+          },
+          "max_graph_requests": 8
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 1,
+          "dp": 1,
+          "api_requests_checked": 13,
+          "serial_prompt_lengths": [
+            511,
+            512,
+            513,
+            4096,
+            8000
+          ],
+          "concurrency": 8,
+          "passed": true,
+          "graph_dispatches": {
+            "FULL": 48
+          },
+          "max_graph_requests": 8
+        }
+      ],
+      "dependency_repair": "incremental_fla_only"
+    },
+    "native_source_build": {
+      "status": "passed",
+      "native_build": "source",
+      "source_archive_sha256": "a28dee8dc18cd2c7fe373b5d9ad1d2b315f26d155d9d2ff4de3624d99c98af67",
+      "source_manifest_sha256": "f81f62e86b1213d8e01a224a868751ce349e254e69d85e3aa2e6e2225156509b",
+      "build_result_sha256": "697ef1c0a5f853f5461398c8cab3a5515969a4838196efeb79ca4dbbfbe192d9",
+      "native_receipt_sha256": "15774c1ac03c8f7f84869f10359fe826ca136d5e07029475b77c65ce26165247",
+      "elapsed_s": 4164.981844413094,
+      "inherited_native_binaries": 0,
+      "extensions": {
+        "vllm._C": {
+          "bytes": 362048760,
+          "sha256": "fbf5906e68f84be13bf2b2f3e4626ba4b9773537520098c3ed1f6acdb00f2e8f"
+        },
+        "vllm._C_stable_libtorch": {
+          "bytes": 177102032,
+          "sha256": "104c995227875000f252085981653729f870384d7942b14fcbee5ba61b24135e"
+        },
+        "vllm._moe_C": {
+          "bytes": 192580224,
+          "sha256": "2001a151bd3a609832afc06bab588dec3dd177d4e21dca837c5d9c6dd7a740c9"
+        },
+        "vllm.cumem_allocator": {
+          "bytes": 107440,
+          "sha256": "544d99ce15d4e7fd2a936245cf4068aade236419bc5ef9295ea2dddc97c1d2cc"
+        },
+        "vllm._flashmla_C": {
+          "bytes": 36233800,
+          "sha256": "218a04256c6607f576637d4e206a79f9f9352223070701b54ed2f67c4a717980"
+        },
+        "vllm._flashmla_extension_C": {
+          "bytes": 10817616,
+          "sha256": "8d68735c414542e4aa46a3d089479fc7173c6d4fb76b28ca8f9a2ee8f91b9e12"
+        },
+        "vllm.vllm_flash_attn._vllm_fa2_C": {
+          "bytes": 302512232,
+          "sha256": "94d289bbc24b625be9c123cc0f3c7db048e6a117f4f6e7bcd39b400fb421d018"
+        },
+        "vllm.vllm_flash_attn._vllm_fa3_C": {
+          "bytes": 1060552512,
+          "sha256": "23adf0cb0cb60d558507c05f61e585a5908b345fff432e2d0584bcc366ab731a"
+        }
+      },
+      "limits": "This build stage passed in an otherwise incomplete first attempt; its failed training/serving stages remain preserved. Subsequent FLA repair and training acceptance have separate receipts."
+    }
+  },
+  "limits": [
+    "One-step SFT smoke verifies bounded training/export/reload operation, not convergence or long-duration stability",
+    "Cold-start compilation and warmup are included; first-step and total smoke times are not steady-state throughput benchmarks",
+    "The newly source-built vLLM environment and fresh training environment have distinct installation receipts; the FLA repair was incremental, not a second full native rebuild",
+    "Separate TP/DP service coverage and numerical parity have their own reports; full 35B full-parameter resume comparison and longer-context training were not added",
+    "All raw logs, resolved dependencies, artifact manifests and failed initial attempts remain in the private handoff"
+  ],
+  "te_source_compile_preflight": {
+    "status": "passed",
+    "gpu_used": false,
+    "elapsed_s": 72.31141209602356,
+    "source_sha256": "8a2f1f3232184f86395929505a011fbaa0b8224584417ee8d5fc7018e8533e4d",
+    "wheel": {
+      "name": "transformer_engine_torch-2.14.1-cp311-cp311-linux_x86_64.whl",
+      "bytes": 821900,
+      "sha256": "1b46d0ff25757c186005445d6e4cda00957925e0db524490a2556df625d27c18"
+    },
+    "fix": [
+      "force TE source build without GitHub wheel probe",
+      "include installed NVIDIA/cuDNN wheel headers",
+      "keep complete CUDA SDK include path on CPATH for compiler crt headers"
+    ],
+    "limits": "Focused CPU compilation only; subsequent complete public training installation and both one-step GPU SFT/save/HF-reload chains also passed as recorded above",
+    "initial_compiler_failure": "NVIDIA runtime wheels omit crt/host_defines.h; original preflight failure retained"
+  },
+  "fresh_repaired_training_cpu": {
+    "status": "passed",
+    "source_revision": "3c644d9edadd060e58da6f9aabea700bc6543f4c",
+    "source_archive_sha256": "3b3aed6571b33a58bb5cbef72669149cb9ab53ca8c319e1adb4f9fe98e957024",
+    "gpu_used": false,
+    "gpu_count": 0,
+    "environment": "new isolated venv; public offline training installer; CPU TE binding source compilation; actual project wheel subsequently installed",
+    "cached_python_artifacts": 269,
+    "native_imports": [
+      "transformer_engine.pytorch",
+      "megatron.core",
+      "mcore_bridge.model.modules.march"
+    ],
+    "checkpoint_processor_gate": "both models passed current remote-code/weights manifest and actual training processor/tokenizer load",
+    "meta_training_startup": [
+      {
+        "family": "4B",
+        "model_type": "safin1_4b",
+        "gpu_used": false,
+        "model_weights_loaded": false,
+        "model_parameter_device": "meta",
+        "parameters": 5127781888,
+        "processor": "Qwen3VLProcessor",
+        "tokenizer": "Qwen2Tokenizer",
+        "tasks": {
+          "sft": {
+            "tokens": 1024,
+            "supervised_tokens": 1011,
+            "template": "Qwen3_5Template"
+          },
+          "cpt": {
+            "tokens": 1024,
+            "supervised_tokens": 1023,
+            "template": "Qwen3_5Template"
+          }
+        }
+      },
+      {
+        "family": "35B-A3B",
+        "model_type": "safin1_35b_a3b",
+        "gpu_used": false,
+        "model_weights_loaded": false,
+        "model_parameter_device": "meta",
+        "parameters": 35628326768,
+        "processor": "Qwen3VLProcessor",
+        "tokenizer": "Qwen2Tokenizer",
+        "tasks": {
+          "sft": {
+            "tokens": 1024,
+            "supervised_tokens": 1011,
+            "template": "Qwen3_5Template"
+          },
+          "cpt": {
+            "tokens": 1024,
+            "supervised_tokens": 1023,
+            "template": "Qwen3_5Template"
+          }
+        }
+      }
+    ],
+    "package_and_fixture_gates": {
+      "cpu-framework-wheel": "passed",
+      "cpu-framework-wheel-install": "passed",
+      "cpu-verify-package": "passed",
+      "cpu-native-training-imports": "passed",
+      "cpu-tiny-hf-fixtures": "passed",
+      "cpu-meta-startup-4B": "passed",
+      "cpu-meta-startup-35B-A3B": "passed"
+    },
+    "limits": "CPU/meta initialization and data formatting are not full-size GPU optimizer/save/HF-reload acceptance",
+    "first_host_compilation": "Owned local compiler was stopped because FUSE header I/O was slow; identical public installer continued as a zero-GPU task in the existing resource pool. Original interrupted log retained.",
+    "preparation_receipt_sha256": "bd67f5bb063062109169c3e548f25cd32b9e8381d3d4df2fe1eda197e89fb4b8",
+    "startup_receipt_sha256": "ea42b5414b6883a888ba18fcafc47a9e1a468982984a76f88bd11c8136082e97",
+    "source_manifest_sha256": "6a532cca3747367ae691d0d4a678ef273e69f6dd401e0974eb80a647fa2da5ea",
+    "installer": "passed",
+    "te_bindings_source_build": {
+      "status": "passed",
+      "version": "2.14.1",
+      "installer_log_sha256": "f301f9d7d1cea9277b7d0f1d7900bc87d084c5c3d1cac5c35fdee7093d233903",
+      "source_archive_sha256": "8a2f1f3232184f86395929505a011fbaa0b8224584417ee8d5fc7018e8533e4d",
+      "built_wheel": "transformer_engine_torch-2.14.1-cp311-cp311-linux_x86_64.whl",
+      "built_wheel_bytes": 822066,
+      "built_wheel_sha256": "00cf3ba80412db6f66698d0f597246eec6200e0606954c494a6e24761fc2bb09",
+      "limits": "TE PyTorch bindings built by the complete CPU-prepared installer; separate from the earlier focused source-build preflight"
+    }
+  },
+  "installation_evidence_schema_version": 1,
+  "source_fingerprints": {
+    "march": {
+      "files": 80,
+      "sha256": "da98506db2862a89f8bbf177f8fa11f5f4e3daa4d226e8f951c7cfdbe393a5fc"
+    },
+    "swift": {
+      "files": 372,
+      "sha256": "9c52c13acff761149f938f220865e8cb7872c47700f1bffb6545e96f17ddd154"
+    },
+    "third_party/mcore-bridge/src": {
+      "files": 55,
+      "sha256": "5213355a39a1d5de643176be88be4222b669d78027a02bb0fb27263b54551286"
+    },
+    "installation_recipe": {
+      "files": 28,
+      "sha256": "57771acd3766348c6aa26719dcd46d34f40220fb3371a69f89ae9393b474d437"
+    },
+    "vllm_native_build": {
+      "files": 292,
+      "sha256": "5dc3357c3edeba102b98a4bdd92eb0931c213d48866694b708b87a2adb8eb0e2"
+    }
+  },
+  "source_fingerprint_scope": {
+    "training_and_recipes": "Derived from the frozen training install manifest, not regenerated from untested current code",
+    "vllm_native_build": "Derived from the original offline vLLM native source-build manifest; Python serving runtime is checked by the separate TP/DP gate",
+    "limits": "Changes require renewed affected acceptance with raw receipts; documentation and release-only checks are outside these fingerprints"
+  }
+}

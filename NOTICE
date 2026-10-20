@@ -1,0 +1,17 @@
+MARCH / Safin-1 open-source fork
+
+Derived from ModelScope ms-swift. Copyright notices in the original source
+files remain applicable; the root LICENSE is Apache License 2.0.
+
+Vendored components retain their own licenses and copyright notices:
+- ModelScope mcore-bridge (Apache-2.0)
+- vLLM contributors (Apache-2.0)
+- EleutherAI lm-evaluation-harness (MIT)
+- Qwen/Alibaba FlashQLA Hopper subset (MIT)
+- Optional historical FLA research runtime (MIT)
+- Optional historical HSD FlashQLA subset (MIT)
+
+See third_party/VENDORED_COMPONENTS.md and component LICENSE/NOTICE files.
+The original public landing-repository MIT notice is retained separately in
+LICENSES/AI45Lab-Safin-1-MIT.txt for any retained original landing materials.
+No model-weight or dataset license is granted by this code notice.

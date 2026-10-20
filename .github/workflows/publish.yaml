@@ -1,0 +1,26 @@
+name: Build MARCH source and wheel (manual)
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install build setuptools wheel
+      - run: python scripts/march/check_public_release.py .
+      - run: python scripts/march/check_vendor_manifest.py
+      - run: python scripts/march/check_operator_correctness.py
+      - run: python scripts/march/check_publication.py --allow-draft
+      - run: bash -n scripts/march/*.sh
+      - run: python -m build
+      - run: python scripts/march/export_source.py --output /tmp/march-safin1-source.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: march-safin1-build
+          path: |
+            dist/*
+            /tmp/march-safin1-source.tar.gz*

@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-18",
+  "status": "blocked_by_hub_authorization",
+  "model_release_policy": "docs/march/model-release-policy-20261018.json",
+  "weight_license": "Apache-2.0",
+  "collection": "https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596",
+  "models": [
+    {
+      "name": "Safin-1-4B",
+      "model_id": "AI45Research/Safin-1-4B",
+      "revision": null,
+      "readme_sha256": "304100bba7f3a7bc2862de5d6a5dd3443558a71edfa754208c5bce5a4d465489",
+      "sha256sums_sha256": "117e10de34edb31d9a3c759c849a7fc6dc6670d4a9d83fe18f1e0eac3f3fc84b",
+      "config_sha256": "56e8c44935ad646794f574916b54d0d2a712c6715819178ba0d1eb8345ca4070",
+      "upload": "not_started",
+      "fresh_download": "pending",
+      "collection_item": "pending"
+    },
+    {
+      "name": "Safin-1-35B-A3B",
+      "model_id": "AI45Research/Safin-1-35B-A3B",
+      "revision": null,
+      "readme_sha256": "d266d772098dbb684178242a20e6d37b6147e3749b5b4d70a560ba0d9be74f69",
+      "sha256sums_sha256": "5e1c9d43cf1f431ba99537374da711d4877878ed53efbaa8e0c725801e3b34d6",
+      "config_sha256": "8cab92662b64ba2f74174ba2f1d78fcb13e13709097141875f4f5131a6dbb733",
+      "upload": "not_started",
+      "fresh_download": "pending",
+      "collection_item": "pending"
+    },
+    {
+      "name": "Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "revision": null,
+      "readme_sha256": "f1b15c35c896358b15a9a166e47dfdc27496c8b02b625a137ca6735022a39c8a",
+      "sha256sums_sha256": "43a9afeae2ad3250f42888fb9b5c5c5b183039f2087fa413930a132751e066b8",
+      "config_sha256": "929bcafc60817d0a598e756fbe511d6c6c03a4eb7280e2080c2714f045ecc4c6",
+      "upload": "not_started",
+      "fresh_download": "pending",
+      "collection_item": "pending"
+    },
+    {
+      "name": "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "revision": null,
+      "readme_sha256": "7589c685f53e16b76a9ea31d940ddabe43c9c5e3bb5654e69ea14aba35a664b7",
+      "sha256sums_sha256": "5f4534d232455f2e1b8f3c41ed1b58daddfff8929aa081df66b9457b6e2dc5e9",
+      "config_sha256": "d239f59dd6a5e65c0f7659f480072e0267010b0a46de1dbefcbbaea384917bb4",
+      "upload": "not_started",
+      "fresh_download": "pending",
+      "collection_item": "pending"
+    }
+  ],
+  "weight_integrity": "docs/march/model-weight-integrity-20261017.json",
+  "metadata_checksums_refreshed": true,
+  "weight_payloads_modified": false,
+  "source_publication": "wait_for_regression_completion",
+  "remote_upload_performed": false,
+  "repository_creation": {
+    "model_id": "AI45Research/Safin-1-4B",
+    "status": "denied",
+    "http_status": 403,
+    "reason": "Current HF credential cannot create a model under AI45Research"
+  }
+}

@@ -1,0 +1,18 @@
+# Versions observed in the 2026-09-09 validation environment. This is not a
+# complete transitive lock or a claim that the GPU matrix has passed.
+torch==2.11.0
+transformers==5.5.4
+tokenizers==0.22.2
+safetensors==0.7.0
+peft==0.19.1
+accelerate==1.13.0
+megatron-core==0.16.1
+transformer-engine==2.14.1
+flash-linear-attention==0.5.0
+triton==3.6.0
+tilelang==0.1.9
+
+qwen-vl-utils==0.0.14
+decord==0.6.0
+torchvision==0.26.0
+av==17.0.1

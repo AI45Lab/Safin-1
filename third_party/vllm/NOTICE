@@ -1,0 +1,8 @@
+Downstream attribution record for vLLM
+
+Source: https://github.com/vllm-project/vllm
+License: Apache-2.0; see LICENSE and copyright notices in source files.
+
+This NOTICE was added by the MARCH/Safin-1 fork. It is not represented as an
+upstream-authored NOTICE. All retained upstream copyright and license texts
+continue to apply. Local integration: Safin-1 dense/MoE registry, MARCH prefill/decode, history caching and kernel dispatch.

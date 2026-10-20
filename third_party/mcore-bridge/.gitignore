@@ -1,0 +1,10 @@
+/.vscode
+*.egg-info/
+build/
+dist/
+__pycache__/
+
+
+*.log
+*.out
+/megatron_output/

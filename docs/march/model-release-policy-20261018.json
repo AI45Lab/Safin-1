@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-18",
+  "status": "maintainer_decision",
+  "policy": {
+    "training_data_review": "disclose_only",
+    "evaluation_report": "optional"
+  },
+  "models": [
+    "Safin-1-4B",
+    "Safin-1-35B-A3B",
+    "Qwen3.5-4B-Intern50B-NemotronSFT30B",
+    "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B"
+  ],
+  "decision": "Proceed with HF weight upload while disclosing undocumented CPT provenance and the absence of a formal current-release score table",
+  "unknown_facts_remain_unknown": true,
+  "source_publication": "wait_for_regression_completion",
+  "technical_acceptance_and_checkpoint_integrity_requirements": "unchanged"
+}

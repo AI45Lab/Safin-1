@@ -1,0 +1,24 @@
+recursive-include requirements *.txt
+recursive-include march *.py LICENSE UPSTREAM.md
+recursive-include configs/march *.yaml
+recursive-include scripts/march *.py *.sh
+recursive-include examples/march *.jsonl
+recursive-include tests/march *.py
+recursive-include docs/march *.md *.json
+recursive-include third_party *
+recursive-include configs/release *.json
+include README.md README_CN.md CONTRIBUTING.md CONTRIBUTING_CN.md LICENSE NOTICE
+prune .local
+global-exclude __pycache__ *.py[cod]
+
+# Generated linter caches must not enter source distributions.
+prune third_party/vllm/.ruff_cache
+prune third_party/vllm/.mypy_cache
+prune third_party/mcore-bridge/.ruff_cache
+prune third_party/mcore-bridge/.mypy_cache
+prune third_party/lm-evaluation-harness/.ruff_cache
+prune third_party/lm-evaluation-harness/.mypy_cache
+
+# Optional historical HSD/FLA source workspace.
+recursive-include research *.py *.sh *.json *.jsonl *.md *.txt LICENSE NOTICE UPSTREAM.md
+recursive-include LICENSES *.txt *.md

@@ -1,0 +1,309 @@
+{
+  "date": "2026-10-17",
+  "status": "passed",
+  "scope": "Formal checkpoint loading-code refresh and clean local model delivery; original step-3600/7200 weights, not one-step acceptance-training outputs",
+  "gpu_used": false,
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu129",
+    "transformers": "5.5.4",
+    "safetensors": "0.7.0"
+  },
+  "initial_baseline_check": {
+    "status": "initial loader choice failed before weights were read",
+    "cause": "AutoModelForCausalLM selected a text-only class for the native full Qwen3.5 config",
+    "repair": "Use AutoModelForImageTextToText for native baselines; their configs and weights remain unchanged",
+    "original_failure_log_retained": true
+  },
+  "remote_code_source_sha256": {
+    "__init__.py": "ce984b4bb0cb3b58929fe1419e8901e261f249fb1fe3fa8962fc1cc267fa9800",
+    "anchor_layout.py": "da98e421d6dd3b0e0a909a0c1a897369f9392fe32191681689b8292b9f0a68c4",
+    "cache_utils.py": "c7c509a6ca55c687dc22d02ea23c78db68f9d4d3a880eb2ca1cace934b6d420a",
+    "config_utils.py": "f5491da1bdd48f59e4d9c4781f9f38a31bcc4a66c9fa124e82c22834a1edc01e",
+    "configuration_common.py": "73114b40d3e0471c32e33620e67bd6b2a9071b0e6ea93a92689828152c980e03",
+    "configuration_safin1.py": "94110c487568aaaee390c31e86cb33fc43e77e286a7a6661797be2280787ab6d",
+    "configuration_safin1_moe.py": "bd1681bc4a4785e29dad2e30b1c9f5d6c71c9975976c9468b0b554a488040c0a",
+    "fused_history_read.py": "c9f9ce5730535b7bba86c9ec9a4b261a82b3ab54a370e6d510d309fcc616af16",
+    "fused_march_segments.py": "10d84340faa8bfa941eee0dbc4f55c70705075763ee2ecb114be486412410d07",
+    "gdn_cache.py": "e1e96ebd6209a06e6831a4f5bbe0ec7085d346fc6fea66c11e827c01d86a7f7a",
+    "gdn_recurrence.py": "898f3f4e17348ae37095cb7674965aab9a40cccfd78b03f365981494b848c42e",
+    "march_gdn.py": "c07fe0edc13ab0af6726c119d437465258bf184022b6c313b3ab3ed96bbafa81",
+    "modeling_common.py": "5a8bcc2eadf7ed41dac3aaf6d9aec81ae9ba9c6c0b655b1010d14ad4c5c81cb8",
+    "modeling_safin1.py": "e1f21c95aeb55614a2331cb1586d705cace103e31f8b035c96c775a0a863ec67",
+    "modeling_safin1_moe.py": "f23d497ec1349a8d81dfdf5935e7f9af9e311a986085cf3636f30177df186f1b",
+    "ops.py": "ae31b32a927e1d67e3d2c72c1b802b11ac2f68bb63758729a0a686cc1cf80786",
+    "persistent_memory.py": "b54da67d459bcc53192fed980892b9b9310998c58fb37464688a9d864b78d386",
+    "runtime_validation.py": "bcb6a0bebb4cc389e4dfeb15a2acda927f7f9ea006512862835f9017f5d5975b"
+  },
+  "delivery_scanner_sha256": "0d7e3e0b0d3935addf8650979637a6f26584972f739cae7c340a6f4d202b1837",
+  "models": [
+    {
+      "model": "Safin-1-4B",
+      "source_training_step": 3600,
+      "config_and_saved_runtime_preserved": true,
+      "weight_shards": 3,
+      "weight_keys": 812,
+      "weight_payloads_rewritten": 0,
+      "remote_code_files": 18,
+      "native_baseline_type_preserved": null,
+      "original_baseline_files_unchanged": null,
+      "delivery_text_scan_findings": 0,
+      "metadata_checksums_verified": true,
+      "cpu_compatibility": {
+        "status": "passed",
+        "model_type": "safin1_4b",
+        "model_class": "Safin1ForConditionalGeneration",
+        "processor": "Qwen3VLProcessor",
+        "tokenizer": "Qwen2Tokenizer",
+        "chat_prompt_tokens": 17,
+        "weight_keys": 812,
+        "weight_shards": 3,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatches": {},
+        "missing_tied_aliases": [
+          "lm_head.weight"
+        ],
+        "parameters_on_meta": true,
+        "gpu_used": false,
+        "limits": "Fresh-cache config/tokenizer/processor and complete parameter-name/shape compatibility; no full-weight numerical forward/generation in this check",
+        "chat_input_ids": [
+          248045,
+          846,
+          198,
+          814,
+          20139,
+          4779,
+          53577,
+          13,
+          248046,
+          198,
+          248045,
+          74455,
+          198,
+          248068,
+          271,
+          248069,
+          271
+        ]
+      }
+    },
+    {
+      "model": "Safin-1-35B-A3B",
+      "source_training_step": 7200,
+      "config_and_saved_runtime_preserved": true,
+      "weight_shards": 17,
+      "weight_keys": 1121,
+      "weight_payloads_rewritten": 0,
+      "remote_code_files": 18,
+      "native_baseline_type_preserved": null,
+      "original_baseline_files_unchanged": null,
+      "delivery_text_scan_findings": 0,
+      "metadata_checksums_verified": true,
+      "cpu_compatibility": {
+        "status": "passed",
+        "model_type": "safin1_35b_a3b",
+        "model_class": "Safin1MoeForConditionalGeneration",
+        "processor": "Qwen3VLProcessor",
+        "tokenizer": "Qwen2Tokenizer",
+        "chat_prompt_tokens": 17,
+        "weight_keys": 1121,
+        "weight_shards": 17,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatches": {},
+        "missing_tied_aliases": [],
+        "parameters_on_meta": true,
+        "gpu_used": false,
+        "limits": "Fresh-cache config/tokenizer/processor and complete parameter-name/shape compatibility; no full-weight numerical forward/generation in this check",
+        "chat_input_ids": [
+          248045,
+          846,
+          198,
+          814,
+          20139,
+          4779,
+          53577,
+          13,
+          248046,
+          198,
+          248045,
+          74455,
+          198,
+          248068,
+          271,
+          248069,
+          271
+        ]
+      }
+    },
+    {
+      "model": "Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "source_training_step": 3600,
+      "config_and_saved_runtime_preserved": true,
+      "weight_shards": 2,
+      "weight_keys": 723,
+      "weight_payloads_rewritten": 0,
+      "remote_code_files": 0,
+      "native_baseline_type_preserved": true,
+      "original_baseline_files_unchanged": true,
+      "delivery_text_scan_findings": 0,
+      "metadata_checksums_verified": true,
+      "cpu_compatibility": {
+        "status": "passed",
+        "model_type": "qwen3_5",
+        "model_class": "Qwen3_5ForConditionalGeneration",
+        "processor": "Qwen3VLProcessor",
+        "tokenizer": "TokenizersBackend",
+        "chat_prompt_tokens": 17,
+        "weight_keys": 723,
+        "weight_shards": 2,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatches": {},
+        "missing_tied_aliases": [
+          "lm_head.weight"
+        ],
+        "parameters_on_meta": true,
+        "gpu_used": false,
+        "limits": "Fresh-cache config/tokenizer/processor and complete parameter-name/shape compatibility; no full-weight numerical forward/generation in this check",
+        "chat_input_ids": [
+          248045,
+          846,
+          198,
+          814,
+          20139,
+          4779,
+          53577,
+          13,
+          248046,
+          198,
+          248045,
+          74455,
+          198,
+          248068,
+          271,
+          248069,
+          271
+        ]
+      }
+    },
+    {
+      "model": "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "source_training_step": 7200,
+      "config_and_saved_runtime_preserved": true,
+      "weight_shards": 16,
+      "weight_keys": 1026,
+      "weight_payloads_rewritten": 0,
+      "remote_code_files": 0,
+      "native_baseline_type_preserved": true,
+      "original_baseline_files_unchanged": true,
+      "delivery_text_scan_findings": 0,
+      "metadata_checksums_verified": true,
+      "cpu_compatibility": {
+        "status": "passed",
+        "model_type": "qwen3_5_moe",
+        "model_class": "Qwen3_5MoeForConditionalGeneration",
+        "processor": "Qwen3VLProcessor",
+        "tokenizer": "TokenizersBackend",
+        "chat_prompt_tokens": 17,
+        "weight_keys": 1026,
+        "weight_shards": 16,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "shape_mismatches": {},
+        "missing_tied_aliases": [],
+        "parameters_on_meta": true,
+        "gpu_used": false,
+        "limits": "Fresh-cache config/tokenizer/processor and complete parameter-name/shape compatibility; no full-weight numerical forward/generation in this check",
+        "chat_input_ids": [
+          248045,
+          846,
+          198,
+          814,
+          20139,
+          4779,
+          53577,
+          13,
+          248046,
+          198,
+          248045,
+          74455,
+          198,
+          248068,
+          271,
+          248069,
+          271
+        ]
+      }
+    }
+  ],
+  "limits": [
+    "CPU fresh-process config/tokenizer/processor loading and full meta parameter-name/shape compatibility only; no new full-weight numerical forward or GPU generation in this repair",
+    "Weights use same-disk hardlinks; source shard identity, size, modification time and headers/index checked; full payload SHA256 was not computed",
+    "Metadata/code checksums supplied; planned HF model IDs assigned; published revisions, licensing, data review and formal evaluation remain pending"
+  ],
+  "hf_upload_preparation": {
+    "status": "prepared locally; not uploaded",
+    "repository_layout": "four independent model roots; parent bundle metadata excluded",
+    "model_cards": "HF model IDs assigned; Apache-2.0 selected; upstream license/notice, training inventory, historical evaluation scope and SHA256SUMS added; data/quality gates remain pending",
+    "safin1_standalone_checks": [
+      {
+        "model": "Safin-1-4B",
+        "status": "passed",
+        "elapsed_s": 39.39162445720285,
+        "repository_modules_blocked": [
+          "march",
+          "swift",
+          "mcore_bridge"
+        ]
+      },
+      {
+        "model": "Safin-1-35B-A3B",
+        "status": "passed",
+        "elapsed_s": 37.969739590771496,
+        "repository_modules_blocked": [
+          "march",
+          "swift",
+          "mcore_bridge"
+        ]
+      }
+    ],
+    "config_and_weight_payloads_unchanged": true,
+    "limits": "Standalone checks construct complete models on meta and compare names/shapes; no new full-weight numerical forward or GPU inference",
+    "namespace": "AI45Research",
+    "collection": "https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596",
+    "model_ids": [
+      "AI45Research/Safin-1-4B",
+      "AI45Research/Safin-1-35B-A3B",
+      "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B"
+    ],
+    "remote_upload_performed": false
+  },
+  "hf_publication_materials": {
+    "date": "2026-10-17",
+    "weight_license": "Apache-2.0",
+    "upstream_license_retained": true,
+    "full_weight_payload_sha256": "complete; 38 shards",
+    "weight_integrity_record": "docs/march/model-weight-integrity-20261017.json",
+    "training_data_inventory": "docs/march/training-data-20261017.json",
+    "historical_evaluation": "docs/march/historical-evaluation-20261017.json",
+    "pending": [
+      "CPT provenance and training-data review",
+      "formal current-release quality report",
+      "published model revisions"
+    ],
+    "remote_upload_performed": false,
+    "validation": {
+      "status": "passed",
+      "model_card_and_candidate_checks": 4,
+      "weight_sha256_entries": 38,
+      "metadata_files_rehashed": 98,
+      "historical_results_compared_to_raw_json": 45,
+      "targeted_release_tests_passed": 9,
+      "code_publication_gate": "passed",
+      "model_gate": "pending CPT review, current-release quality report and published revisions"
+    }
+  }
+}

@@ -1,0 +1,1624 @@
+{
+  "date": "2026-10-17",
+  "status": "passed",
+  "source_revision": "1c683603a1c00ddb7ec8ecbc47eb17aebb5df5c8",
+  "scope": "real OpenAI-compatible API/TP/DP smoke using ordinary Safin-1 checkpoint exports",
+  "planned_cases": [
+    {
+      "model": "4B",
+      "tp": 1,
+      "dp": 2
+    },
+    {
+      "model": "35B-A3B",
+      "tp": 2,
+      "dp": 1
+    },
+    {
+      "model": "35B-A3B",
+      "tp": 1,
+      "dp": 2
+    }
+  ],
+  "hardware_requested": "two H200 GPUs",
+  "native_build": "reused",
+  "profile": "graph",
+  "prefix_cache": false,
+  "max_model_len": 8192,
+  "max_num_seqs": 32,
+  "serial_prompt_lengths": [
+    511,
+    512,
+    513,
+    4096,
+    8000
+  ],
+  "concurrent_prompt_lengths": [
+    511,
+    512,
+    513,
+    1024,
+    2048,
+    4096,
+    8000,
+    512
+  ],
+  "submitted_http_concurrency": 8,
+  "max_new_tokens": 8,
+  "temperature": 0,
+  "seed": 123,
+  "offline": true,
+  "preflight": {
+    "cpu_tool_tests_passed": 7,
+    "matrix_dry_run": "passed",
+    "launcher_dry_runs_passed": 3,
+    "local_model_files": "present and sizes match prior loading acceptance",
+    "source_files_verified": 2240,
+    "native_extensions_verified": 8,
+    "native_cli_help_on_cpu": "blocked by device auto-detection; not an API startup result",
+    "frozen_source_targeted_cpu_tests_passed": 47
+  },
+  "limits": [
+    "Not numerical parity across HF/eager/TP/DP",
+    "No production-size learned persistent state",
+    "No clean native build",
+    "Submitted HTTP concurrency is not actual Graph batch concurrency",
+    "Graph dispatch events do not independently count completed CUDA Graph replays"
+  ],
+  "hardware": "two NVIDIA H200 GPUs",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "partial_failure",
+      "source_revision": "9b3b986528a6a83e57a8dc7d52fc65e089b63315",
+      "case_count_passed": 2,
+      "api_requests_checked": 26,
+      "completion_tokens": 208,
+      "results": [
+        {
+          "model": "4B",
+          "tp": 1,
+          "dp": 2,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 55
+          },
+          "max_graph_requests": 4
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 2,
+          "dp": 1,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 96
+          },
+          "max_graph_requests": 8
+        }
+      ],
+      "failed_case": {
+        "model": "35B-A3B",
+        "tp": 1,
+        "dp": 2,
+        "status": "failed_startup",
+        "stage": "determine_available_memory / profile_run / MoE DP dispatch",
+        "error": "AssertionError: sizes[dist_group.rank_in_group] == hidden_states.shape[0]",
+        "cause": "memory-anchor insertion expands executor rows, but MoE DP metadata still describes scheduler text rows",
+        "oom_detected": false
+      },
+      "raw_report_sha256": "7a1a0d683e37604bd55c270d9105124ef1eed543ef28d7f4dfae5f8d5528e8f2",
+      "failed_server_log_sha256": "1d719b544c9b5dc3d45d9fb5148cc18325412ea4d478438dd48746d8230b30a0",
+      "post_run_source_and_eight_native_hashes_verified": true
+    },
+    {
+      "attempt": 2,
+      "status": "partial_failure",
+      "source_revision": "06444cc2cbbfa29888d26f3c3d4911ee0b4d2b45",
+      "case_count_passed": 2,
+      "api_requests_checked": 26,
+      "completion_tokens": 208,
+      "results": [
+        {
+          "model": "4B",
+          "tp": 1,
+          "dp": 2,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 55
+          },
+          "max_graph_requests": 4
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 2,
+          "dp": 1,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 96
+          },
+          "max_graph_requests": 8
+        }
+      ],
+      "failed_case": {
+        "model": "35B-A3B",
+        "tp": 1,
+        "dp": 2,
+        "status": "request_timeout",
+        "startup_profiling": "passed",
+        "warmup_128": "passed",
+        "serial_prompt_tokens": 511,
+        "stage": "first memory-anchor boundary",
+        "error": "TimeoutError after 300-second API timeout",
+        "cause": "eager/static idle DP can enter cached AOT model code instead of reentering the Python ForwardContext metadata scope",
+        "oom_detected": false
+      },
+      "raw_report_sha256": "bc1c7e14b27c61bec749573bc8cfeaab74923d20fb6c21c52fdd7725635d2f10",
+      "failed_server_log_sha256": "3bbffd1d93cd80894b4bb19308b4a4e962b91b4512bede26fb0247a3f6b09a48",
+      "matrix_log_sha256": "ab9a45517390db487647fbe9e1072543e5d9a45e083c166d96a860792ddd5aac",
+      "compiled_graph_sha256": "f1f16f8cb6b1068c19625668cfdd11df08dcef9db95a1510c6175a50db20e3e9",
+      "extra_attempts_used": 1,
+      "max_extra_attempts": 2,
+      "post_run_source_and_eight_native_hashes_verified": true
+    },
+    {
+      "attempt": 3,
+      "status": "partial_failure",
+      "source_revision": "f0455a9006e083d5b2e4686fb31dc7fbd3e2c2d5",
+      "case_count_passed": 2,
+      "api_requests_checked": 26,
+      "completion_tokens": 208,
+      "results": [
+        {
+          "model": "4B",
+          "tp": 1,
+          "dp": 2,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 54
+          },
+          "max_graph_requests": 4
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 2,
+          "dp": 1,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 96
+          },
+          "max_graph_requests": 8
+        }
+      ],
+      "failed_case": {
+        "model": "35B-A3B",
+        "tp": 1,
+        "dp": 2,
+        "status": "failed_compilation",
+        "stage": "Graph warmup / TorchDynamo symbolic-shape guards",
+        "error": "ConstraintViolationError: dynamic batch dimension specialized to 32",
+        "cause": "the added Graph row check compares symbolic rows with the concrete Python batch descriptor",
+        "introduced_by_defensive_check_in_repair": true,
+        "oom_detected": false
+      },
+      "raw_report_sha256": "8832aa90d18ebbe619c89826aa766028ca38481a506c427406d597205cdeceb9",
+      "failed_server_log_sha256": "5eac1d301719f7664521bf00bb439f430b54a6c9128a71aa9adfe5a259ab421a",
+      "matrix_log_sha256": "d70d0657c349f59d7cfe1a5ec3604e6ada53c0c05fd46dfab02e8bfd7d0b22bb",
+      "extra_attempts_used": 2,
+      "max_extra_attempts": 2,
+      "frozen_python_files": 2239,
+      "post_run_source_drivers_and_eight_native_hashes_verified": true
+    },
+    {
+      "attempt": 4,
+      "status": "partial_failure",
+      "source_revision": "7bb0fdd564fcd1bebb10009a9931c2eb8d2bd7ec",
+      "case_count_passed": 2,
+      "api_requests_checked": 26,
+      "completion_tokens": 208,
+      "results": [
+        {
+          "model": "4B",
+          "tp": 1,
+          "dp": 2,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 54
+          },
+          "max_graph_requests": 4
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 2,
+          "dp": 1,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 96
+          },
+          "max_graph_requests": 8
+        }
+      ],
+      "additional_attempts_authorized": 1,
+      "extra_attempts_used": 3,
+      "max_extra_attempts": 3,
+      "failed_case": {
+        "model": "35B-A3B",
+        "tp": 1,
+        "dp": 2,
+        "status": "failed_cuda_graph_capture",
+        "dynamic_graph_compilation": "passed",
+        "stage": "PIECEWISE CUDA Graph capture",
+        "error": "CUDA error: operation not permitted when stream is capturing",
+        "first_failure": "Inductor triton_poi_fused_0 first autotune calls torch.cuda.synchronize inside capture",
+        "follow_up": "prewarm compiled Inductor/Triton Graph kernels outside capture while retaining eager DP Python metadata scopes",
+        "follow_up_implemented": false,
+        "oom_detected": false
+      },
+      "raw_report_sha256": "9a5d6aa265420222f0fde323c0db5b0d490bb5101a2359389ed55f337381d6e6",
+      "failed_server_log_sha256": "9d12e37627d312be97e62c602364b58ed0fd341ecc27958c7b09b6c1cec4dde4",
+      "matrix_log_sha256": "009c9f86f67b6600755ae7dbdf24967a3eef767f3cb102fcfd9e601d6a37b424",
+      "source_manifest_sha256": "0135ff804cb6f62e9c8dd8a908f731f84c9319f19c7d3ab3b7543814bfd59b64",
+      "frozen_python_files": 2239,
+      "post_run_source_drivers_and_eight_native_hashes_verified": true
+    },
+    {
+      "attempt": 5,
+      "status": "passed",
+      "source_revision": "1c683603a1c00ddb7ec8ecbc47eb17aebb5df5c8",
+      "results": [
+        {
+          "model": "4B",
+          "tp": 1,
+          "dp": 2,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 55
+          },
+          "max_graph_requests": 4,
+          "server_log_sha256": "db48ccb410ca918f6c8706e2f9ff127702361d5c23ee32f00f5068ff386794bd",
+          "event_log_sha256": "d824c40ea90395e151388e4d5d980c0e4bfe6be2644d32e73f9f60ea331897a0"
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 2,
+          "dp": 1,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 96
+          },
+          "max_graph_requests": 8,
+          "server_log_sha256": "3cf17ee09d66280c9542dde6e05fb36423919f3ef621d2d9cbfe0675ef9661c0",
+          "event_log_sha256": "ad6e2ab59f503c5ee338d98a0d82fa8cbe50d9e7c4e900c7db680a5fa90a840f"
+        },
+        {
+          "model": "35B-A3B",
+          "tp": 1,
+          "dp": 2,
+          "passed": true,
+          "api_requests_checked": 13,
+          "completion_tokens": 104,
+          "graph_dispatches": {
+            "FULL": 54
+          },
+          "max_graph_requests": 4,
+          "server_log_sha256": "d45eb7202bb92a6700b2bac98898552f464c468e234c33cebb9de56e05d87b1a",
+          "event_log_sha256": "590cc25717d349a25c17ddb36daa4d44f2fc1c62c5d6eb9683cbe1ab35a2ad22"
+        }
+      ],
+      "case_count_passed": 3,
+      "api_requests_checked": 39,
+      "completion_tokens": 312,
+      "raw_report_sha256": "0252f2cb2ebbd7774d73e87f3b2928989d8224617ec8d3badf62b61e9fdf7c60",
+      "acceptance_sha256": "d5abd31197d55da1d212d095acb92898110d837cd824a74b887abdfe8176abc0",
+      "matrix_log_sha256": "66b9f40cdc701b8c23455a0a30ab156c091aa8de7fb1cae1aa1d0a59b0ea1406",
+      "source_manifest_sha256": "e4ec8bf7884befc96db8470786c67d1d52d21e5aace6b9eb73ae5d5d810b8167",
+      "additional_attempts_authorized": 1,
+      "extra_attempts_used": 4,
+      "max_extra_attempts": 4,
+      "frozen_python_files": 2240,
+      "post_run_source_drivers_and_eight_native_hashes_verified": true,
+      "current_public_runtime_python_matches_frozen": true,
+      "other_public_python_differences": [
+        "scripts/march/check_environment.py"
+      ],
+      "compiled_warmup_gpu_validation": "passed",
+      "started_utc": "2026-10-17T07:58:50.055613+00:00",
+      "ended_utc": "2026-10-17T08:06:33.857648+00:00"
+    }
+  ],
+  "repair": {
+    "status": "passed",
+    "scope": "scoped actual MoE DP row counts after anchor insertion; restore original metadata on exit; Graph decode retains captured sizes",
+    "gpu_retry": "passed",
+    "cpu": {
+      "passed": 735,
+      "skipped": 169,
+      "subtests_passed": 21,
+      "dp_tests_passed": 25,
+      "actual_dynamic_torch_compile_modes": [
+        "FULL",
+        "PIECEWISE"
+      ],
+      "dynamic_graph_batches": [
+        32,
+        8,
+        4
+      ],
+      "traces_per_mode": 1,
+      "graph_warmup_tests_passed": 15
+    },
+    "vendor_components_verified": 6,
+    "operator_source_gate": {
+      "tests": 322,
+      "kernels": 43,
+      "unchanged": true
+    },
+    "public_scan": {
+      "tree_findings": 0,
+      "tracked_findings": 0
+    },
+    "source_sha256": {
+      "third_party/vllm/vllm/model_executor/models/safin1.py": "8fb9a4bfbac068c1fe69e8c14aeface13acc5fc5b62fea2a1dc66db744f1f342",
+      "third_party/vllm/vllm/model_executor/models/march/parallel.py": "8811e80c6473c8cc5dda20e73495fc5499cffc7544fc0e5313093bc73c790b15",
+      "third_party/vllm/vllm/v1/worker/gpu_model_runner.py": "ab675dc94ab29db3764c061795591af0ed894bd8b7aa19074ef558da83a45045",
+      "tests/march/test_vllm_parallel.py": "98c242aa586622730bd3edf427846b9dfa0ae993ad8a23f14010cedf08d51adb",
+      "third_party/vllm/vllm/compilation/cuda_graph.py": "b31b53f12df81b593e7406cf6130904476eef6cfefb45bc561162f7bc1e005ba",
+      "tests/march/test_vllm_graph_warmup.py": "a967b567c377db059157579e60146259512815ca43eb4edc4ee0ca7717a14328",
+      "tests/march/test_prefix_cache_contract.py": "5214c6677ffbbef73f7ad8fbef9d9a450fb505de75e888cfd0e75277161e028e"
+    },
+    "source_revision": "1c683603a1c00ddb7ec8ecbc47eb17aebb5df5c8",
+    "gpu_attempt": 5,
+    "next_gpu_attempt": null,
+    "compile_boundary_fix": "MoE DP globally-eager real and idle runner steps must bypass cached model compilation; FULL/PIECEWISE Graph, Dense and DP1 retain existing paths",
+    "last_gpu_source_revision": "1c683603a1c00ddb7ec8ecbc47eb17aebb5df5c8",
+    "gpu_attempts_completed": 5,
+    "extra_attempts_used": 4,
+    "max_extra_attempts": 4,
+    "dynamic_compile_regression": {
+      "before_fix_failed": 2,
+      "after_fix_passed": 2,
+      "dp_tests_passed": 25,
+      "modes": [
+        "FULL",
+        "PIECEWISE"
+      ],
+      "batches": [
+        32,
+        8,
+        4
+      ],
+      "traces_per_mode": 1,
+      "before_fix_log_sha256": "78926ff83075c98a76fb0ed97f6b3b64bb9544ce68467563188735292dc3c7d4"
+    },
+    "additional_attempts_authorized": 1,
+    "next_fix": "prewarm compiled Inductor/Triton kernels before capture",
+    "next_fix_implemented": true,
+    "last_gpu_source_sha256": {
+      "third_party/vllm/vllm/model_executor/models/safin1.py": "8fb9a4bfbac068c1fe69e8c14aeface13acc5fc5b62fea2a1dc66db744f1f342",
+      "third_party/vllm/vllm/model_executor/models/march/parallel.py": "8811e80c6473c8cc5dda20e73495fc5499cffc7544fc0e5313093bc73c790b15",
+      "third_party/vllm/vllm/v1/worker/gpu_model_runner.py": "56db4fe50e651aee353e307876097b5f2585474afd58fbdef5accdda2b019127",
+      "tests/march/test_vllm_parallel.py": "98c242aa586622730bd3edf427846b9dfa0ae993ad8a23f14010cedf08d51adb"
+    },
+    "cpu_before_compiled_warmup_fix": {
+      "passed": 720,
+      "skipped": 169,
+      "subtests_passed": 21,
+      "dp_tests_passed": 25,
+      "actual_dynamic_torch_compile_modes": [
+        "FULL",
+        "PIECEWISE"
+      ],
+      "dynamic_graph_batches": [
+        32,
+        8,
+        4
+      ],
+      "traces_per_mode": 1
+    },
+    "compiled_warmup_fix": {
+      "source_revision": "1c683603a1c00ddb7ec8ecbc47eb17aebb5df5c8",
+      "scope": "one compiled Graph V3 warmup per descriptor for HSD MoE DP; scoped bypass of nested CUDA Graph capture/replay; real eager DP compile bypass unchanged",
+      "cpu_regression": {
+        "before_fix_failed": 8,
+        "after_fix_passed": 15,
+        "native_control_flow": [
+          "GPUModelRunner._warmup_and_capture",
+          "compiled model __call__",
+          "CUDAGraphWrapper.__call__"
+        ],
+        "cuda_boundary": "mocked; cold-autotune synchronization spy, not a CUDA execution",
+        "modes": [
+          "FULL",
+          "PIECEWISE"
+        ],
+        "ordinary_warmup_counts": [
+          0,
+          2
+        ],
+        "descriptor_tokens": [
+          8,
+          64
+        ],
+        "max_num_reqs": 32,
+        "checks": [
+          "compiled kernel runs before capture",
+          "capture and replay restored after warmup",
+          "eager DP remains Python",
+          "Dense/DP1/non-Graph-V3 policy unchanged",
+          "nested and lazy wrappers bypassed without cache entries",
+          "scope restored after nested or failed warmup",
+          "independent context unchanged"
+        ]
+      },
+      "before_fix_log_sha256": "614966e797b4adf75f97efe90253e5a41c909d415fa8ca83b29a62045e8b04a8",
+      "full_cpu_log_sha256": "3efd64cc9b1507b43c7d9c93d5ef0f2b10bddaa75573893053d6feaa229faf58",
+      "gpu_validation": "passed: three-case two-H200 matrix, attempt five"
+    }
+  },
+  "initial_source_revision": "9b3b986528a6a83e57a8dc7d52fc65e089b63315",
+  "results": [
+    {
+      "model": "4B",
+      "tp": 1,
+      "dp": 2,
+      "passed": true,
+      "api_requests_checked": 13,
+      "completion_tokens": 104,
+      "graph_dispatches": {
+        "FULL": 55
+      },
+      "max_graph_requests": 4,
+      "server_log_sha256": "db48ccb410ca918f6c8706e2f9ff127702361d5c23ee32f00f5068ff386794bd",
+      "event_log_sha256": "d824c40ea90395e151388e4d5d980c0e4bfe6be2644d32e73f9f60ea331897a0"
+    },
+    {
+      "model": "35B-A3B",
+      "tp": 2,
+      "dp": 1,
+      "passed": true,
+      "api_requests_checked": 13,
+      "completion_tokens": 104,
+      "graph_dispatches": {
+        "FULL": 96
+      },
+      "max_graph_requests": 8,
+      "server_log_sha256": "3cf17ee09d66280c9542dde6e05fb36423919f3ef621d2d9cbfe0675ef9661c0",
+      "event_log_sha256": "ad6e2ab59f503c5ee338d98a0d82fa8cbe50d9e7c4e900c7db680a5fa90a840f"
+    },
+    {
+      "model": "35B-A3B",
+      "tp": 1,
+      "dp": 2,
+      "passed": true,
+      "api_requests_checked": 13,
+      "completion_tokens": 104,
+      "graph_dispatches": {
+        "FULL": 54
+      },
+      "max_graph_requests": 4,
+      "server_log_sha256": "d45eb7202bb92a6700b2bac98898552f464c468e234c33cebb9de56e05d87b1a",
+      "event_log_sha256": "590cc25717d349a25c17ddb36daa4d44f2fc1c62c5d6eb9683cbe1ab35a2ad22"
+    }
+  ],
+  "case_count_passed": 3,
+  "api_requests_checked": 39,
+  "completion_tokens": 312,
+  "post_run_source_drivers_and_eight_native_hashes_verified": true,
+  "serving_evidence_schema_version": 1,
+  "runtime_source_sha256": {
+    "march": {
+      "files": 80,
+      "sha256": "da98506db2862a89f8bbf177f8fa11f5f4e3daa4d226e8f951c7cfdbe393a5fc"
+    },
+    "third_party/vllm/vllm": {
+      "files": 1658,
+      "sha256": "24f5e6bf11754c75815a137a27cec5508cc5d47b8e79fc16d88623000eaedf58"
+    },
+    "serving_entrypoints": {
+      "files": 2,
+      "sha256": "0dbdbd9fec4d3d47c0f83135905fb0286ddf839162cbcff2f862123c597e8f16"
+    }
+  },
+  "runtime_source_scope": "All Python in march/ and vendored vllm/vllm plus the two public serving entrypoints; derived from the immutable source of GPU attempt five. Native builds and dependency upgrades require separate evidence.",
+  "api_samples": [
+    {
+      "model": "4B",
+      "tp": 1,
+      "dp": 2,
+      "serial": [
+        {
+          "input_tokens": 511,
+          "generated_ids": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ],
+          "token_logprobs": [
+            -0.004879115615040064,
+            -0.010828307829797268,
+            -0.005621102638542652,
+            -0.0034919732715934515,
+            -0.012106274254620075,
+            -0.002124673454090953,
+            -0.01093667559325695,
+            -0.0024258254561573267
+          ],
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.010768989101052284,
+            -0.005398101639002562,
+            -0.00363522837869823,
+            -0.012347212061285973,
+            -0.0020832756999880075,
+            -0.010907904244959354,
+            -0.0023935975041240454,
+            -0.046348687261343
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 513,
+          "generated_ids": [
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101
+          ],
+          "token_logprobs": [
+            -0.005627029575407505,
+            -0.003654469968751073,
+            -0.012404435314238071,
+            -0.0021785590797662735,
+            -0.0110014071688056,
+            -0.0023193859960883856,
+            -0.04848694056272507,
+            -0.004428104963153601
+          ],
+          "usage": {
+            "prompt_tokens": 513,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 4096,
+          "generated_ids": [
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "token_logprobs": [
+            -0.0005264088395051658,
+            -0.023740438744425774,
+            -0.009363899007439613,
+            -0.0030562616884708405,
+            -0.013279800303280354,
+            -0.00749999051913619,
+            -0.007338236086070538,
+            -0.015063462778925896
+          ],
+          "usage": {
+            "prompt_tokens": 4096,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 8000,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.015038098208606243,
+            -0.007023999933153391,
+            -0.00917764101177454,
+            -0.017412178218364716,
+            -0.003078129142522812,
+            -0.03098999708890915,
+            -0.005060008727014065,
+            -0.15540757775306702
+          ],
+          "usage": {
+            "prompt_tokens": 8000,
+            "completion_tokens": 8
+          }
+        }
+      ],
+      "concurrent": [
+        {
+          "input_tokens": 511,
+          "generated_ids": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ],
+          "token_logprobs": [
+            -0.004879115615040064,
+            -0.011274673976004124,
+            -0.005583168473094702,
+            -0.003513237228617072,
+            -0.01222309935837984,
+            -0.002120153047144413,
+            -0.011028996668756008,
+            -0.0024165494833141565
+          ],
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.010768989101052284,
+            -0.005521404556930065,
+            -0.0035562387201935053,
+            -0.012005218304693699,
+            -0.002144420053809881,
+            -0.011108341626822948,
+            -0.002384559018537402,
+            -0.048891499638557434
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 513,
+          "generated_ids": [
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101
+          ],
+          "token_logprobs": [
+            -0.005482992623001337,
+            -0.0037137367762625217,
+            -0.012172461487352848,
+            -0.0021497728303074837,
+            -0.010826420970261097,
+            -0.002388721564784646,
+            -0.048708826303482056,
+            -0.004481985233724117
+          ],
+          "usage": {
+            "prompt_tokens": 513,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 1024,
+          "generated_ids": [
+            111,
+            112,
+            113,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "token_logprobs": [
+            -0.017297949641942978,
+            -0.003092746715992689,
+            -0.0781116709113121,
+            -0.0035643160808831453,
+            -0.0009022455778904259,
+            -0.018950367346405983,
+            -0.006328542251139879,
+            -0.004449586383998394
+          ],
+          "usage": {
+            "prompt_tokens": 1024,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 2048,
+          "generated_ids": [
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101,
+            102
+          ],
+          "token_logprobs": [
+            -0.005821772385388613,
+            -0.01708550751209259,
+            -0.0027398450765758753,
+            -0.020509550347924232,
+            -0.003161553293466568,
+            -0.09571434557437897,
+            -0.003942456562072039,
+            -0.0006332775810733438
+          ],
+          "usage": {
+            "prompt_tokens": 2048,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 4096,
+          "generated_ids": [
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "token_logprobs": [
+            -0.0005439232336357236,
+            -0.023722628131508827,
+            -0.009271424263715744,
+            -0.0030870423652231693,
+            -0.013182980008423328,
+            -0.007281668949872255,
+            -0.0073660449124872684,
+            -0.014776782132685184
+          ],
+          "usage": {
+            "prompt_tokens": 4096,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 8000,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.014663191512227058,
+            -0.006834463682025671,
+            -0.009677519090473652,
+            -0.017032066360116005,
+            -0.0031203175894916058,
+            -0.03069859929382801,
+            -0.004782309755682945,
+            -0.1480770856142044
+          ],
+          "usage": {
+            "prompt_tokens": 8000,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.011115886270999908,
+            -0.005549856927245855,
+            -0.003633802989497781,
+            -0.012080952525138855,
+            -0.002132286550477147,
+            -0.01112307794392109,
+            -0.0023469780571758747,
+            -0.048586077988147736
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        }
+      ]
+    },
+    {
+      "model": "35B-A3B",
+      "tp": 2,
+      "dp": 1,
+      "serial": [
+        {
+          "input_tokens": 511,
+          "generated_ids": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ],
+          "token_logprobs": [
+            -0.006840975489467382,
+            -0.019526168704032898,
+            -0.0009683449170552194,
+            -0.048039838671684265,
+            -0.031056564301252365,
+            -0.006854827981442213,
+            -0.0019850090611726046,
+            -0.005050519946962595
+          ],
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.018933406099677086,
+            -0.0008368566050194204,
+            -0.0654953271150589,
+            -0.028016893193125725,
+            -0.004494920838624239,
+            -0.002158218529075384,
+            -0.0043179611675441265,
+            -0.005115159787237644
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 513,
+          "generated_ids": [
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101
+          ],
+          "token_logprobs": [
+            -0.0010368215152993798,
+            -0.045409537851810455,
+            -0.03136749938130379,
+            -0.004437480587512255,
+            -0.0015707785496488214,
+            -0.004045992624014616,
+            -0.007773742079734802,
+            -0.013107329607009888
+          ],
+          "usage": {
+            "prompt_tokens": 513,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 4096,
+          "generated_ids": [
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "token_logprobs": [
+            -0.00047434045700356364,
+            -0.002979365875944495,
+            -0.0006914132391102612,
+            -0.008071542717516422,
+            -0.006442136596888304,
+            -0.0009970461251214147,
+            -0.008225729689002037,
+            -0.008309198543429375
+          ],
+          "usage": {
+            "prompt_tokens": 4096,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 8000,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.008106425404548645,
+            -0.0032436635810881853,
+            -0.011452410370111465,
+            -0.037771694362163544,
+            -0.002879760693758726,
+            -0.0014355602907016873,
+            -0.001962522976100445,
+            -0.004322946537286043
+          ],
+          "usage": {
+            "prompt_tokens": 8000,
+            "completion_tokens": 8
+          }
+        }
+      ],
+      "concurrent": [
+        {
+          "input_tokens": 511,
+          "generated_ids": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ],
+          "token_logprobs": [
+            -0.006840975489467382,
+            -0.012264668941497803,
+            -0.0009111781837418675,
+            -0.041585441678762436,
+            -0.028454842045903206,
+            -0.005629163235425949,
+            -0.0016477829776704311,
+            -0.004696054384112358
+          ],
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.020391002297401428,
+            -0.0013111574808135629,
+            -0.06596538424491882,
+            -0.03135120868682861,
+            -0.004372916184365749,
+            -0.0016549237770959735,
+            -0.004095857031643391,
+            -0.0075780777260661125
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 513,
+          "generated_ids": [
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101
+          ],
+          "token_logprobs": [
+            -0.001262106467038393,
+            -0.11932890862226486,
+            -0.02715248428285122,
+            -0.007186278700828552,
+            -0.0013304438907653093,
+            -0.003846034873276949,
+            -0.006561402231454849,
+            -0.011407507583498955
+          ],
+          "usage": {
+            "prompt_tokens": 513,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 1024,
+          "generated_ids": [
+            111,
+            112,
+            113,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "token_logprobs": [
+            -0.001191263902001083,
+            -0.002498364308848977,
+            -0.004517350345849991,
+            -0.006665496621280909,
+            -0.00032264748006127775,
+            -0.0012825843878090382,
+            -0.00037746457383036613,
+            -0.005004617385566235
+          ],
+          "usage": {
+            "prompt_tokens": 1024,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 2048,
+          "generated_ids": [
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101,
+            102
+          ],
+          "token_logprobs": [
+            -0.011039135977625847,
+            -0.004616555292159319,
+            -0.0032879835925996304,
+            -0.0017463208641856909,
+            -0.0022793046664446592,
+            -0.003302360652014613,
+            -0.006933794356882572,
+            -0.00026782741770148277
+          ],
+          "usage": {
+            "prompt_tokens": 2048,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 4096,
+          "generated_ids": [
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "token_logprobs": [
+            -0.0002851079625543207,
+            -0.002271335804834962,
+            -0.0005977750988677144,
+            -0.01041748933494091,
+            -0.013334734365344048,
+            -0.0010236029047518969,
+            -0.013929178938269615,
+            -0.007640306372195482
+          ],
+          "usage": {
+            "prompt_tokens": 4096,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 8000,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.008106425404548645,
+            -0.00127948890440166,
+            -0.013242390938103199,
+            -0.00695569533854723,
+            -0.0033924193121492863,
+            -0.0015379278920590878,
+            -0.0021354984492063522,
+            -0.004167444072663784
+          ],
+          "usage": {
+            "prompt_tokens": 8000,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.013186627067625523,
+            -0.0011531615164130926,
+            -0.04016175866127014,
+            -0.03018575720489025,
+            -0.00906270369887352,
+            -0.0015447123441845179,
+            -0.006050958298146725,
+            -0.006238036789000034
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        }
+      ]
+    },
+    {
+      "model": "35B-A3B",
+      "tp": 1,
+      "dp": 2,
+      "serial": [
+        {
+          "input_tokens": 511,
+          "generated_ids": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ],
+          "token_logprobs": [
+            -0.007841872982680798,
+            -0.015225381590425968,
+            -0.0007803970365785062,
+            -0.04903145879507065,
+            -0.02323973923921585,
+            -0.002739607123658061,
+            -0.001081358641386032,
+            -0.0038051833398640156
+          ],
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.0153200076892972,
+            -0.001513170194812119,
+            -0.045585524290800095,
+            -0.021017221733927727,
+            -0.005027984268963337,
+            -0.0010565895354375243,
+            -0.004001587629318237,
+            -0.006210433319211006
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 513,
+          "generated_ids": [
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101
+          ],
+          "token_logprobs": [
+            -0.0010063351364806294,
+            -0.08339069038629532,
+            -0.024651534855365753,
+            -0.006670351605862379,
+            -0.0013359201839193702,
+            -0.003410596400499344,
+            -0.0062348381616175175,
+            -0.01034693792462349
+          ],
+          "usage": {
+            "prompt_tokens": 513,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 4096,
+          "generated_ids": [
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "token_logprobs": [
+            -0.00031895318534225225,
+            -0.0019406310748308897,
+            -4.577531944960356e-05,
+            -0.0067985886707901955,
+            -0.0070735979825258255,
+            -0.0008667526417411864,
+            -0.015194854699075222,
+            -0.03328089043498039
+          ],
+          "usage": {
+            "prompt_tokens": 4096,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 8000,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.010272960178554058,
+            -0.002685989486053586,
+            -0.01204491127282381,
+            -0.03439367562532425,
+            -0.0032633880618959665,
+            -0.001600771676748991,
+            -0.0018411604687571526,
+            -0.003659577341750264
+          ],
+          "usage": {
+            "prompt_tokens": 8000,
+            "completion_tokens": 8
+          }
+        }
+      ],
+      "concurrent": [
+        {
+          "input_tokens": 511,
+          "generated_ids": [
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112
+          ],
+          "token_logprobs": [
+            -0.007841872982680798,
+            -0.017264556139707565,
+            -0.000789688085205853,
+            -0.041848763823509216,
+            -0.016790613532066345,
+            -0.00514255603775382,
+            -0.0011106519959867,
+            -0.003377568442374468
+          ],
+          "usage": {
+            "prompt_tokens": 511,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.01509469747543335,
+            -0.001444249995984137,
+            -0.057717978954315186,
+            -0.028616925701498985,
+            -0.008568782359361649,
+            -0.0012359131360426545,
+            -0.003972259815782309,
+            -0.00530822342261672
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 513,
+          "generated_ids": [
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101
+          ],
+          "token_logprobs": [
+            -0.000825898430775851,
+            -0.07740569859743118,
+            -0.023168805986642838,
+            -0.007610612083226442,
+            -0.001328301033936441,
+            -0.00414643157273531,
+            -0.0043928553350269794,
+            -0.008195343427360058
+          ],
+          "usage": {
+            "prompt_tokens": 513,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 1024,
+          "generated_ids": [
+            111,
+            112,
+            113,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "token_logprobs": [
+            -0.000735608336981386,
+            -0.00208125333301723,
+            -0.0022367238998413086,
+            -0.005478487350046635,
+            -0.0002213471452705562,
+            -0.000900101731531322,
+            -0.00036459474358707666,
+            -0.005846779327839613
+          ],
+          "usage": {
+            "prompt_tokens": 1024,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 2048,
+          "generated_ids": [
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            101,
+            102
+          ],
+          "token_logprobs": [
+            -0.009645641781389713,
+            -0.00438134279102087,
+            -0.0014896021457388997,
+            -0.001142325927503407,
+            -0.0014759134501218796,
+            -0.002760649425908923,
+            -0.00704021705314517,
+            -0.0002087136817863211
+          ],
+          "usage": {
+            "prompt_tokens": 2048,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 4096,
+          "generated_ids": [
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "token_logprobs": [
+            -0.0002840353990904987,
+            -0.0021225321106612682,
+            -9.786603914108127e-05,
+            -0.00787652749568224,
+            -0.006159489508718252,
+            -0.0011049362365156412,
+            -0.01578361727297306,
+            -0.03541847690939903
+          ],
+          "usage": {
+            "prompt_tokens": 4096,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 8000,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.008816719055175781,
+            -0.001498172408901155,
+            -0.012504744343459606,
+            -0.03486856445670128,
+            -0.004414337687194347,
+            -0.001179118873551488,
+            -0.0018757858779281378,
+            -0.0038904468528926373
+          ],
+          "usage": {
+            "prompt_tokens": 8000,
+            "completion_tokens": 8
+          }
+        },
+        {
+          "input_tokens": 512,
+          "generated_ids": [
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113
+          ],
+          "token_logprobs": [
+            -0.01509469747543335,
+            -0.001444249995984137,
+            -0.057717978954315186,
+            -0.028616925701498985,
+            -0.008568782359361649,
+            -0.0012359131360426545,
+            -0.003972259815782309,
+            -0.00530822342261672
+          ],
+          "usage": {
+            "prompt_tokens": 512,
+            "completion_tokens": 8
+          }
+        }
+      ]
+    }
+  ]
+}

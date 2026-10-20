@@ -1,0 +1,72 @@
+{
+  "status": "ready",
+  "source_repository": "https://github.com/AI45Lab/Safin-1",
+  "maintainer_contact": "https://github.com/AI45Lab/Safin-1/issues",
+  "release_tag": "v0.1.0",
+  "code_license": "Apache-2.0",
+  "weight_license": "Apache-2.0",
+  "training_data_review": null,
+  "evaluation_report": null,
+  "acceptance": {
+    "cpu_regression": "complete",
+    "clean_cuda_build": "complete",
+    "license_review": "complete",
+    "credential_review": "complete",
+    "batch_dp_long_context": "complete",
+    "numerical_limits_documented": "complete",
+    "operator_correctness": "complete"
+  },
+  "models": [
+    {
+      "name": "Safin-1-4B",
+      "model_id": "AI45Research/Safin-1-4B",
+      "revision": null,
+      "card": "docs/march/model-cards/Safin-1-4B.md"
+    },
+    {
+      "name": "Safin-1-35B-A3B",
+      "model_id": "AI45Research/Safin-1-35B-A3B",
+      "revision": null,
+      "card": "docs/march/model-cards/Safin-1-35B-A3B.md"
+    },
+    {
+      "name": "Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "revision": null,
+      "card": "docs/march/model-cards/Qwen3.5-4B-SFT-Baseline.md"
+    },
+    {
+      "name": "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "revision": null,
+      "card": "docs/march/model-cards/Qwen3.5-35B-A3B-SFT-Baseline.md"
+    }
+  ],
+  "evidence": {
+    "cpu_regression": "docs/march/validation.md",
+    "historical_gpu": "docs/march/validation.md",
+    "current_cuda_regression": "docs/march/validation.md",
+    "training_resume": "docs/march/validation.md",
+    "capacity_preflight": "docs/march/validation.md",
+    "hf_batch_generation": "docs/march/validation.md",
+    "operator_correctness": "docs/march/operator-correctness-20261015.json",
+    "training_adapters": "docs/march/validation.md",
+    "credential_review": "docs/march/source-audit-20261017.json",
+    "license_inventory": "docs/march/source-audit-20261017.json",
+    "fresh_installation": "docs/march/installation-acceptance-20261017.json",
+    "license_review": "docs/march/license-release-20261017.json",
+    "batch_dp_long_context": "docs/march/serving-acceptance-20261017.json",
+    "weight_licensing": "docs/march/weight-licensing-20261017.json",
+    "training_data_inventory": "docs/march/training-data-20261017.json",
+    "historical_evaluation": "docs/march/historical-evaluation-20261017.json",
+    "model_file_integrity": "docs/march/model-weight-integrity-20261017.json",
+    "model_release_policy": "docs/march/model-release-policy-20261018.json"
+  },
+  "model_namespace": "AI45Research",
+  "model_collection": "https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596",
+  "model_release_policy": {
+    "training_data_review": "disclose_only",
+    "evaluation_report": "optional",
+    "decision_record": "docs/march/model-release-policy-20261018.json"
+  }
+}

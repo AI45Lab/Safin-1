@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "restored_on": "2026-10-16",
+  "historical_repository_revision": "3d567b8e806a7c7a1f79653fcf2b553b226acc9f",
+  "includes_uncommitted_historical_changes": true,
+  "hsd_namespace_change": "loglinear.hsd -> march_research.hsd",
+  "serialization": "Historical HSD checkpoint keys retained; not the Safin-1 anchor schema.",
+  "hsd_sources": {
+    "loglinear/hsd/__init__.py": {
+      "original_sha256": "a0c6d102cdd060c08d05421f3b08a89169c50dd99c90407992247ebf2c3f7528",
+      "restored_sha256": "a0c6d102cdd060c08d05421f3b08a89169c50dd99c90407992247ebf2c3f7528"
+    },
+    "loglinear/hsd/_flashqla/__init__.py": {
+      "original_sha256": "9799a04b13c1c28fe98af3d2de401c5efa2166d8f26630fc53230a571ee63383",
+      "restored_sha256": "7e2c4c028cc5bc43df1a8dff54b9428288163184ffcc32895d1d171edb4526f1"
+    },
+    "loglinear/hsd/_flashqla/ops/__init__.py": {
+      "original_sha256": "11a015b6ae07579fb13caa13f1a53655de1822699fc38f48183c06a118be0d0e",
+      "restored_sha256": "11a015b6ae07579fb13caa13f1a53655de1822699fc38f48183c06a118be0d0e"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/__init__.py": {
+      "original_sha256": "47e633302d2c3e4440225933b9bc35cabcc36b082775b2f2df467fd966629a77",
+      "restored_sha256": "f0004dc1f0c0127d5bf503789592c69f591a66ec9e55be5c623a16d3224878e7"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/__init__.py": {
+      "original_sha256": "f3b6c3eedb10db79f1e4097633bbd0d31b43ab5b6fcd99cacb883196f2dd2103",
+      "restored_sha256": "26395b4174d0181892ef76641e75011c0894384fb9b5bca83378e7142529601d"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/cp_context.py": {
+      "original_sha256": "09855786f9fdfdec020ef211167624bea09da2a18fb72bc24a50d94137594e9c",
+      "restored_sha256": "1665bf8fc78a422dfdcaaa8a92bca9738bbdd04b80965af0a9476ac4ccc85bf7"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/__init__.py": {
+      "original_sha256": "4ac6e4252099137861208dbda819d1cd742e1261970a3a4f3e01759a959e30fa",
+      "restored_sha256": "4ac6e4252099137861208dbda819d1cd742e1261970a3a4f3e01759a959e30fa"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/cp_bwd.py": {
+      "original_sha256": "333f347f76212c07806ab039e5a19e069fab71a58cba66be115b5ad926205a70",
+      "restored_sha256": "a9341d99f7f2ca80c1c25811faeb0fd0c83ccc52eca73a373d08268b7029e7fa"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/cp_fwd.py": {
+      "original_sha256": "3a63d6e768209b8c53fa5c8539e614c584d7e209d2173c91deb308f4016e3bd6",
+      "restored_sha256": "3a63d6e768209b8c53fa5c8539e614c584d7e209d2173c91deb308f4016e3bd6"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd.py": {
+      "original_sha256": "8b990c8d83c2987d4f75519485d172a01ff599fa6e19f6a194bcfe15851f04bb",
+      "restored_sha256": "8b990c8d83c2987d4f75519485d172a01ff599fa6e19f6a194bcfe15851f04bb"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd_inline_dd.py": {
+      "original_sha256": "1e9cc981a7546025e844027a6f7073eccd4f12ae096c99045231ee262a67aa35",
+      "restored_sha256": "1e9cc981a7546025e844027a6f7073eccd4f12ae096c99045231ee262a67aa35"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd_inline_dd_noatomic.py": {
+      "original_sha256": "e5d9ea49758f9285177d2d79444bf287c41e5e3c4c91bb6c048ba2474fd3052f",
+      "restored_sha256": "e5d9ea49758f9285177d2d79444bf287c41e5e3c4c91bb6c048ba2474fd3052f"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd_reference.py": {
+      "original_sha256": "53e46297bde98bcc68159f395fac9b069392641c48b89512d6293a0d47ac7799",
+      "restored_sha256": "53e46297bde98bcc68159f395fac9b069392641c48b89512d6293a0d47ac7799"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd_saved_a_reference.py": {
+      "original_sha256": "e6075b6b82babfdf51d5d102a6329bcbd8bf615981d3a43050fdc438075c1016",
+      "restored_sha256": "e6075b6b82babfdf51d5d102a6329bcbd8bf615981d3a43050fdc438075c1016"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/fused_bwd.py": {
+      "original_sha256": "11ffe5622438b269fb6da8b78c5743c39a082c9eb334ae63b74e153fe4979a74",
+      "restored_sha256": "7bc007ba2ac6833e1d09efcfb2f875b38dbe15fcfd082ae5f33dbca61aad0eb3"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/fused_fwd.py": {
+      "original_sha256": "a3d6b82b5fc9a7a96fdd578c0d75fe2850985e615e4b7e4459224b45849deea5",
+      "restored_sha256": "0276e885d7eed95bc8874523a8f9d2749d3442fb1cc44d1ddfb21c88e80c3337"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/kkt_solve.py": {
+      "original_sha256": "c3c7021fbc4d2685cad63b12c8009ff5ce14746ee74efe97953f712ba21b9e9c",
+      "restored_sha256": "2fe0b3fb720a703a0532b6539ab268b2c7501275154b538b21ecd9e9ead15637"
+    },
+    "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/prepare_h.py": {
+      "original_sha256": "b1be8e0d722eb363521a05136c2bdd6aa9c2821f92beee2e6981708638e44887",
+      "restored_sha256": "c512e4f5eaee4e21a5454087666bce7d85e6eb220627f993ef2fdbf9bd019416"
+    },
+    "loglinear/hsd/_flashqla/ops/utils/__init__.py": {
+      "original_sha256": "1160518eb78922141426c4099a1f7b657309a0eab13ab931e3f24510d64fd8b7",
+      "restored_sha256": "1160518eb78922141426c4099a1f7b657309a0eab13ab931e3f24510d64fd8b7"
+    },
+    "loglinear/hsd/_flashqla/ops/utils/cumsum.py": {
+      "original_sha256": "a8c63d07bb42a048d7a3af23689efd467933345b483d402c5243a38f34a25b0a",
+      "restored_sha256": "9618ffefacb0f49176a0284a229f766319932ad0bad41c2c16004729f499e3c9"
+    },
+    "loglinear/hsd/_flashqla/ops/utils/group_reduce.py": {
+      "original_sha256": "df8b85ca5a6c5c975a63015e426056f80903d5b1ce6e1b4347a8104a9d470335",
+      "restored_sha256": "df8b85ca5a6c5c975a63015e426056f80903d5b1ce6e1b4347a8104a9d470335"
+    },
+    "loglinear/hsd/_flashqla/utils/__init__.py": {
+      "original_sha256": "21fd1cb10563ba7acbedad9f2106789cedfdc872df811da0ab532884c3ba1eaa",
+      "restored_sha256": "21fd1cb10563ba7acbedad9f2106789cedfdc872df811da0ab532884c3ba1eaa"
+    },
+    "loglinear/hsd/_flashqla/utils/contiguous.py": {
+      "original_sha256": "5247202896791a9f42231ed6eb15d3cb5c862aa8dd8d79f1e13c4f9106c8d2ef",
+      "restored_sha256": "5247202896791a9f42231ed6eb15d3cb5c862aa8dd8d79f1e13c4f9106c8d2ef"
+    },
+    "loglinear/hsd/_flashqla/utils/index.py": {
+      "original_sha256": "4ef4cab8e90aae87783a03243c5ea9a5056723cbb21ab06308d2d5ba793f27a4",
+      "restored_sha256": "4ef4cab8e90aae87783a03243c5ea9a5056723cbb21ab06308d2d5ba793f27a4"
+    },
+    "loglinear/hsd/_flashqla/utils/math.py": {
+      "original_sha256": "9c2cca70a25a94b9d3a76f49cb96e4a07dbe7125aa7b3fbd477ac4ec0f045262",
+      "restored_sha256": "9c2cca70a25a94b9d3a76f49cb96e4a07dbe7125aa7b3fbd477ac4ec0f045262"
+    },
+    "loglinear/hsd/_flashqla/utils/pack.py": {
+      "original_sha256": "6d25e9e20e7b3561a143e8e6dc5f7e3306cb22434a66086d2da241de2f90e194",
+      "restored_sha256": "6d25e9e20e7b3561a143e8e6dc5f7e3306cb22434a66086d2da241de2f90e194"
+    },
+    "loglinear/hsd/_flashqla/utils/profiler.py": {
+      "original_sha256": "03abdbe54d3ce160a5663a9fe71dd8119c0c153aebdf67e774e80b3b56d84c35",
+      "restored_sha256": "03abdbe54d3ce160a5663a9fe71dd8119c0c153aebdf67e774e80b3b56d84c35"
+    },
+    "loglinear/hsd/configuration_hsd_gated_deltanet.py": {
+      "original_sha256": "6397659d8960974b72a7aff309b208dfbab75f3b71287ae470d21faac573a624",
+      "restored_sha256": "6397659d8960974b72a7aff309b208dfbab75f3b71287ae470d21faac573a624"
+    },
+    "loglinear/hsd/hsd_chunk_gdn.py": {
+      "original_sha256": "a8c3da67fbe1afae4e193a4b4fc1756e8cd83e2fcac953f4d68647c92b153b9f",
+      "restored_sha256": "a8c3da67fbe1afae4e193a4b4fc1756e8cd83e2fcac953f4d68647c92b153b9f"
+    },
+    "loglinear/hsd/hsd_chunk_gdn2.py": {
+      "original_sha256": "4ea194c1d9126010f448cf008b8cfdf0c63f854f1e67dee5d5a2b7806036c2e5",
+      "restored_sha256": "4ea194c1d9126010f448cf008b8cfdf0c63f854f1e67dee5d5a2b7806036c2e5"
+    },
+    "loglinear/hsd/hsd_chunk_kda.py": {
+      "original_sha256": "15a8166bf90d499672c07a3ccd7852718d20bb142d8b15ef7b38a24d695f1078",
+      "restored_sha256": "15a8166bf90d499672c07a3ccd7852718d20bb142d8b15ef7b38a24d695f1078"
+    },
+    "loglinear/hsd/hsd_global_read.py": {
+      "original_sha256": "00d988768c9a3eb61265721d32c1e561169eb69aa4bd8fa5c2b23293812247a6",
+      "restored_sha256": "7771771e77f303163b725ff7e6ece248ad1bd68fd6ccbff1208f1016af1c49d7"
+    },
+    "loglinear/hsd/hsd_global_read_tile.py": {
+      "original_sha256": "4e65032a9804f250f2f9fded1f22025575fc37719efbe34fbc61b81506888687",
+      "restored_sha256": "4e65032a9804f250f2f9fded1f22025575fc37719efbe34fbc61b81506888687"
+    },
+    "loglinear/hsd/hsd_global_read_tile_online_bwd.py": {
+      "original_sha256": "16dae835ab999445910e158f597fb069533a7bff615a885683867926c388f64d",
+      "restored_sha256": "16dae835ab999445910e158f597fb069533a7bff615a885683867926c388f64d"
+    },
+    "loglinear/hsd/hsd_global_read_topk.py": {
+      "original_sha256": "77c21f4c72b794a5aa294e53980c1679e25f1b71aed749e69a5db9fe6a03f721",
+      "restored_sha256": "77c21f4c72b794a5aa294e53980c1679e25f1b71aed749e69a5db9fe6a03f721"
+    },
+    "loglinear/hsd/hsd_route_topk.py": {
+      "original_sha256": "84c013dd43877dc9007dcbebc6d6b7a653fae047b8cc3463ea1c16700e867ec4",
+      "restored_sha256": "84c013dd43877dc9007dcbebc6d6b7a653fae047b8cc3463ea1c16700e867ec4"
+    },
+    "loglinear/hsd/hsd_route_topk_grouped_dk.py": {
+      "original_sha256": "1b45419b35ae903f727e82ef44cb5d2e84f0487bfaa5e353ada01fe87416287b",
+      "restored_sha256": "1b45419b35ae903f727e82ef44cb5d2e84f0487bfaa5e353ada01fe87416287b"
+    },
+    "loglinear/hsd/log_anchor.py": {
+      "original_sha256": "fb720c2e0d6033c919b5b9a5cac4d46eda4be12dde996e28c3a5de404f98c896",
+      "restored_sha256": "fb720c2e0d6033c919b5b9a5cac4d46eda4be12dde996e28c3a5de404f98c896"
+    },
+    "loglinear/hsd/low_rank_state.py": {
+      "original_sha256": "3f606ef2aeda1e7a3ce6245fd0b28662bd39e53afcc3b68a764fe3c447a02b7d",
+      "restored_sha256": "3f606ef2aeda1e7a3ce6245fd0b28662bd39e53afcc3b68a764fe3c447a02b7d"
+    },
+    "loglinear/hsd/modeling_hsd_gated_deltanet.py": {
+      "original_sha256": "3cda0855a34df478bec8935ea3acb15b6aaafedf02e5132c7470b41ee4cec3fd",
+      "restored_sha256": "3cda0855a34df478bec8935ea3acb15b6aaafedf02e5132c7470b41ee4cec3fd"
+    },
+    "loglinear/hsd/summary_utils.py": {
+      "original_sha256": "0f624f392a23fcf77bbe2d7929b85aedbe5bfef9bb2d3a7d2e9632ffa82cda2d",
+      "restored_sha256": "0f624f392a23fcf77bbe2d7929b85aedbe5bfef9bb2d3a7d2e9632ffa82cda2d"
+    }
+  },
+  "configs": {
+    "hsd_gdn_0p8b.json": {
+      "source": "loglinear/configs/flame/hsd_gated_deltanet_mid.json",
+      "sha256": "45d4972b3970775a48fa1420d98142e8c29826d80dfa7bb2732ff88040a263a3"
+    },
+    "hsd_gdn_0p8b_topk4.json": {
+      "source": "loglinear/configs/flame/hsd_gated_deltanet_mid_routekey1_dim64_topk4_sparse.json",
+      "sha256": "325971624a6b0c0f3148293afad37ea290519c3176b5011df498884fbcdfe737"
+    },
+    "gdn_0p8b.json": {
+      "source": "loglinear/configs/flame/gated_deltanet_mid.json",
+      "sha256": "91cf27917df06b93c7ce49df8cfb8920d443adc3609f5f948f8dd5ce7740454c"
+    },
+    "delta_net_0p8b.json": {
+      "source": "loglinear/configs/flame/delta_net_mid.json",
+      "sha256": "baa8aa4fc5477b908c6a76407348fcc3fbe72f861faa0110b04c287b23d989d0"
+    },
+    "kda_0p8b.json": {
+      "source": "loglinear/configs/flame/kda_mid.json",
+      "sha256": "f53a36288b19a321b2613843112b5201bbe9585a1623d638508e54c332fac9be"
+    },
+    "transformer_0p8b.json": {
+      "source": "loglinear/configs/flame/transformer_mid2.json",
+      "sha256": "f6077e9a818ecf0ef61c4d8bed9b8c0a9a0278da1fe9792804d672a8f7e2dbc8"
+    },
+    "hsd_gdn_0p8b_readq32.json": {
+      "source": "loglinear/configs/flame/hsd_gated_deltanet_mid_routekey1_dim64_historyreadq_perhead_lora32.json",
+      "sha256": "fb05bc0df1f258b5beeec5f0dea6e9755f42ed631578526cb0e72949d72170a0"
+    }
+  },
+  "fla_provenance": "../../third_party/flash-linear-attention/PROVENANCE.json",
+  "initialization_tools": {
+    "init_kda_from_gdn_seed.py": {
+      "source": "loglinear/ms_swift/init_kda_from_gdn_seed.py",
+      "original_sha256": "d294236eb8fba2c1194a40da37d9444d73d459661ba96f35d9542fb42db8dddd",
+      "restored_sha256": "89706650a6be1253d23e7487292aafa088e94a1a7068535be3607a4caed1b8e7",
+      "changes": "Research import bootstrap and namespace relocation; KDA source/output are required parameters and its default config is checkout-relative. Weight mapping functions are unchanged."
+    },
+    "init_hsd_from_gdn.py": {
+      "source": "loglinear/ms_swift/init_hsd_from_gdn.py",
+      "original_sha256": "4043433854f622c80069873f5940a0e7316b76d6a1f50c5e1e91f5cef36405a4",
+      "restored_sha256": "f795002b80d06e371c00faa911feba7365fb12bc11affc67e12ee2ec113939c0",
+      "changes": "Research import bootstrap and namespace relocation; KDA source/output are required parameters and its default config is checkout-relative. Weight mapping functions are unchanged."
+    }
+  },
+  "public_cleanup": {
+    "date": "2026-10-20",
+    "baseline_revision": "2672d58a",
+    "changes": "Remove OLMo3 model profiles, reordered norm and z-loss; remove low-rank history storage. Inactive historical metadata is consumed, enabled retired variants are rejected. Dense history/query-LoRA math and reader/producer kernel source remain unchanged.",
+    "changed_sources": {
+      "loglinear/hsd/configuration_hsd_gated_deltanet.py": {
+        "restored_sha256": "6397659d8960974b72a7aff309b208dfbab75f3b71287ae470d21faac573a624",
+        "current_sha256": "6f719089a79e73888724bef1439ff3ef705be29ee16a339c54cb1fb6aec42e50"
+      },
+      "loglinear/hsd/modeling_hsd_gated_deltanet.py": {
+        "restored_sha256": "3cda0855a34df478bec8935ea3acb15b6aaafedf02e5132c7470b41ee4cec3fd",
+        "current_sha256": "f209d595cb18995b6e86ee890fb66d32c36daee25a017c111f7dab44e2f0fa2b"
+      }
+    },
+    "removed_sources": [
+      "loglinear/hsd/low_rank_state.py"
+    ],
+    "validation_scope": "CPU configuration/meta construction and retained dense path comparisons; this cleanup does not claim a new full-size GPU training run."
+  }
+}

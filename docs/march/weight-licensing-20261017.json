@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-17",
+  "status": "weight license selected; upstream evidence retained; training-data review separate",
+  "weight_license": "Apache-2.0",
+  "maintainer_decision": "Explicitly selected Apache-2.0 for all four model weights",
+  "models": [
+    {
+      "model_id": "AI45Research/Safin-1-4B",
+      "upstream_family": "Qwen/Qwen3.5-4B"
+    },
+    {
+      "model_id": "AI45Research/Safin-1-35B-A3B",
+      "upstream_family": "Qwen/Qwen3.5-35B-A3B"
+    },
+    {
+      "model_id": "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "upstream_family": "Qwen/Qwen3.5-4B"
+    },
+    {
+      "model_id": "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "upstream_family": "Qwen/Qwen3.5-35B-A3B"
+    }
+  ],
+  "upstream_observations": [
+    {
+      "repo_id": "Qwen/Qwen3.5-4B",
+      "repo_type": "model",
+      "observed_revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "observation_is_training_snapshot": false,
+      "readme_url": "https://huggingface.co/Qwen/Qwen3.5-4B/blob/851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a/README.md",
+      "file_sha256": {
+        "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+        "README.md": "1406be1b6b8fd8a6545870da516912804756593628a1d0fb0a7965211e82a7bb"
+      }
+    },
+    {
+      "repo_id": "Qwen/Qwen3.5-35B-A3B",
+      "repo_type": "model",
+      "observed_revision": "59d61f3ce65a6d9863b86d2e96597125219dc754",
+      "observation_is_training_snapshot": false,
+      "readme_url": "https://huggingface.co/Qwen/Qwen3.5-35B-A3B/blob/59d61f3ce65a6d9863b86d2e96597125219dc754/README.md",
+      "file_sha256": {
+        "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+        "README.md": "71c3bbc2eadadd5980bbdbb15df958c27d42ede24821015602a021109aacf492"
+      }
+    },
+    {
+      "repo_id": "nvidia/Nemotron-Cascade-2-SFT-Data",
+      "repo_type": "dataset",
+      "observed_revision": "9f36020daf067f1a8b39336bf619fe30af30bb02",
+      "observation_is_training_snapshot": false,
+      "readme_url": "https://huggingface.co/datasets/nvidia/Nemotron-Cascade-2-SFT-Data/blob/9f36020daf067f1a8b39336bf619fe30af30bb02/README.md",
+      "file_sha256": {
+        "README.md": "1a271eb44cb9137ce9fa430a1d84cec9ef815f98e0ed7c76639ac13975e505f6"
+      }
+    }
+  ],
+  "retained_license": {
+    "file": "docs/march/model-licenses/Qwen3.5-Apache-2.0.txt",
+    "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    "unchanged_from_both_upstream_models": true
+  },
+  "data_license_scope": "This decision does not relicense training data or establish CPT provenance/permissions",
+  "remote_upload_performed": false
+}

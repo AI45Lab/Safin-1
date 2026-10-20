@@ -1,0 +1,13 @@
+# Additional historical experiment environment; framework installation is separate.
+# Recorded runtime versions, not a clean native-build certification.
+torch==2.11.0
+transformers==5.5.4
+datasets==3.6.0
+accelerate==1.13.0
+deepspeed==0.19.0
+triton==3.6.0
+tilelang==0.1.9
+flash-attn==2.8.3
+einops
+sentencepiece
+binpacking

@@ -1,0 +1,3682 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-17T01:38:46.643698+00:00",
+  "source_sha256": {
+    "march/__init__.py": "2b9cc9ec3830f7759aec24d9d817f007ae0cef8769e45ebd50599dd975b07ee0",
+    "march/diagnostics/__init__.py": "9968caf93e0515f3397f066983305a43543b535412bb87c239523970e71c6c93",
+    "march/diagnostics/history_read.py": "cfb412eedee80b0143cdd5f3c13b92bb0145e78c94fda72f4484752a54e86ace",
+    "march/diagnostics/precision_trace.py": "5a8be1fc2f53dff349d178d079cc263fc67d9e6246fc8847a4974550a91719f2",
+    "march/diagnostics/tensor_stats.py": "f2749e28421d3fd6f0d91d0dfe8444001f2b5515706688af3d52341f640f4474",
+    "march/inference/__init__.py": "c7bb1fb4bf9ee7dc8bad17219a8dec7fa0182101d0c6b695537223935aff97cb",
+    "march/inference/backend_policy.py": "519569bca64402be3674a17f88ff2e00340c8b22d56a9a98839bfedfd0fe1e54",
+    "march/inference/cache_metadata.py": "92c64742c58c0072dd61407d7b573d1c7d029d040e72ceb1326e1142af50c165",
+    "march/inference/history_cache.py": "714a511ddccfae24a81eb3758f801d7c0afc989bc73c6025365bc57c41854796",
+    "march/inference/paged_decode.py": "002797939ca90a1e48197dd06fd2f4c9b22a01bc82226745a3d60d81707a22a0",
+    "march/inference/paged_decode_memory.py": "e796152742253a8395631cb1c4c123a91cfe7c391b1e7cc6762c2e1454447fcf",
+    "march/inference/paged_decode_readall.py": "54733f94599de7aa8d005d7087beaaa3e9d13bc5c4362d30bcda4b5cdf98ef4e",
+    "march/inference/paged_decode_top4.py": "326c95def9686815fc48dc0018a88ce42d739ba5b01474ba31fb99d3e7d3d5dc",
+    "march/inference/paged_epilogue.py": "fcd3ddb2363f383bfe96a2e84f1a59e331d63b8ad6eb8f3ac02a2c07fb5dd361",
+    "march/inference/paged_epilogue_triton.py": "bd53416f37525cfa5ffc8e575a4c10e64d87e700f2eb50f6e1a08bfb0a4b1915",
+    "march/inference/paged_fused_triton.py": "4954afd8eb07037423b5941f44ea59bf2742fc65db5c2f1f949abe9212f1a815",
+    "march/inference/paged_history_read.py": "9e79574be2418794918a26a55dbf40e14da4a84ce6110670df2c21e80f8d0c8a",
+    "march/inference/paged_memory.py": "f40d25c4bc4ef6a029177de8a72b11c0700ce87fdd15f475187e67e0a0792207",
+    "march/inference/paged_memory_triton.py": "4beb12fb6058be25f597cfa99e35e814c6db823a8c56935fe20c6b010a2282e2",
+    "march/inference/paged_prefill.py": "d396026cdde645460acb062fd5a189a3990b477d9862da54d9f2f0903bd5586f",
+    "march/inference/paged_prefill_triton.py": "373eebf8898022a0510e2cbde8969c1d9f567d13a6cb00bc56f83edb28d46fc7",
+    "march/inference/paged_reference.py": "80e3575f40716472fd6f2875ca0a5b06b681eb6c9050cb5a18fa208b1cf8a874",
+    "march/inference/paged_static.py": "cf09a0c49d164c35161a1f382b84a00a1cd30b66f47898f7b97878fd9ad143a5",
+    "march/inference/paged_topk_triton.py": "78883387293118d563f6c7af48feaf3903aa10b38a1596a3831c27c391dbd963",
+    "march/inference/paged_triton.py": "a8eb8095f591137b91487723c8bb57a5bed177d842327a4feebba8ad76c8d792",
+    "march/inference/paged_utils.py": "8f67a8af872a265ce0ae3e3ea6f6c8b993cee1f489c584f2e1238424bc966a79",
+    "march/inference/varlen_segments.py": "7e0743969a2a7001f961800ac01dc2d88343d2e35900581bd358112a618783c9",
+    "march/inference/vllm_profile.py": "5c282a4a6a795a817b1f906fe52caca8ecb8554879d39c9e565e48d9b6da4652",
+    "march/kernels/__init__.py": "b9aebabdfa3e28ac6a57c0ffe48c5b855a232beb3054bb84f0e60e9b95b85cef",
+    "march/kernels/_flashqla/__init__.py": "6cab5decdcc7dc83afe92233fc1c3193819a57a2eb88715340c2ec29e55d64e4",
+    "march/kernels/_flashqla/ops/__init__.py": "11a015b6ae07579fb13caa13f1a53655de1822699fc38f48183c06a118be0d0e",
+    "march/kernels/_flashqla/ops/gated_delta_rule/__init__.py": "b063b9d20bab4d6d1804703c5f56d92a1b8833e25e4de8038d868c5b3230a416",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/__init__.py": "3d2012bf3548237d9735ca431fcacbebbaf6a620ae29745c87adfb2235bd8784",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/cp_context.py": "56ffb9c7e04410efe81751be24e88edb63b166da6fd7d999991468b5b4c443a5",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/__init__.py": "4ac6e4252099137861208dbda819d1cd742e1261970a3a4f3e01759a959e30fa",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/cp_bwd.py": "93e655d86fca3eed1ad8e8cc7ed528272378f7f4cb761d23c450df6b600dee24",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/cp_fwd.py": "3a63d6e768209b8c53fa5c8539e614c584d7e209d2173c91deb308f4016e3bd6",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/fused_bwd.py": "d4d5a07cf88d1ff9f744636039c426b809f3c2a00ed33bc3b5108f2598dd6153",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/fused_fwd.py": "53b0556d9c63199bba473f93d53641bdc2dd859484bc9e9105fc0f1362c8a886",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/kkt_solve.py": "fd3ddfd35841b3173c3b5a5547eae09cff16f133ed8f9881cfec0b68b28dee1c",
+    "march/kernels/_flashqla/ops/gated_delta_rule/chunk/hopper/prepare_h.py": "122e6f892b1cc40c1080d9db2dc8c9abae2b9e54de2708623ee616ddc9d3b0f9",
+    "march/kernels/_flashqla/ops/utils/__init__.py": "1160518eb78922141426c4099a1f7b657309a0eab13ab931e3f24510d64fd8b7",
+    "march/kernels/_flashqla/ops/utils/cumsum.py": "2c80da95f63972f21fdd68f6df5513896f44cdcfb70d9c0d662c786c82238dcd",
+    "march/kernels/_flashqla/ops/utils/group_reduce.py": "df8b85ca5a6c5c975a63015e426056f80903d5b1ce6e1b4347a8104a9d470335",
+    "march/kernels/_flashqla/utils/__init__.py": "21fd1cb10563ba7acbedad9f2106789cedfdc872df811da0ab532884c3ba1eaa",
+    "march/kernels/_flashqla/utils/contiguous.py": "5247202896791a9f42231ed6eb15d3cb5c862aa8dd8d79f1e13c4f9106c8d2ef",
+    "march/kernels/_flashqla/utils/index.py": "4ef4cab8e90aae87783a03243c5ea9a5056723cbb21ab06308d2d5ba793f27a4",
+    "march/kernels/_flashqla/utils/math.py": "9c2cca70a25a94b9d3a76f49cb96e4a07dbe7125aa7b3fbd477ac4ec0f045262",
+    "march/kernels/_flashqla/utils/pack.py": "6d25e9e20e7b3561a143e8e6dc5f7e3306cb22434a66086d2da241de2f90e194",
+    "march/kernels/_flashqla/utils/profiler.py": "03abdbe54d3ce160a5663a9fe71dd8119c0c153aebdf67e774e80b3b56d84c35",
+    "march/kernels/anchor_utils.py": "419791893d2c69c274ffdf2f2763ede5145a71366feaf0465c109f0b4effbc0e",
+    "march/kernels/chunk_anchor_triton.py": "84151c3a1af6bcc2d5762459d2021f8b6307bd68f08ed76c9704cb4f8503ff59",
+    "march/kernels/chunk_dependencies.py": "aad60712595babbc6c70f60078d01a3111d8389c99b55fa34a384add724f653d",
+    "march/kernels/chunk_reference.py": "7ca7f4dbc1d9a971b7477eb131ea5585203dafdc36dc47d97e1e839bf8a906f9",
+    "march/kernels/chunk_scan_triton.py": "e7758570dbcd4360bccaf259a60a18e067dd2596725b67f90f405f7374d2e5a3",
+    "march/kernels/march_chunk_gdn.py": "94f5113f207287173befb99584ff3f8730555aeb02793608e477759baa246c03",
+    "march/kernels/march_global_read.py": "cfb3406e0f0f00efc68ff5319c7dc94d0d745d11f19c6f835570406a3f0357e9",
+    "march/kernels/march_global_read_topk.py": "b8d1c2ba78064b4689157b37d6265351d878d3b638d80a7b695e1ea2e8efa651",
+    "march/safin1/__init__.py": "ce984b4bb0cb3b58929fe1419e8901e261f249fb1fe3fa8962fc1cc267fa9800",
+    "march/safin1/anchor_layout.py": "da98e421d6dd3b0e0a909a0c1a897369f9392fe32191681689b8292b9f0a68c4",
+    "march/safin1/cache_utils.py": "c7c509a6ca55c687dc22d02ea23c78db68f9d4d3a880eb2ca1cace934b6d420a",
+    "march/safin1/config_utils.py": "f5491da1bdd48f59e4d9c4781f9f38a31bcc4a66c9fa124e82c22834a1edc01e",
+    "march/safin1/configuration_common.py": "73114b40d3e0471c32e33620e67bd6b2a9071b0e6ea93a92689828152c980e03",
+    "march/safin1/configuration_safin1.py": "94110c487568aaaee390c31e86cb33fc43e77e286a7a6661797be2280787ab6d",
+    "march/safin1/configuration_safin1_moe.py": "bd1681bc4a4785e29dad2e30b1c9f5d6c71c9975976c9468b0b554a488040c0a",
+    "march/safin1/fused_history_read.py": "c9f9ce5730535b7bba86c9ec9a4b261a82b3ab54a370e6d510d309fcc616af16",
+    "march/safin1/fused_march_segments.py": "10d84340faa8bfa941eee0dbc4f55c70705075763ee2ecb114be486412410d07",
+    "march/safin1/fused_march_varlen_segments.py": "79b9d7adf56296440f512fa726241ae34332ed78d52cf2e458411b11607865b5",
+    "march/safin1/gdn_cache.py": "e1e96ebd6209a06e6831a4f5bbe0ec7085d346fc6fea66c11e827c01d86a7f7a",
+    "march/safin1/gdn_recurrence.py": "898f3f4e17348ae37095cb7674965aab9a40cccfd78b03f365981494b848c42e",
+    "march/safin1/march_gdn.py": "c07fe0edc13ab0af6726c119d437465258bf184022b6c313b3ab3ed96bbafa81",
+    "march/safin1/modeling_common.py": "5a8bcc2eadf7ed41dac3aaf6d9aec81ae9ba9c6c0b655b1010d14ad4c5c81cb8",
+    "march/safin1/modeling_safin1.py": "e1f21c95aeb55614a2331cb1586d705cace103e31f8b035c96c775a0a863ec67",
+    "march/safin1/modeling_safin1_moe.py": "f23d497ec1349a8d81dfdf5935e7f9af9e311a986085cf3636f30177df186f1b",
+    "march/safin1/ops.py": "ae31b32a927e1d67e3d2c72c1b802b11ac2f68bb63758729a0a686cc1cf80786",
+    "march/safin1/paged_history_read.py": "0beb0bfbd38ebe3f46454ebc8f2d8ae8a970840839d7cfe5699adfd049f9d8de",
+    "march/safin1/persistent_memory.py": "b54da67d459bcc53192fed980892b9b9310998c58fb37464688a9d864b78d386",
+    "march/safin1/runtime_validation.py": "bcb6a0bebb4cc389e4dfeb15a2acda927f7f9ea006512862835f9017f5d5975b",
+    "march/training/__init__.py": "2b9855e45c1798db1f9602c09c67e819adca77731895514b217b612f7fedf447",
+    "march/training/anchor_batch.py": "906df8660b6641e076f9fc1aa05b54d5d8259c2e7b938256b5104070c0bbd01a",
+    "scripts/march/_training_common.sh": "8efc4f557f52a9c3274d5f5acce5ec8770ccfd5c11a13728c10200b6bfe623f1",
+    "scripts/march/check_operator_correctness.py": "7240f1c7581b74ae11ce33ecd525f28856f1f1e81b598f4330635e494e0daf7b",
+    "scripts/march/train_cpt.sh": "fe9e9deb2b1a6b4764e6cfa26b7f169911c3c2365d94d00c8af3f1be35b2b582",
+    "scripts/march/train_sft.sh": "06ba792cdf99a856e0c8dbd8237cc4317beeeb7d93f8e1dee6ebce01cd88f1b6",
+    "swift/megatron/init.py": "4ea0d98df1a946555128104c4138a1e15bd28ca8e0d8d910f67027915a31db6e",
+    "swift/megatron/trainers/utils.py": "89d927b56fcc995cf5d173eb7645be75dd6fe03cb47bd9a2bb1d42c72d50e908",
+    "swift/megatron/utils/utils.py": "a490859eb5f4c091783e23a7b48cc863439aac9cc7945eeb07832f5327168c1a",
+    "tests/march/test_adapter_export.py": "b092d0aea89e29f89c74811433280eccf6dc0d6070d9d87f835c8f8e2c323e98",
+    "tests/march/test_backend_policy.py": "ce64dfc67a86a8bde4bd2363eb7910997ec954d7f93cd6696076e65d9edc2a47",
+    "tests/march/test_backends.py": "d0a58c48b682f465f698365fda838dc69f5a47593d57084ce37e83677bec6876",
+    "tests/march/test_chunk_gdn_cuda.py": "2747115bebb72c964e959b4a38f149d213897b7821eea497ad9678e9e1cd5085",
+    "tests/march/test_operator_acceptance_cuda.py": "e70e1901235041a8bfda1096056300e04809135efcff54bcdd2bf51e94edda65",
+    "tests/march/test_paged_history_cuda.py": "6d8ab2d6433e0359b65dc70e7e71bbbb736ecf9c8d96a95d021c089f46412966",
+    "tests/march/test_sparse_topk_cuda.py": "a71e3f7ace6af5d74ded7a75c3e190271b080f71a38a8c3ece9fec929ddbe8da",
+    "tests/march/test_training_contract.py": "faac91449b34177ac16c167ae753dce9a62ff5df224147845480fd7de7a09043",
+    "tests/march/test_training_entrypoints.py": "200f0ef23b4099b398bda28f72b1d41f8e220c8d234c4e5a9524697735acd297",
+    "tests/march/test_training_import.py": "4ca0c9fb15c7890d2eda22f5f9525f44ccad7f4783eebf4c231f3ce532271183",
+    "tests/march/test_training_runtime_policy.py": "4bae7dd4f23828af81b29fb43b38a84759b9c7d76189e39efdbe10f3878d9590",
+    "third_party/mcore-bridge/src/mcore_bridge/__init__.py": "c14e3bd06e80f065d046a6ab24ff08d5374de8bf58346e7a2059f066b91ee94c",
+    "third_party/mcore-bridge/src/mcore_bridge/bridge/__init__.py": "e3699d370c8a9e85db4c9cc21beb6a8236b857148c79b25dc5fa9a05e6fb42b6",
+    "third_party/mcore-bridge/src/mcore_bridge/bridge/gpt_bridge.py": "a418a02333e3d40a71bebaa11872a682242b5a0d57585af19ddbc735e107bf4f",
+    "third_party/mcore-bridge/src/mcore_bridge/config/__init__.py": "0c1c77a9294332f76a7302bec39471482294b3e5281e0038435e87cbdbd16f44",
+    "third_party/mcore-bridge/src/mcore_bridge/config/model_config.py": "6018fae98785345b0d13a2df927670b65c0df811153bd77a2c4e9c28f0bbe6b4",
+    "third_party/mcore-bridge/src/mcore_bridge/config/parser.py": "de7ae9180c7e5e28e906eac9ddff9944f9a529f9136684d4c78c91d96e2554ee",
+    "third_party/mcore-bridge/src/mcore_bridge/model/__init__.py": "55a48efda516b3f741b102b09d3eb580a89b85db99be6e2584b1c677387cc1cf",
+    "third_party/mcore-bridge/src/mcore_bridge/model/constant.py": "1aca0a6f2555c915ba8de5cbddcf465479d2676f78d00de99d39f0009ca418bd",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpt_model.py": "f12e6d0061e01970bf7b504a7eab6e334923612396a3bac537c274003b11d76a",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/__init__.py": "a0a94e024ce7bbff2272ad9ea0b02d1520a795e377697848102811b1a40dcaf5",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/glm4.py": "a49361fbe083230edc9a9f6d57d6e193351106c30d8d6e9549040bc3cf5c3e18",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/hunyuan.py": "fdb957ad404f9cab9bbc9b6e8d98779f9bbdb131d761a29bcb453b493c87eec6",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/llm.py": "52c317d0501d4981d27399abcf6298409d75feee2ac3aa5805caa13467b52fb9",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/minimax_m2.py": "ee950ce6ce2cf558c25575a213b8dbc4607013b18855a807d34e14a21adac3b7",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/olmoe.py": "9d81de2725b9ae7d0ad1be2bcaab20b4f6451836dd2e4f600092a35ade37c326",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/qwen3_emb.py": "e398c494ffa55237cd009d5b70980321ab43d39186ea84999a0cc632ae845553",
+    "third_party/mcore-bridge/src/mcore_bridge/model/gpts/qwen3_next.py": "2a31ac8e02de8b3b47eece8cb8ba0b6011ffe469b32d417e52229ab4d74b9516",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpt_model.py": "a4025eb589dabaae5a538ab6b72a9c2316155a004202b0f1e8e0bed72eefb0ea",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/__init__.py": "93b18dcc3cd6081cb0afecea5138c780bc2856df105a8623b645ad24f4dec55a",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/glm.py": "e8375dba8a49320c72748718d0798f632dc6b9e2e247390cf4dad7c3226837e0",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/internvl.py": "76af7022a3793957ce3c9ddb3d1b6bc1409d1478c82f0d0d9ce23afce193af98",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/kimi_vl.py": "1c3132086685dae39fdd6bb3a294b6c13da8c49f6ee843d2a376fce590e41cbc",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/llama4.py": "2ee18c362cffd9e98b12e2e0c850d324c498ac1858af5191c5924028ed5a94e9",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/llava.py": "a2ee1c67ac750ef0208f82d65753bc3ee1c879dabaa192f461e1d5579cd6f7ed",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/qwen.py": "2d9a534bbc59249e87e09be8c5ca8dfcc39fbbc1e0083ae16532ef06b23c78cd",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/qwen3_5.py": "3c5351293b3d1dbb6603c3dce584b0fac7ccec3207f89053b15797037147f114",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/qwen3_5_gdn.py": "ada03231284812a9b055d2e38f348ea87431d8237a0a9b8994be7e09b519a901",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/qwen3_omni.py": "3cbeb004552308cdce8e7f3f7083b664d56889828ea07d79c3ef6c2647dd8d26",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/qwen3_vl.py": "aa13c649751f2d50832f26a6ca1c145b96b6a982e847aee1e337bef8b81fdb1e",
+    "third_party/mcore-bridge/src/mcore_bridge/model/mm_gpts/utils.py": "f45eca084f49b6fa74f8267f59753b7a23c04b8e40c703969b13740d384d2fa6",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/__init__.py": "90574a9aff370a2411b75a1882849f38433f9d0257ee08feb941dc2d7b91fe0b",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/gated_delta_net.py": "bb51676364047eb370d75a01ff1473e7226f9f1c0b5b9c53817014fdc68bbdac",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/gated_self_attention.py": "ef817c11ab11c8ae149edc3c2134c40828b4b6b3b2086c5c0576c526ad3f2427",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/march.py": "cfb55d1e12a37331d0c62cf97defb4fc721ea7ca2b32e6b4e8850dd8be821ed4",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/march_chunk_gdn.py": "78003be658029ec6d1480c45024fb66da0cf9052388c446398826a33ccc4443e",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/march_diagnostics.py": "af601319fb9256cd6d27c80991b38527aff5ddd99732d02983331fb6f0124529",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/march_runtime.py": "e019d12c9043a644138e3be9a18b0c0d881fe559863578339883c233c3761ef3",
+    "third_party/mcore-bridge/src/mcore_bridge/model/modules/mtp_layer.py": "9d2f2817c42ecf0e8b6d04998a42668b768e3e6933b15d4e31ace0a6f0985336",
+    "third_party/mcore-bridge/src/mcore_bridge/model/register.py": "856714d657880cf165fbdbc449f93c7b089770ab4daeee34d4cd50a9ff3ad78e",
+    "third_party/mcore-bridge/src/mcore_bridge/model/rope.py": "d4b189bdf57a7de05d0daca0e6a11c30b807db3e2797c2533e9a62ce1a7e76de",
+    "third_party/mcore-bridge/src/mcore_bridge/patcher.py": "9ebc53cc9f004e9f15285cb569bccb83b77ca16cf05fa92ae35bffc13943c052",
+    "third_party/mcore-bridge/src/mcore_bridge/tuners/__init__.py": "4a3a0784ded62cc8d3f2b309d12042dcd907349528fab70ac6951171e42d08a0",
+    "third_party/mcore-bridge/src/mcore_bridge/tuners/lora.py": "3077b167701367272bb41b13d1c3545863116864ce16ccab7efff5bad0378f0e",
+    "third_party/mcore-bridge/src/mcore_bridge/tuners/patcher.py": "638a19dde15025c24945913f63a523cc477d2482983954dc3818d756dd6f9309",
+    "third_party/mcore-bridge/src/mcore_bridge/tuners/utils.py": "ee939b58a649ad59e4a8940ae4832e879f8a239055994e855e8fe7017e930a5d",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/__init__.py": "8037faa8a62004aedd5cde170d70b2fa6359170f0d3c9b084bedc38cd02aa690",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/dequantizer.py": "00a81a9f9ee8dacee44063d2d8b9edc05be965c7215e7d13b1750f57d16581c4",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/env.py": "278440cb8884233c8ef8067d3153d77404bc2b9d710caef0868ebfd896635c67",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/import_utils.py": "4563d09bb27c03b4a20e46d74c3b5b44292ec7530aaf664f53642438d728f785",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/logger.py": "82da3a106045878702ea74d01dcfc84c6511e0c0981c2d0a032990cb683d1774",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/megatron_utils.py": "114129cacde849b63fca3240782f9bc015948b0a1a4cc5bce09e8c8aee8bb0e6",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/safetensors.py": "c253aa571d025b24d1a7fefae3ca43b5d5f9fbf17beec61e84039f7ade6b8441",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/torch_utils.py": "603575af8f43edafa000b983482810483391a0d6aca1827e988da4088a9d543c",
+    "third_party/mcore-bridge/src/mcore_bridge/utils/utils.py": "09162a691aec811330855b9b66f723b35842780a75f0d7f8c9c9bae8060fcde0",
+    "third_party/mcore-bridge/src/mcore_bridge/version.py": "f27983c99ab75670d8b67fcad46d8eb782ed88a7ae00f07086246c01a790230f",
+    "third_party/vllm/vllm/model_executor/layers/fla/__init__.py": "5dbbfa3fc286edb2e970e175ef33cee4f6181c89b0784f5a8986201b2312f54e",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/__init__.py": "bde397cf89cd0a9e2048d9b91e18298814eae1ac7cfff65cda962ecdc2cab2f1",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/chunk.py": "05ec6791a5f726f3ace9f4476bbbaa378e1be314aab57fbd393255019f725a29",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/chunk_delta_h.py": "bac163ce987b77f5abe7759b0c399663f80f3edc70d711d43cfde12fb0f03a7b",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/chunk_o.py": "5c481b6b74ded15b782936e59d6bcf35adb9438791fa3d7f8226a3f09acbef8c",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/chunk_scaled_dot_kkt.py": "d5cd6a06ef14ab2c32d4541a43dc6ce72c1fc03f6af0ea9d5bbd98d2f1e608df",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/cumsum.py": "d15a4ad13c2593105f55bd911e921c80f1d193afa3e581a45dbb97be6496e655",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/fused_gdn_prefill_post_conv.py": "ec0c3061d679db236dd1d67eb3b64d8a1c3dbc1c8edb54f4eb161a0c200ab634",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/fused_recurrent.py": "3c2f13df81162b6ceb235a11dbea02536c7b35ed1a67aebbac8de77a24ba6caf",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/fused_sigmoid_gating.py": "000ab8996af9788fdb8843a6a3b91833e7a14c8acc0e1ea073a536330f64cb6f",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/index.py": "1fa36b77833c56cdc1ec1af3ea38225d8ae9e1faec5b218cf48af5482ddf15a0",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/kda.py": "16ccf19821e32783c049d89faa3da6e6dc0ff4bda991e9b5d04b11cfb144f837",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/l2norm.py": "520f4513ef4fc97e6b88dc07877cca8e29da0d34e44673fe989e3af002d86381",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/layernorm_guard.py": "6ac171fa97f36a5e3e6549af9652fed25eb366bcf0b109594c66a392a32a0630",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/op.py": "6ad9192acc939815136baf069d193455f1157ca01b991a052d8b5095ff3f2413",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/solve_tril.py": "3b7b0533964afe22b07303bbcd2246255760e4adcebceb8770a889e096e23617",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/utils.py": "5769e00da14d648516d58e68df87edf35ac4aa4213ea85407c4b7f71fac43485",
+    "third_party/vllm/vllm/model_executor/layers/fla/ops/wy_fast.py": "225e8345954e5ad5c9d92fc84f741884f87c20786aec7b2d5d50a75a7a5fb393"
+  },
+  "operator_inventory": {
+    "march/inference/paged_epilogue_triton.py::_history_scale_add_kernel": "epilogues",
+    "march/inference/paged_epilogue_triton.py::_valid_mask_copy_kernel": "epilogues",
+    "march/inference/paged_epilogue_triton.py::_strided_gate_rmsnorm_kernel": "epilogues",
+    "march/inference/paged_fused_triton.py::_paged_decode_top4_fused_read_kernel": "paged_decode",
+    "march/inference/paged_fused_triton.py::_paged_decode_read_all_fused_kernel": "paged_decode",
+    "march/inference/paged_memory_triton.py::_paged_decode_memory_top4_select_kernel": "paged_decode",
+    "march/inference/paged_memory_triton.py::_paged_decode_memory_top4_read_kernel": "paged_decode",
+    "march/inference/paged_prefill_triton.py::_paged_prefill_top4_blocked_read_kernel": "paged_prefill",
+    "march/inference/paged_prefill_triton.py::_paged_prefill_top4_selected_blocked_read_kernel": "paged_prefill",
+    "march/inference/paged_topk_triton.py::_paged_decode_top4_select_kernel": "paged_decode",
+    "march/inference/paged_topk_triton.py::_paged_decode_top4_read_kernel": "paged_decode",
+    "march/inference/varlen_segments.py::_hsd_varlen_chunk_gdn_fwd_h_anchor_kernel": "varlen",
+    "march/inference/varlen_segments.py::_hsd_deterministic_anchor_state_read_kernel": "varlen",
+    "march/inference/varlen_segments.py::_hsd_deterministic_scaled_dot_kkt_fwd_kernel": "varlen",
+    "march/kernels/chunk_anchor_triton.py::_hsd_anchor_read_fwd_kernel": "chunk",
+    "march/kernels/chunk_anchor_triton.py::_hsd_anchor_read_bwd_q_kernel": "chunk",
+    "march/kernels/chunk_anchor_triton.py::_hsd_compact_anchor_read_fwd_kernel": "chunk",
+    "march/kernels/chunk_anchor_triton.py::_hsd_anchor_state_scatter_bwd_kernel": "chunk",
+    "march/kernels/chunk_scan_triton.py::_chunk_gated_delta_rule_bwd_kernel_dhu_external": "chunk",
+    "march/kernels/march_global_read.py::_hsd_global_read_decode_fwd_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_global_read_decode_route_prob_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_global_read_decode_prob_read_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_fwd_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_bwd_preprocess_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_token_bwd_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_state_bwd_kernel": "dense_global_read",
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_key_bwd_kernel": "dense_global_read",
+    "march/kernels/march_global_read_topk.py::_topk_csr_count_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_topk_csr_offsets_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_topk_csr_fill_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_split_fp32_high_residual_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_fwd_grouped_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_fwd_reduce_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dq_grouped_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dq_dw_grouped_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dw_grouped_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_ds_grouped_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_fwd_token_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dq_token_kernel": "sparse_topk",
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dw_token_kernel": "sparse_topk",
+    "march/safin1/fused_history_read.py::_hsd_decode_top4_history_read_kernel": "hf_top4",
+    "march/safin1/fused_history_read.py::_hsd_prefill_top4_history_read_kernel": "hf_top4",
+    "march/safin1/fused_march_segments.py::_hsd_chunk_gdn_fwd_h_anchor_kernel": "hf_segment_states"
+  },
+  "test_files": [
+    "tests/march/test_chunk_gdn_cuda.py",
+    "tests/march/test_sparse_topk_cuda.py",
+    "tests/march/test_backends.py",
+    "tests/march/test_backend_policy.py",
+    "tests/march/test_paged_history_cuda.py",
+    "tests/march/test_operator_acceptance_cuda.py",
+    "tests/march/test_training_contract.py",
+    "tests/march/test_training_import.py",
+    "tests/march/test_adapter_export.py",
+    "tests/march/test_training_runtime_policy.py",
+    "tests/march/test_training_entrypoints.py"
+  ],
+  "tests": [
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_exported_march_adapter_loads_in_hf_peft[safin1_35b_a3b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_exported_march_adapter_loads_in_hf_peft[safin1_4b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_full_export_retains_march_base_and_state",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_retired_adapter_import_rejected_before_copy[history_read_q_down_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_retired_adapter_import_rejected_before_copy[history_read_q_up_proj.lora_A.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_route_adapter_safetensors_roundtrip[frozen-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_route_adapter_safetensors_roundtrip[frozen-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_route_adapter_safetensors_roundtrip[lora-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_route_adapter_safetensors_roundtrip[lora-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_route_adapter_safetensors_roundtrip[modules_to_save-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_route_adapter_safetensors_roundtrip[modules_to_save-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_unmerged_adapter_rejects_trainable_raw_state[hsd_history_gate_logit]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_unmerged_adapter_rejects_trainable_raw_state[hsd_history_out_rmsnorm_weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_unmerged_adapter_rejects_trainable_raw_state[hsd_null_read_gate_bias]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_unmerged_adapter_rejects_trainable_raw_state[persistent_memory_route_key]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_adapter_export.py::test_unmerged_adapter_rejects_trainable_raw_state[persistent_memory_state]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_concurrent_diagnostic_does_not_redirect_other_calls",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_cuda_split_diagnostic_uses_local_fused_override",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_diagnostic_preserves_semantics_and_environment[error]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_diagnostic_preserves_semantics_and_environment[none]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_diagnostic_preserves_semantics_and_environment[tensor]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_diagnostic_rejects_graph_capture_before_nested_read",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_environment_remains_compatible_default",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-0-fused_triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-0-torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-0-triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-4-fused_triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-4-torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-4-triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-fused_triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[ TORCH -torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[-auto]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[aten-torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[auto-auto]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[fused-fused_triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[fused_triton-fused_triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[paged_torch-torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[split_triton-triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[tensor-torch]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_explicit_policy_overrides_environment[triton-triton]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_invalid_explicit_backend_fails_before_capability_check",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_optional_fallback_events_explain_unsupported_cpu[False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_optional_fallback_events_explain_unsupported_cpu[True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_optional_selection_events_report_actual_reference_path",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backend_policy.py::test_split_batch_keeps_explicit_backend",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_accelerated_entry_points_present",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_flashqla_release_backends_and_geometries",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_paged_cache_append_release",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_paged_cuda_matches_torch_reference[2-32]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_paged_cuda_matches_torch_reference[32-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[0-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[0-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[1-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[1-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[3-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[3-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[6-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_history_read_against_direct_oracle[6-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[False-1-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[False-1-2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[False-2-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[False-2-2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[False-3-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[True-1-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[True-1-2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[True-2-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[True-2-2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_backends.py::test_top4_reference_handles_fewer_than_four_physical_slots[True-3-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-False-prob]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-False-streaming]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-True-prob]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-True-streaming]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-False-prob]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-False-streaming]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-True-prob]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-True-streaming]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-False-prob]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-False-streaming]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-True-prob]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-True-streaming]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-False-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-False-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype0-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype0-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype1-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype1-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype0-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype0-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype1-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype1-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[False-dtype0-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[False-dtype0-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[False-dtype1-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[False-dtype1-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[True-dtype0-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[True-dtype0-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[True-dtype1-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_flashqla_inference_states[True-dtype1-96]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[False-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[False-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[True-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[True-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-0-17]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-0-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-3-17]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-3-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-6-17]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-6-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-0-17]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-0-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-3-17]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-3-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-6-17]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-6-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-False-3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-False-7]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-True-3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-True-7]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-False-3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-False-7]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-True-3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-True-7]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-False-3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-False-7]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-True-3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-True-7]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-deterministic]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-fla]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-local_anchors]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-vllm]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-deterministic]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-fla]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-local_anchors]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-vllm]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_chunk_state_cuda_all_batches_and_heads[False-1-2-16]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_chunk_state_cuda_all_batches_and_heads[False-2-4-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_chunk_state_cuda_all_batches_and_heads[True-1-2-16]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_chunk_state_cuda_all_batches_and_heads[True-2-4-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-1-8-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-1-8-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-4-20-False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-4-20-True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_persistent_state_cuda_train_save_reload[safin1_35b_a3b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_paged_history_cuda.py::test_persistent_state_cuda_train_save_reload[safin1_4b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_bad_profiles_fail_before_model_construction",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_bridge_config_rejects_retired_mode_before_initialization",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_hsd_export_requires_all_active_parameters_and_no_retired_adapters[False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_hsd_export_requires_all_active_parameters_and_no_retired_adapters[True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_mandatory_training_modules_import_from_this_fork",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_real_profile_merge_and_export[safin1_35b_a3b-qwen3_5_moe]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_real_profile_merge_and_export[safin1_4b-qwen3_5]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_query_rank_does_not_block_bridge_config",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_query_weights_rejected_before_any_weight_copy[adapter_keys0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_query_weights_rejected_before_any_weight_copy[adapter_keys1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_query_weights_rejected_before_any_weight_copy[adapter_keys2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_runtime_rejected_during_bridge_merge[runtime0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_runtime_rejected_during_bridge_merge[runtime1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_retired_runtime_rejected_during_bridge_merge[runtime2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_safin_moe_shared_expert_checkpoint_layout[False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_safin_moe_shared_expert_checkpoint_layout[True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_shared_hf_gdn_adapter_resolves_attention_mask[False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_shared_hf_gdn_adapter_resolves_attention_mask[True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_unimplemented_training_config_rejected_before_setup_and_merge[runtime0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_unimplemented_training_config_rejected_before_setup_and_merge[runtime1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_unimplemented_training_config_rejected_before_setup_and_merge[runtime2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_contract.py::test_unimplemented_training_config_rejected_before_setup_and_merge[runtime3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_bad_local_config_is_not_silently_defaulted",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_dense_tp_default_remains_without_sequence_parallel",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_entrypoint_rejects_runtime_environment_drift_before_cli",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_intrusive_environment_fails_before_training[HSD_ANCHOR_MLP]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_intrusive_environment_fails_before_training[HSD_DEBUG_DETACH_TEXT_O]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_intrusive_environment_fails_before_training[HSD_DEBUG_ZERO_TEXT_O]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_moe_tp_enables_sequence_parallel_and_rejects_disabling_it[cpt]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_moe_tp_enables_sequence_parallel_and_rejects_disabling_it[sft]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_public_entrypoint_cannot_disable_march[SWIFT_USE_MCORE_GDN-cpt]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_public_entrypoint_cannot_disable_march[SWIFT_USE_MCORE_GDN-sft]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_public_entrypoint_cannot_disable_march[USE_HIST_LINEAR_ATTN-cpt]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_public_entrypoint_cannot_disable_march[USE_HIST_LINEAR_ATTN-sft]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_public_entrypoint_cannot_disable_march[USE_MCORE_GDN-cpt]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_public_entrypoint_cannot_disable_march[USE_MCORE_GDN-sft]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_retired_mode_environment_rejected_before_cli[HSD_HISTORY_READ_Q_MODE-hidden_residual_lora]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_retired_mode_environment_rejected_before_cli[HSD_LOCAL_STATE_MODE-chunk]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_saved_runtime_is_preserved_and_family_conflicts_fail[safin1_35b_a3b-35ba3b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_saved_runtime_is_preserved_and_family_conflicts_fail[safin1_4b-4b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_saved_unimplemented_training_runtime_rejected_before_cli[runtime0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_saved_unimplemented_training_runtime_rejected_before_cli[runtime1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_unknown_model_requires_explicit_family[cpt]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_entrypoints.py::test_unknown_model_requires_explicit_family[sft]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_base_dedicated_memory_requires_artifact_before_conversion",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_base_qwen_checkpoint_retains_explicit_initialization_path",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_base_qwen_layer_still_initializes_from_qkv",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_complete_checkpoint_reaches_conversion",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_dedicated_memory_route_key_still_requires_artifact",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_gate_only_partial_checkpoint_cannot_initialize_as_base[hsd_history_gate_logit]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_gate_only_partial_checkpoint_cannot_initialize_as_base[hsd_history_out_rmsnorm_weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_gate_only_partial_checkpoint_cannot_initialize_as_base[hsd_null_read_gate_bias]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_gate_only_partial_checkpoint_cannot_initialize_as_base[null_gate_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_layer_import_cannot_reinitialize_or_skip_missing_parameters[hsd_null_read_gate_bias]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_layer_import_cannot_reinitialize_or_skip_missing_parameters[null_gate_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_layer_import_cannot_reinitialize_or_skip_missing_parameters[router_q_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_layer_import_restores_live_weights",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_lora_adapter_remains_partial_and_needs_no_full_config",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[anchor_embedding.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[anchor_k_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[anchor_q_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[hsd_history_gate_logit]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[hsd_history_out_rmsnorm_weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[hsd_null_read_gate_bias]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[null_gate_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_missing_active_checkpoint_weight_fails_before_any_conversion[router_q_proj.weight]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_model_config_and_saved_runtime_cannot_drift",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_only_new_persistent_state_may_use_documented_zero_initialization[False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_only_new_persistent_state_may_use_documented_zero_initialization[True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_partially_march_weights_never_count_as_base_qwen",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_layer_adapter_import_preserves_base_and_persistent_state[False]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_layer_adapter_import_preserves_base_and_persistent_state[True]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_loader_refuses_architecture_downgrade_before_build[SWIFT_USE_MCORE_GDN]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_loader_refuses_architecture_downgrade_before_build[USE_HIST_LINEAR_ATTN]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_loader_refuses_architecture_downgrade_before_build[USE_MCORE_GDN]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_loader_selects_march_from_model_contract_without_legacy_flag[qwen3_5]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_loader_selects_march_from_model_contract_without_legacy_flag[safin1_35b_a3b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_import.py::test_real_loader_selects_march_from_model_contract_without_legacy_flag[safin1_4b]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_active_anchor_profile_enables_march_without_legacy_switch",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_boolean_runtime_guard_uses_same_values_as_training_parser[garbage]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_boolean_runtime_guard_uses_same_values_as_training_parser[t]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_boolean_runtime_guard_uses_same_values_as_training_parser[y]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_global_read_layers-10-30-2-39]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_history_scale-1.0-0.5]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_read_block_size-32768-1024]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_read_topk-4-8]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_route_head_dim-None-128]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_topk_backend-reference-sparse]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_environment_cannot_change_serialized_runtime[hsd_use_global_read-True-false]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_invalid_runtime_environment_does_not_silently_fall_back[4.5]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_invalid_runtime_environment_does_not_silently_fall_back[garbage]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_invalid_runtime_environment_does_not_silently_fall_back[nan]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_legacy_read_block_alias_cannot_override_config",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_march_architecture_is_selected_by_config_and_conflicting_flags_fail[SWIFT_USE_MCORE_GDN]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_march_architecture_is_selected_by_config_and_conflicting_flags_fail[USE_HIST_LINEAR_ATTN]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_march_architecture_is_selected_by_config_and_conflicting_flags_fail[USE_MCORE_GDN]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_matching_runtime_environment_remains_compatible[1.0-1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_matching_runtime_environment_remains_compatible[4-4]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_matching_runtime_environment_remains_compatible[False-off]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_matching_runtime_environment_remains_compatible[None-null]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_matching_runtime_environment_remains_compatible[True-YES]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_matching_runtime_environment_remains_compatible[sparse-SPARSE]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_retired_environment_modes_fail_instead_of_being_ignored[HSD_HISTORY_READ_Q_MODE-hidden_residual_lora-shared_local]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_retired_environment_modes_fail_instead_of_being_ignored[HSD_LOCAL_STATE_MODE-chunk-full]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_supported_training_metadata_is_preserved",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime0]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime1]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime2]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime3]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime4]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime5]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/march/test_training_runtime_policy.py::test_unimplemented_training_settings_fail_for_dicts_and_objects[runtime6]",
+      "outcome": "passed",
+      "phases": {
+        "setup": "passed",
+        "call": "passed",
+        "teardown": "passed"
+      }
+    }
+  ],
+  "kernel_tests": {
+    "march/kernels/chunk_anchor_triton.py::_hsd_anchor_read_fwd_kernel": [
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-128]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-128]"
+    ],
+    "march/kernels/chunk_anchor_triton.py::_hsd_anchor_read_bwd_q_kernel": [
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-128]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-128]"
+    ],
+    "march/kernels/chunk_anchor_triton.py::_hsd_anchor_state_scatter_bwd_kernel": [
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-128]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-128]"
+    ],
+    "march/kernels/chunk_scan_triton.py::_chunk_gated_delta_rule_bwd_kernel_dhu_external": [
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[False-128]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-96]",
+      "tests/march/test_chunk_gdn_cuda.py::test_chunk_forward_backward[True-128]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype0-96]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype0-128]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype1-96]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype1-128]"
+    ],
+    "march/kernels/march_global_read_topk.py::_topk_csr_count_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]"
+    ],
+    "march/kernels/march_global_read_topk.py::_topk_csr_offsets_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]"
+    ],
+    "march/kernels/march_global_read_topk.py::_topk_csr_fill_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_fwd_grouped_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dq_dw_grouped_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_ds_grouped_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[grouped-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[grouped-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-False-False-tf32-4]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-bf16_high-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-False-False-tf32-4]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_fwd_token_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dq_token_kernel": [
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-1-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-2-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-4-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-8-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_cuda_modes_match_reference[token-16-dtype1]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype0]",
+      "tests/march/test_sparse_topk_cuda.py::test_sparse_topk_production_geometry[token-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]"
+    ],
+    "march/inference/paged_topk_triton.py::_paged_decode_top4_select_kernel": [
+      "tests/march/test_backends.py::test_paged_cuda_matches_torch_reference[2-32]",
+      "tests/march/test_backends.py::test_paged_cuda_matches_torch_reference[32-128]",
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-4-triton]",
+      "tests/march/test_backend_policy.py::test_cuda_split_diagnostic_uses_local_fused_override",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-1-8-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-4-20-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-False-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-False-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-False-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-False-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-False-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-False-7]"
+    ],
+    "march/inference/paged_topk_triton.py::_paged_decode_top4_read_kernel": [
+      "tests/march/test_backends.py::test_paged_cuda_matches_torch_reference[2-32]",
+      "tests/march/test_backends.py::test_paged_cuda_matches_torch_reference[32-128]",
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-4-triton]",
+      "tests/march/test_backend_policy.py::test_cuda_split_diagnostic_uses_local_fused_override",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-1-8-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-4-20-False]"
+    ],
+    "march/inference/paged_fused_triton.py::_paged_decode_top4_fused_read_kernel": [
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-4-fused_triton]",
+      "tests/march/test_backend_policy.py::test_cuda_split_diagnostic_uses_local_fused_override",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-False]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-False]"
+    ],
+    "march/inference/paged_fused_triton.py::_paged_decode_read_all_fused_kernel": [
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-0-triton]",
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[False-0-fused_triton]"
+    ],
+    "march/inference/paged_memory_triton.py::_paged_decode_memory_top4_select_kernel": [
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-triton]",
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-fused_triton]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-True]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-True]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-1-8-True]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-4-20-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-True-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-True-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-True-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-True-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-True-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-True-7]"
+    ],
+    "march/inference/paged_memory_triton.py::_paged_decode_memory_top4_read_kernel": [
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-triton]",
+      "tests/march/test_backend_policy.py::test_explicit_cuda_backend_matches_reference[True-4-fused_triton]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-1-8-True]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[False-4-20-True]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-1-8-True]",
+      "tests/march/test_paged_history_cuda.py::test_dense_history_cuda_graph_replay[True-4-20-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-True-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-True-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-True-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-True-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-True-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-True-7]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_fwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-True]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_bwd_preprocess_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-True]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_token_bwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-True]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_state_bwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-True]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_packed_global_read_key_bwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype0-True-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_packed_read_all_input_gradients[dtype1-True-True]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_global_read_decode_fwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-False-streaming]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-True-streaming]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-False-streaming]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-True-streaming]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-False-streaming]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-True-streaming]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_global_read_decode_route_prob_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-False-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-True-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-False-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-True-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-False-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-True-prob]"
+    ],
+    "march/kernels/march_global_read.py::_hsd_global_read_decode_prob_read_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-False-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[0-True-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-False-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[3-True-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-False-prob]",
+      "tests/march/test_operator_acceptance_cuda.py::test_dense_decode_oracle[6-True-prob]"
+    ],
+    "march/safin1/fused_history_read.py::_hsd_decode_top4_history_read_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-0-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-3-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-6-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-0-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-3-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-6-1]"
+    ],
+    "march/safin1/fused_history_read.py::_hsd_prefill_top4_history_read_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-0-17]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-3-17]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype0-6-17]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-0-17]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-3-17]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_top4_read_oracle[dtype1-6-17]"
+    ],
+    "march/inference/paged_epilogue_triton.py::_strided_gate_rmsnorm_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype2]"
+    ],
+    "march/inference/paged_epilogue_triton.py::_history_scale_add_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype2]"
+    ],
+    "march/inference/paged_epilogue_triton.py::_valid_mask_copy_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[silu-128-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[swish-128-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-96-dtype2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype0]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_fused_epilogues_oracle[sigmoid-128-dtype2]"
+    ],
+    "march/inference/paged_prefill_triton.py::_paged_prefill_top4_blocked_read_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-False-3]"
+    ],
+    "march/inference/paged_prefill_triton.py::_paged_prefill_top4_selected_blocked_read_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[blocked-False-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-False-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[selected-False-7]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-False-3]",
+      "tests/march/test_operator_acceptance_cuda.py::test_paged_prefill_oracle[uniform-False-7]"
+    ],
+    "march/inference/varlen_segments.py::_hsd_deterministic_anchor_state_read_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-fla]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-local_anchors]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-vllm]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-deterministic]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-fla]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-local_anchors]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-vllm]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-deterministic]"
+    ],
+    "march/inference/varlen_segments.py::_hsd_varlen_chunk_gdn_fwd_h_anchor_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-local_anchors]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-local_anchors]"
+    ],
+    "march/inference/varlen_segments.py::_hsd_deterministic_scaled_dot_kkt_fwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[False-deterministic]",
+      "tests/march/test_operator_acceptance_cuda.py::test_varlen_recurrence_oracle[True-deterministic]"
+    ],
+    "march/kernels/chunk_anchor_triton.py::_hsd_compact_anchor_read_fwd_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype0-96]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype0-128]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype1-96]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[optimized-dtype1-128]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype0-96]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype0-128]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype1-96]",
+      "tests/march/test_operator_acceptance_cuda.py::test_flashqla_forward_all_gradients[reference-dtype1-128]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dq_grouped_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dw_grouped_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-False-False-False-high_residual-1]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_dw_token_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-token-False-False-False-high_residual-1]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-token-False-False-False-high_residual-1]"
+    ],
+    "march/kernels/march_global_read_topk.py::_split_fp32_high_residual_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]"
+    ],
+    "march/kernels/march_global_read_topk.py::_sparse_topk_fwd_reduce_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[False-grouped-True-True-True-high_residual-2]",
+      "tests/march/test_operator_acceptance_cuda.py::test_sparse_alternate_kernels[True-grouped-True-True-True-high_residual-2]"
+    ],
+    "march/safin1/fused_march_segments.py::_hsd_chunk_gdn_fwd_h_anchor_kernel": [
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[False-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[False-True]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[True-False]",
+      "tests/march/test_operator_acceptance_cuda.py::test_hf_selective_anchor_states[True-True]"
+    ]
+  },
+  "collected": 322,
+  "environment": {
+    "cuda_available": true,
+    "gpu": "NVIDIA H200",
+    "compute_capability": [
+      9,
+      0
+    ],
+    "cuda_runtime": "12.9",
+    "packages": {
+      "torch": "2.11.0+cu129",
+      "triton": "3.6.0",
+      "flash-linear-attention": "0.5.0",
+      "tilelang": "0.1.9",
+      "megatron-core": "0.16.1",
+      "transformer-engine": "2.14.1"
+    }
+  },
+  "revision": "d19df22fe039bd5a355ad6022cf416e12b0e054f",
+  "pytest_exit_code": 0,
+  "source_changed_during_run": false,
+  "completed_at": "2026-10-17T01:39:14.375977+00:00",
+  "acceptance": {
+    "ready": true,
+    "errors": [],
+    "tests": 322,
+    "custom_triton_kernels": 43,
+    "status_counts": {
+      "passed": 322
+    }
+  }
+}

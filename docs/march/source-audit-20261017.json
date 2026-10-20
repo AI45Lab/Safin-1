@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-17",
+  "source_repository": "https://github.com/AI45Lab/Safin-1",
+  "source_archive_sha256": "51dacf4604938a1f261ba6a1b89ac6e247beb18b1a8fb11afc56c0b826a5d3ec",
+  "source_snapshot": "Pinned Git archive of 9dc1b0d465697db495d009d724ed709f6e702dba without Git history; includes final full-size training acceptance and serving publication gate; full source, sdist and wheel built and inspected",
+  "gitleaks": {
+    "version": "8.30.1",
+    "official_binary_checksum_verified": true,
+    "configuration": "built-in rules; no added allowlist; inline gitleaks allows ignored",
+    "git_history_commits_scanned": 70,
+    "history_raw_findings": 123,
+    "source_raw_findings": 123,
+    "reviewed_false_positive_categories": {
+      "source_integrity_sha256": 101,
+      "python_identifiers_without_string_literal": 4,
+      "ci_pipeline_step_identifier": 15,
+      "documented_placeholder": 1,
+      "python_docstring_output_layout": 2
+    },
+    "unresolved": 0,
+    "actual_credentials_identified": 0,
+    "history_report_sha256": "743922f7bc2b68a1ec5940abaec865c033c931137dc2437cbe32d7d2fc37fc0d",
+    "source_report_sha256": "3c8738e6e110543d517e1515f8fc252576d175c5c166fe6bf70975c2dda0d6db",
+    "latest_added_finding_review": "No new findings versus the individually reviewed previous snapshot; source matches compared by rule, file, covered-text SHA256 and occurrence count, history by fingerprint. Scanner rules and inline-allow handling unchanged."
+  },
+  "license_inventory": {
+    "project_license": "Apache-2.0",
+    "project_license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "components": [
+      {
+        "name": "mcore-bridge",
+        "path": "third_party/mcore-bridge",
+        "license": "Apache-2.0",
+        "upstream_commit": "3591e434b7d5c3a4f1ae755794a5f83cd1b487cf",
+        "attribution_files": {
+          "LICENSE": {
+            "bytes": 11357,
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+          },
+          "NOTICE": {
+            "bytes": 489,
+            "sha256": "105db0fc59a6a2b03344fde26a495cd5e0e0b3a74295679da5df37e790eff462"
+          },
+          "UPSTREAM.md": {
+            "bytes": 4437,
+            "sha256": "773123426589998fbdf3b2c2c69533b4e9fdcb34bd909476e80f7852a690bce6"
+          }
+        }
+      },
+      {
+        "name": "vLLM",
+        "path": "third_party/vllm",
+        "license": "Apache-2.0",
+        "upstream_commit": "20cac26b197a2e9530a787a5c1dbf5163533b2ff",
+        "attribution_files": {
+          "LICENSE": {
+            "bytes": 11357,
+            "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+          },
+          "NOTICE": {
+            "bytes": 436,
+            "sha256": "29d614fb22b344b76035c52284512293d8d8faf89706ab7cadfa36226c5aafef"
+          },
+          "UPSTREAM.md": {
+            "bytes": 6292,
+            "sha256": "026c35dc4eb293e256d21bea00ab93fd6906f2d64842edf293cb9c80944a51d2"
+          }
+        }
+      },
+      {
+        "name": "lm-evaluation-harness",
+        "path": "third_party/lm-evaluation-harness",
+        "license": "MIT",
+        "upstream_commit": "6632cb788facbbbe9b47a5133bfec6a67aee5ee8",
+        "attribution_files": {
+          "LICENSE.md": {
+            "bytes": 1067,
+            "sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f"
+          },
+          "NOTICE": {
+            "bytes": 448,
+            "sha256": "a022e228a9cdbd754ce5b45751bcfc51e615dec283788254d63bdf25a63cdaf9"
+          },
+          "UPSTREAM.md": {
+            "bytes": 1724,
+            "sha256": "11b850af97e47c19ecd342a29a84be840d00c4aee77549340be26a73f1a09137"
+          }
+        },
+        "provenance_boundary": "Reconciled upstream baseline; original clone identity is not claimed"
+      },
+      {
+        "name": "FlashQLA Hopper subset",
+        "path": "march/kernels/_flashqla",
+        "license": "MIT",
+        "upstream_commit": "821fd9d37ede18fdc2a4e707fefe3770bfc32e58",
+        "attribution_files": {
+          "LICENSE": {
+            "bytes": 1070,
+            "sha256": "d0b7a111f48dc0207c7e057c810ae0e2fdbc807ba654eb669ade998b2cdc3438"
+          },
+          "NOTICE": {
+            "bytes": 461,
+            "sha256": "40895d383b3424325849768d937472d99f6de941fd4ce134178aaad0c8888ae5"
+          },
+          "UPSTREAM.md": {
+            "bytes": 1144,
+            "sha256": "34657e8ffe3f4a3ebaa5203aea4fbcd9c4e8c737b6684491618be11371e612c3"
+          }
+        }
+      },
+      {
+        "name": "flash-linear-attention-research",
+        "path": "third_party/flash-linear-attention",
+        "license": "MIT",
+        "upstream_commit": "3a9ce1c83a13994d824dbb3421e2989d330bb38b",
+        "attribution_files": {
+          "LICENSE": {
+            "bytes": 1096,
+            "sha256": "41a83c8187efc1e3ccc21909e806a9e52338e69448554d9754706c3d1cd610e7"
+          },
+          "NOTICE": {
+            "bytes": 282,
+            "sha256": "76eaf23ea9d479c13ff0009f52d56b6004372712149967bb4b9f749ad6db7848"
+          },
+          "UPSTREAM.md": {
+            "bytes": 1740,
+            "sha256": "c3cf9fa8c5d238d1bb30c3f30284052af21658bee2abe04d070a58e625f2f3ac"
+          }
+        }
+      },
+      {
+        "name": "FlashQLA-historical-HSD",
+        "path": "research/hsd_gdn/src/march_research/hsd/_flashqla",
+        "license": "MIT",
+        "upstream_commit": "821fd9d37ede18fdc2a4e707fefe3770bfc32e58",
+        "attribution_files": {
+          "LICENSE": {
+            "bytes": 1070,
+            "sha256": "d0b7a111f48dc0207c7e057c810ae0e2fdbc807ba654eb669ade998b2cdc3438"
+          },
+          "NOTICE": {
+            "bytes": 461,
+            "sha256": "40895d383b3424325849768d937472d99f6de941fd4ce134178aaad0c8888ae5"
+          },
+          "UPSTREAM.md": {
+            "bytes": 1296,
+            "sha256": "a791da522dc571af586a13d640a93dcd5930130f55ac80ac7e976b28a9fd3f71"
+          }
+        }
+      }
+    ],
+    "status": "code release license and retained attribution consistency verified",
+    "publication_mismatch": "Resolved in the prepared code distribution: Apache-2.0 root license retained; exact original MIT landing notice kept separately in LICENSES/AI45Lab-Safin-1-MIT.txt. Remote repository unchanged.",
+    "root_notice_sha256": "ed5e280fbf79af197117e4ca578539341e3044fbd239ef9bddc0c29bd1286304",
+    "release_record": "docs/march/license-release-20261017.json"
+  },
+  "limits": [
+    "Scanner results and reviewed false positives are bounded evidence, not a guarantee of absence of every possible secret",
+    "Code and vendored source attribution do not assign licenses to model weights or datasets",
+    "New source/history changes require a new scan before publication"
+  ],
+  "targeted_scanner": {
+    "tree_findings": 0,
+    "tracked_findings": 0,
+    "history_findings": 0,
+    "report_sha256": "468a067314aa98dc5af75de917708b081f4dfb85fbf4f642437d03c8d7ca1464"
+  },
+  "strict_vendor_manifest": {
+    "status": "passed",
+    "components": 6,
+    "source_records_and_licenses_preserved": true
+  },
+  "release_snapshot": {
+    "source_revision": "9dc1b0d465697db495d009d724ed709f6e702dba",
+    "source_files": 21823,
+    "source_archive_sha256": "51dacf4604938a1f261ba6a1b89ac6e247beb18b1a8fb11afc56c0b826a5d3ec",
+    "sdist": {
+      "filename": "ms_swift-4.2.0.dev0+march.0.1.0.tar.gz",
+      "sha256": "33b57dbaf08df3a858224a3f5e33309f0ad14db4bad7a2ea338f761d2c7e4405",
+      "attribution_and_installation_files_verified": [
+        "LICENSE",
+        "NOTICE",
+        "LICENSES/AI45Lab-Safin-1-MIT.txt",
+        "requirements/march-vllm.txt",
+        "scripts/march/install.sh",
+        "scripts/march/check_environment.py",
+        "march/kernels/_flashqla/LICENSE",
+        "march/kernels/_flashqla/NOTICE",
+        "third_party/mcore-bridge/LICENSE",
+        "third_party/mcore-bridge/NOTICE",
+        "third_party/mcore-bridge/UPSTREAM.md",
+        "third_party/vllm/LICENSE",
+        "third_party/vllm/NOTICE",
+        "third_party/vllm/UPSTREAM.md",
+        "third_party/lm-evaluation-harness/LICENSE.md",
+        "third_party/lm-evaluation-harness/NOTICE",
+        "third_party/lm-evaluation-harness/UPSTREAM.md",
+        "march/kernels/_flashqla/LICENSE",
+        "march/kernels/_flashqla/NOTICE",
+        "march/kernels/_flashqla/UPSTREAM.md",
+        "third_party/flash-linear-attention/LICENSE",
+        "third_party/flash-linear-attention/NOTICE",
+        "third_party/flash-linear-attention/UPSTREAM.md",
+        "research/hsd_gdn/src/march_research/hsd/_flashqla/LICENSE",
+        "research/hsd_gdn/src/march_research/hsd/_flashqla/NOTICE",
+        "research/hsd_gdn/src/march_research/hsd/_flashqla/UPSTREAM.md"
+      ]
+    },
+    "wheel": {
+      "filename": "ms_swift-4.2.0.dev0+march.0.1.0-py3-none-any.whl",
+      "sha256": "614ab46540a4ae607c22a9c2b36eb94e38da8fe4cbd91088572c5c47304ead29",
+      "source_files_byte_equal": 452,
+      "apache_code_and_retained_mit_notice": "present",
+      "flashqla_notice": "present"
+    },
+    "targeted_scan_findings": 0
+  },
+  "previous_release_snapshot": {
+    "source_revision": "3c644d9edadd060e58da6f9aabea700bc6543f4c",
+    "source_files": 21821,
+    "source_archive_sha256": "3b3aed6571b33a58bb5cbef72669149cb9ab53ca8c319e1adb4f9fe98e957024",
+    "sdist": {
+      "filename": "ms_swift-4.2.0.dev0+march.0.1.0.tar.gz",
+      "sha256": "bee1f09b66134bdfc059f17d26be427746d721f1c8194f1dac628a198afa20f8",
+      "attribution_and_installation_files_verified": [
+        "LICENSE",
+        "NOTICE",
+        "LICENSES/AI45Lab-Safin-1-MIT.txt",
+        "requirements/march-vllm.txt",
+        "scripts/march/install.sh",
+        "scripts/march/check_environment.py",
+        "march/kernels/_flashqla/LICENSE",
+        "march/kernels/_flashqla/NOTICE",
+        "third_party/mcore-bridge/LICENSE",
+        "third_party/mcore-bridge/NOTICE",
+        "third_party/mcore-bridge/UPSTREAM.md",
+        "third_party/vllm/LICENSE",
+        "third_party/vllm/NOTICE",
+        "third_party/vllm/UPSTREAM.md",
+        "third_party/lm-evaluation-harness/LICENSE.md",
+        "third_party/lm-evaluation-harness/NOTICE",
+        "third_party/lm-evaluation-harness/UPSTREAM.md",
+        "march/kernels/_flashqla/LICENSE",
+        "march/kernels/_flashqla/NOTICE",
+        "march/kernels/_flashqla/UPSTREAM.md",
+        "third_party/flash-linear-attention/LICENSE",
+        "third_party/flash-linear-attention/NOTICE",
+        "third_party/flash-linear-attention/UPSTREAM.md",
+        "research/hsd_gdn/src/march_research/hsd/_flashqla/LICENSE",
+        "research/hsd_gdn/src/march_research/hsd/_flashqla/NOTICE",
+        "research/hsd_gdn/src/march_research/hsd/_flashqla/UPSTREAM.md"
+      ]
+    },
+    "wheel": {
+      "filename": "ms_swift-4.2.0.dev0+march.0.1.0-py3-none-any.whl",
+      "sha256": "2c87305f4c79d3497eaa012caceb62e487c1b372b86235d33e69243c0fd695a8",
+      "source_files_byte_equal": 452,
+      "apache_code_and_retained_mit_notice": "present",
+      "flashqla_notice": "present"
+    }
+  }
+}

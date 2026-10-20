@@ -1,0 +1,4 @@
+# MARCH varlen prefill imports external FLA helpers as well as vendored vLLM ops.
+-r march-hf.txt
+flash-linear-attention==0.5.0
+triton==3.6.0

@@ -1,0 +1,598 @@
+# Copyright (c) ModelScope Contributors. All rights reserved.
+import copy
+from march.safin1.runtime_validation import validate_safin1_training_runtime, validate_training_environment
+import math
+import os
+import re
+import torch.nn.functional as F
+from dataclasses import dataclass
+from megatron.core import mpu
+from megatron.core.transformer import TransformerConfig
+from transformers import PretrainedConfig
+from transformers.utils import is_torch_npu_available
+from transformers.utils.versions import require_version
+from typing import List, Literal, Optional, Union
+
+from mcore_bridge.utils import get_logger, json_parse_to_dict
+
+logger = get_logger()
+
+
+# code borrowed from NVIDIA/Megatron-LM
+def _eval_pattern(pattern):
+    """ Validate and evaluate a string containing a Python list expression """
+    assert isinstance(pattern, str)
+
+    # validate input, only allow comma, digits, [, ], (, ), +, and *
+    if bool(re.compile(r'[^,\d\[\]\(\)\+\*]').search(pattern)):
+        raise ValueError(f'Invalid pattern: {pattern}')
+
+    return eval(pattern)
+
+
+# code borrowed from NVIDIA/Megatron-LM
+def no_rope_freq_type(x):
+    """ Controls which layers to skip performing Rotary Position Embedding.
+    - An integer N: Represents a 1:N ratio, meaning RoPE is skipped every N-1 layers.
+    - A string "N": Same as above, but provided as a string
+    - A string containing a Python list expression that defines a custom pattern, e.g.:
+      "([0]*3+[1]*1)*3" evaluates to [0,0,0,1,0,0,0,1,0,0,0,1]
+      where 1 indicates rope is skipped on the layer.
+      This allows defining arbitrary patterns of rope skipping.
+      The pattern length must match the total number of transformer layers.
+      Examples:
+          "([1]+[0]*23)": Only first layer has rope skipped for a 24-layer network.
+          "([0]*3+[1]*1)*2": Every 4 layers the rope is skipped on the last layer. Repeat twice.
+    """
+    if x is None or isinstance(x, int):
+        return x
+    if isinstance(x, (list, tuple)):
+        return list(x)
+    assert isinstance(x, str)
+    if '[' in x:
+        # it's a custom pattern
+        return _eval_pattern(x)
+    else:
+        # it's a single int but in str
+        return int(x)
+
+
+def linear_attn_freq_type(x):
+    """Frequency between LA (linear attention) layers and SDPA (scaled dot-product attention) layers.
+
+    Accepts either:
+    - An integer N: Represents a (N-1):N ratio, meaning (N-1) LA layers for every 1 SDPA layer
+    - A string "N": Same as above, but provided as a string
+    - A string containing a Python list expression that defines a custom pattern, e.g.:
+      "([1]*3+[0]*1)*3" evaluates to [1,1,1,0,1,1,1,0,1,1,1,0]
+      where 1 indicates an LA layer and 0 indicates a SDPA layer.
+      This allows defining arbitrary patterns of LA and SDPA layers.
+      The pattern length must match the total number of transformer layers.
+      Examples:
+          "([0]+[1]*23)": 1 SDPA layer followed by 23 LA layers
+          "([1]*3+[0]*2)*2": Three LA layers followed by two SDPA layers, repeated twice.
+    """
+    return no_rope_freq_type(x)
+
+
+# code borrowed from NVIDIA/Megatron-LM
+def moe_freq_type(x):
+    """Frequency between MoE layers and Dense layers.
+
+    Accepts either:
+    - An integer N: Represents a 1:N ratio, meaning one expert layer for every N-1 dense layers
+    - A string "N": Same as above, but provided as a string
+    - A string containing a Python list expression that defines a custom pattern, e.g.:
+      "([1]*3+[0]*1)*3" evaluates to [1,1,1,0,1,1,1,0,1,1,1,0]
+      where 1 indicates an expert layer and 0 indicates a dense layer.
+      This allows defining arbitrary patterns of expert and dense layers.
+      The pattern length must match the total number of transformer layers.
+      Examples:
+          "([0]+[1]*23)": 1 dense layer followed by 23 experts layers
+          "([1]*3+[0]*2)*2": Three expert layers followed by two dense layers, repeated twice.
+    """
+    if isinstance(x, int):
+        return x
+    assert isinstance(x, str)
+    if '[' in x:
+        # it's a custom pattern
+        return _eval_pattern(x)
+    else:
+        # it's a single int but in str
+        return int(x)
+
+
+# code borrowed from NVIDIA/Megatron-LM
+def tuple_type(x):
+    """
+    Convert a string to a tuple of integers.
+    Examples:
+        "1,2,3" -> (1, 2, 3)
+        "(1,2,3)" -> (1, 2, 3)
+    """
+    if x is None or isinstance(x, tuple):
+        return x
+    assert isinstance(x, str)
+    return tuple(int(i) for i in x.strip('()').split(','))
+
+
+@dataclass
+class ModelConfig(TransformerConfig):
+    mcore_model_type: Optional[str] = None  # Inferred from hf_model_type by default
+    hf_model_type: Optional[str] = None
+    llm_model_type: Optional[str] = None
+    padded_vocab_size: Optional[int] = None
+    rope_scaling: Optional[Union[dict, str]] = None
+
+    # model
+    num_layers: Optional[int] = None
+    hidden_size: Optional[int] = None
+    ffn_hidden_size: Optional[int] = None
+    num_attention_heads: Optional[int] = None
+    num_query_groups: Optional[int] = None
+    softmax_type: Literal['vanilla', 'off-by-one', 'learnable'] = 'vanilla'
+    window_size: Optional[str] = None
+    window_attn_skip_freq: Optional[str] = None
+    max_position_embeddings: Optional[int] = None
+    max_text_length: Optional[int] = None
+
+    position_embedding_type: Literal['learned_absolute', 'rope', 'mrope', 'none'] = 'rope'
+    rotary_base: int = 10000
+    rotary_percent: float = 1.
+    rotary_interleaved: bool = False
+    original_max_position_embeddings: Optional[int] = None
+    partial_rotary_factor: Optional[float] = None
+    mrope_section: Optional[List[int]] = None
+    # qwen3_vl, qwen3_omni
+    mrope_interleaved: bool = False
+
+    normalization: Literal['LayerNorm', 'RMSNorm'] = 'RMSNorm'
+    layernorm_epsilon: float = 1e-5
+    swiglu: bool = True
+    quick_geglu: bool = False
+    activation_func_clamp_value: Optional[float] = None
+    glu_linear_offset: float = 0.
+    untie_embeddings_and_output_weights: bool = True
+    add_bias_linear: bool = False
+    add_qkv_bias: bool = True
+    attention_dropout: float = 0.
+    hidden_dropout: float = 0.
+    kv_channels: Optional[int] = None
+    qk_layernorm: bool = False
+    qk_l2_norm: bool = False
+    no_rope_freq: Optional[int] = None
+    moe_apply_probs_on_input: Optional[bool] = None
+
+    # moe
+    num_moe_experts: Optional[int] = None
+    moe_layer_freq: str = '1'
+    moe_ffn_hidden_size: Optional[int] = None
+    moe_shared_expert_intermediate_size: Optional[int] = None
+
+    moe_router_topk: int = 2
+    moe_router_num_groups: Optional[int] = None
+    moe_router_group_topk: Optional[int] = None
+    moe_router_pre_softmax: bool = False
+    moe_router_score_function: Literal['sigmoid', 'softmax'] = 'softmax'
+    moe_router_bias_update_rate: float = 1e-3
+    moe_router_enable_expert_bias: bool = False
+    moe_router_topk_scaling_factor: Optional[float] = None
+    moe_router_load_balancing_type: Literal['aux_loss', 'seq_aux_loss', 'global_aux_loss', 'sinkhorn',
+                                            'none'] = 'aux_loss'
+    moe_shared_expert_gate: bool = False
+
+    # mla
+    multi_latent_attention: bool = False
+    q_lora_rank: Optional[int] = None
+    kv_lora_rank: int = 32
+    qk_head_dim: int = 128
+    qk_pos_emb_head_dim: int = 64
+    v_head_dim: int = 128
+
+    # qwen3_next/qwen3_5
+    linear_attention_freq: Optional[str] = None
+    linear_num_key_heads: Optional[int] = None
+    linear_num_value_heads: Optional[int] = None
+    linear_key_head_dim: Optional[int] = None
+    linear_value_head_dim: Optional[int] = None
+    linear_conv_kernel_dim: Optional[int] = None
+    linear_expand_v: float = 1.0
+    layernorm_zero_centered_gamma: bool = False
+    attention_output_gate: bool = False
+    linear_decoupled_in_proj: bool = False
+
+    # hsd
+    # Preserve packed-document isolation metadata during HF-to-MCore conversion.
+    hsd_sequence_profile: str = 'stage1_8k'
+    hsd_packed_document_isolation: bool = False
+    hsd_require_packed_seq_params: bool = False
+    # Physical anchor slots for kernels whose compilation key includes M.
+    # Zero keeps the semantic count dynamic; a positive value reserves
+    # an invisible trailing suffix in GPTModel preprocessing.
+    hsd_fixed_anchor_count: int = 0
+    hsd_runtime_config: Optional[Union[dict, str]] = None
+    hsd_read_block_size: int = 1024
+    hsd_use_global_read: bool = True
+    hsd_use_route_scale: bool = True
+    hsd_route_logit_scale: float = 1.0
+    hsd_route_head_dim: Optional[int] = None
+    hsd_route_query_heads: Optional[int] = None
+    hsd_route_key_heads: Optional[int] = None
+    hsd_route_qk_l2norm: bool = False
+    hsd_route_position_encoding: Literal['none', 'rope'] = 'none'
+    hsd_route_position_mode: Literal['chunk_end'] = 'chunk_end'
+    hsd_read_topk: int = 4
+    hsd_topk_backend: Literal['reference', 'sparse'] = 'reference'
+    # Retained metadata; training implements no route-weight momentum.
+    hsd_route_weight_momentum_gamma: float = 0.0
+    hsd_null_read_gate: bool = False
+    hsd_null_read_gate_init_bias: float = 0.0
+    # Add one document-scoped virtual anchor whose value state is a learned,
+    # layer-local FP32 parameter.  A dedicated route key can optionally replace
+    # the ordinary anchor projection only for that boundary-zero slot.
+    hsd_persistent_memory_enabled: bool = False
+    hsd_persistent_memory_route_key_enabled: bool = False
+    hsd_persistent_memory_route_key_mode: str = 'legacy'
+    hsd_history_mix_mode: Literal['additive'] = 'additive'
+    hsd_train_selective_scan: bool = True
+    hsd_train_scan_backend: Literal['triton', 'flashqla_tile'] = 'triton'
+    hsd_train_scan_strict: bool = False
+    hsd_train_selective_scan_packed: bool = True
+    hsd_train_selective_scan_packed_strict: bool = False
+    hsd_flashqla_tile_bwd_backend: Literal['optimized', 'reference'] = 'optimized'
+    hsd_fused_global_read_backend: Literal['auto', 'reference', 'triton'] = 'auto'
+    hsd_fused_global_read_strict: bool = False
+    hsd_history_scale: float = 1.0
+    hsd_history_out_rmsnorm: bool = False
+    hsd_history_out_rmsnorm_eps: float = 1e-6
+    hsd_learnable_history_scale: bool = False
+    hsd_learnable_history_scale_init: float = 0.01
+    hsd_learnable_history_scale_max: float = 1.0
+    hsd_history_gate_schedule_start: Optional[float] = None
+    hsd_history_gate_schedule_end: Optional[float] = None
+    hsd_history_gate_schedule_steps: int = 0
+    hsd_history_out_grad_scale: Optional[float] = None
+    hsd_history_out_grad_scale_start: Optional[float] = None
+    hsd_history_out_grad_scale_end: Optional[float] = None
+    hsd_history_out_grad_scale_steps: int = 0
+    hsd_anchor_content_grad_scale: Optional[float] = None
+    hsd_anchor_content_grad_scale_start: Optional[float] = None
+    hsd_anchor_content_grad_scale_end: Optional[float] = None
+    hsd_anchor_content_grad_scale_steps: int = 0
+    hsd_local_state_mode: Literal['full'] = 'full'
+    hsd_global_read_layers: Optional[Union[str, List[int]]] = None
+    # Only the local query is supported. Inactive historical fields remain
+    # loadable as checkpoint metadata; they cannot enable retired projections.
+    hsd_history_read_q_mode: Literal['shared_local'] = 'shared_local'
+    hsd_history_read_q_lora_rank: int = 32
+    # When enabled, model-side HSD anchor tokens participate in the native
+    # full-attention Transformer layers as ordinary causal sequence tokens.
+    # The default preserves the historical text-only full-attention path.
+    hsd_full_attention_anchor_tokens: bool = False
+    hsd_text_only_mlp: bool = False
+    hsd_text_only_in_proj: bool = False
+    hsd_anchor_isolated_in_proj: bool = False
+    hsd_text_single_pass_delta: bool = False
+    hsd_anchor_mlp: bool = False
+    hsd_anchor_mlp_hidden_size: Optional[int] = None
+    anchor_chunk_size: int = 0
+    anchor_token_num: int = 0
+    anchor_placeholder_token_id: int = 0
+    anchor_bos_token_id: Optional[int] = None
+    anchor_position_ids_type: Literal['zeros', 'chunk_end'] = 'zeros'
+    anchor_embedding_type: Literal['learned', 'placeholder', 'chunk_end'] = 'learned'
+    anchor_embedding_init_from: Literal['random', 'placeholder', 'bos', 'vocab_mean'] = 'random'
+    anchor_embedding_init_scale: Optional[float] = None
+    hsd_anchor_embedding_grad_scale: Optional[float] = None
+    hsd_anchor_embedding_grad_scale_start: Optional[float] = None
+    hsd_anchor_embedding_grad_scale_end: Optional[float] = None
+    hsd_anchor_embedding_grad_scale_steps: int = 0
+    hsd_anchor_embedding_lr_mult: Optional[float] = None
+    qwen35_hsd_replace_linear_attn: bool = True
+
+    # dsa
+    experimental_attention_variant: Optional[Literal['gated_delta_net', 'dsa']] = None
+    dsa_indexer_n_heads: Optional[int] = None
+    dsa_indexer_head_dim: Optional[int] = None
+    dsa_indexer_topk: Optional[int] = None
+    dsa_indexer_loss_coeff: Optional[float] = None
+    dsa_indexer_use_sparse_loss: bool = False
+    dsa_indexer_rotary_interleaved: bool = False
+
+    # mtp
+    mtp_decoder_input_detach: bool = False
+    mtp_shared_weights: bool = False
+
+    # visual
+    hf_config: Optional[PretrainedConfig] = None
+    vit_attn_impl: Optional[str] = None  # e.g. 'flash_attention_2'
+
+    # Override
+    perform_initialization: bool = False
+    apply_query_key_layer_scaling: Optional[bool] = None
+    moe_router_dtype: Literal['none', 'fp32', 'fp64'] = 'fp32'
+    moe_token_dispatcher_type: Literal['allgather', 'alltoall', 'flex'] = 'alltoall'
+    moe_grouped_gemm: bool = True
+    variable_seq_lengths: bool = True
+
+    overlap_p2p_comm: bool = True
+    persist_layer_norm: bool = True
+    deallocate_pipeline_outputs: bool = True
+    cp_comm_type: str = 'p2p'
+
+    # other
+    task_type: Literal['causal_lm', 'seq_cls', 'embedding', 'generative_reranker'] = 'causal_lm'
+    num_labels: Optional[int] = None
+    mlp_padding_free: bool = False
+
+    _mindspeed_defaults_cache = None
+
+    def _augment_mindspeed_defaults(self):
+        if not is_torch_npu_available():
+            return
+
+        if ModelConfig._mindspeed_defaults_cache is None:
+            defaults = {}
+            try:
+                import mindspeed.features_manager as mfm
+                import sys
+                from argparse import ArgumentParser
+                from mindspeed.arguments import process_args
+
+                original_features = list(mfm.FEATURES_LIST)
+                full_features = mfm.create_features_list()
+                mfm.FEATURES_LIST.clear()
+                mfm.FEATURES_LIST.extend(full_features)
+                try:
+                    parser = ArgumentParser()
+                    process_args(parser)
+                    # Parse args from sys.argv
+                    args, _ = parser.parse_known_args([])
+                    defaults = vars(args)
+                finally:
+                    mfm.FEATURES_LIST.clear()
+                    mfm.FEATURES_LIST.extend(original_features)
+            except Exception as e:
+                logger.warning(f'Failed to get MindSpeed defaults, which may cause issues on NPU: {e}')
+                defaults = {}
+            ModelConfig._mindspeed_defaults_cache = defaults
+
+        for name, value in ModelConfig._mindspeed_defaults_cache.items():
+            if not hasattr(self, name):
+                setattr(self, name, value)
+            elif hasattr(self, name) and getattr(self, name) is None and value is not None:
+                setattr(self, name, value)
+
+    def __post_init__(self):
+        validate_training_environment(config=self)
+        validate_safin1_training_runtime(self)
+        from mcore_bridge.model import get_mcore_model_type, get_model_meta
+        self._augment_mindspeed_defaults()
+        self._format_config()
+        if self.experimental_attention_variant is not None:
+            require_version('megatron-core>=0.16.0.dev',
+                            'experimental attention variant requires megatron-core>=0.16.0')
+        if isinstance(self.moe_router_dtype, str) and self.moe_router_dtype.lower() == 'none':
+            self.moe_router_dtype = None
+        if self.moe_shared_expert_intermediate_size == 0:
+            self.moe_shared_expert_intermediate_size = None
+        if self.num_moe_experts is not None:
+            if self.moe_ffn_hidden_size is None:
+                self.moe_ffn_hidden_size = self.ffn_hidden_size
+        if self.rope_scaling is not None:
+            self.rope_scaling = json_parse_to_dict(self.rope_scaling)
+            if 'type' in self.rope_scaling and 'rope_type' not in self.rope_scaling:
+                self.rope_scaling['rope_type'] = self.rope_scaling['type']
+
+        if self.add_bias_linear:
+            self.add_qkv_bias = True
+        self.batch_p2p_comm = not self.overlap_p2p_comm
+        if self.swiglu:
+            self.activation_func = F.silu
+            self.gated_linear_unit = True
+        if self.quick_geglu:
+            # megatron-core>=0.14.0
+            try:
+                from megatron.core.fusions.fused_bias_geglu import quick_gelu
+            except ImportError:
+                from megatron.core.activations import quick_gelu
+            assert not self.swiglu
+            self.gated_linear_unit = True
+            self.activation_func = quick_gelu
+        if self.pipeline_dtype is None:
+            self.pipeline_dtype = self.params_dtype
+        if self.apply_query_key_layer_scaling is None:
+            self.apply_query_key_layer_scaling = self.fp16
+        if self.apply_query_key_layer_scaling:
+            os.environ['NVTE_APPLY_QK_LAYER_SCALING'] = '1'
+        if self.mtp_shared_weights:
+            assert self.mtp_num_layers is not None
+            self.mtp_unroll_steps = self.mtp_num_layers
+            self.mtp_num_layers = 1
+        else:
+            self.mtp_unroll_steps = self.mtp_num_layers
+        if self.hsd_route_logit_scale <= 0:
+            raise ValueError('hsd_route_logit_scale must be positive.')
+        if self.hsd_read_block_size <= 0:
+            raise ValueError('hsd_read_block_size must be positive.')
+        if self.hsd_read_topk < 0:
+            raise ValueError('hsd_read_topk must be non-negative.')
+        if self.hsd_topk_backend not in {'reference', 'sparse'}:
+            raise ValueError("hsd_topk_backend must be either 'reference' or 'sparse'.")
+        if self.hsd_topk_backend == 'sparse' and self.hsd_read_topk not in {1, 2, 4, 8, 16}:
+            raise ValueError('sparse hsd_topk_backend requires hsd_read_topk in {1, 2, 4, 8, 16}.')
+        if not math.isfinite(self.hsd_null_read_gate_init_bias):
+            raise ValueError('hsd_null_read_gate_init_bias must be finite.')
+        if self.hsd_persistent_memory_route_key_mode not in {'dedicated', 'legacy'}:
+            raise ValueError(
+                "hsd_persistent_memory_route_key_mode must be 'dedicated' or 'legacy'.")
+        if self.hsd_persistent_memory_route_key_enabled and not self.hsd_persistent_memory_enabled:
+            raise ValueError(
+                'hsd_persistent_memory_route_key_enabled requires hsd_persistent_memory_enabled.')
+        if (self.hsd_persistent_memory_route_key_mode == 'dedicated'
+                and not self.hsd_persistent_memory_route_key_enabled):
+            raise ValueError(
+                "route-key mode 'dedicated' requires hsd_persistent_memory_route_key_enabled.")
+        if self.hsd_train_scan_backend not in {'triton', 'flashqla_tile'}:
+            raise ValueError("hsd_train_scan_backend must be either 'triton' or 'flashqla_tile'.")
+        if self.hsd_flashqla_tile_bwd_backend not in {'optimized', 'reference'}:
+            raise ValueError(
+                "hsd_flashqla_tile_bwd_backend must be 'optimized' or 'reference'.")
+        if self.hsd_fused_global_read_backend not in {'auto', 'reference', 'triton'}:
+            raise ValueError(
+                'hsd_fused_global_read_backend must be one of '
+                "'auto', 'reference', or 'triton'.")
+        if self.hsd_history_read_q_mode != 'shared_local':
+            raise ValueError(
+                "hsd_history_read_q_mode must be 'shared_local'.")
+        if self.hsd_history_scale < 0:
+            raise ValueError('hsd_history_scale must be non-negative.')
+        if self.hsd_history_out_rmsnorm_eps <= 0:
+            raise ValueError('hsd_history_out_rmsnorm_eps must be positive.')
+        if self.hsd_learnable_history_scale_init < 0:
+            raise ValueError('hsd_learnable_history_scale_init must be non-negative.')
+        if self.hsd_learnable_history_scale_max <= 0:
+            raise ValueError('hsd_learnable_history_scale_max must be positive.')
+        if self.hsd_learnable_history_scale_init > self.hsd_learnable_history_scale_max:
+            raise ValueError('hsd_learnable_history_scale_init must not exceed hsd_learnable_history_scale_max.')
+        if self.hsd_history_gate_schedule_steps < 0:
+            raise ValueError('hsd_history_gate_schedule_steps must be non-negative.')
+        for key in ('hsd_history_gate_schedule_start', 'hsd_history_gate_schedule_end'):
+            value = getattr(self, key)
+            if value is not None:
+                if value < 0:
+                    raise ValueError(f'{key} must be non-negative.')
+                if value > self.hsd_learnable_history_scale_max:
+                    raise ValueError(f'{key} must not exceed hsd_learnable_history_scale_max.')
+        if self.hsd_history_gate_schedule_steps > 0:
+            if self.hsd_history_gate_schedule_start is None or self.hsd_history_gate_schedule_end is None:
+                raise ValueError(
+                    'hsd_history_gate_schedule_start and hsd_history_gate_schedule_end are required when '
+                    'hsd_history_gate_schedule_steps > 0.')
+        if self.hsd_history_out_grad_scale is not None and self.hsd_history_out_grad_scale < 0:
+            raise ValueError('hsd_history_out_grad_scale must be non-negative.')
+        if self.hsd_history_out_grad_scale_steps < 0:
+            raise ValueError('hsd_history_out_grad_scale_steps must be non-negative.')
+        for key in ('hsd_history_out_grad_scale_start', 'hsd_history_out_grad_scale_end'):
+            value = getattr(self, key)
+            if value is not None and value < 0:
+                raise ValueError(f'{key} must be non-negative.')
+        if self.hsd_history_out_grad_scale_steps > 0:
+            if self.hsd_history_out_grad_scale_start is None or self.hsd_history_out_grad_scale_end is None:
+                raise ValueError(
+                    'hsd_history_out_grad_scale_start and hsd_history_out_grad_scale_end are required when '
+                    'hsd_history_out_grad_scale_steps > 0.')
+        if self.hsd_anchor_content_grad_scale is not None and self.hsd_anchor_content_grad_scale < 0:
+            raise ValueError('hsd_anchor_content_grad_scale must be non-negative.')
+        if self.hsd_anchor_content_grad_scale_steps < 0:
+            raise ValueError('hsd_anchor_content_grad_scale_steps must be non-negative.')
+        for key in ('hsd_anchor_content_grad_scale_start', 'hsd_anchor_content_grad_scale_end'):
+            value = getattr(self, key)
+            if value is not None and value < 0:
+                raise ValueError(f'{key} must be non-negative.')
+        if self.hsd_anchor_content_grad_scale_steps > 0:
+            if (self.hsd_anchor_content_grad_scale_start is None
+                    or self.hsd_anchor_content_grad_scale_end is None):
+                raise ValueError(
+                    'hsd_anchor_content_grad_scale_start and hsd_anchor_content_grad_scale_end are required when '
+                    'hsd_anchor_content_grad_scale_steps > 0.')
+        if self.hsd_local_state_mode != 'full':
+            raise ValueError("hsd_local_state_mode must be 'full'.")
+        if self.hsd_route_position_encoding not in {'none', 'rope'}:
+            raise ValueError("hsd_route_position_encoding must be either 'none' or 'rope'.")
+        if self.hsd_route_position_mode not in {'chunk_end'}:
+            raise ValueError("hsd_route_position_mode must be 'chunk_end'.")
+        if self.anchor_chunk_size < 0:
+            raise ValueError('anchor_chunk_size must be non-negative.')
+        if self.hsd_fixed_anchor_count < 0:
+            raise ValueError('hsd_fixed_anchor_count must be non-negative.')
+        if self.anchor_token_num < 0:
+            raise ValueError('anchor_token_num must be non-negative.')
+        if self.anchor_bos_token_id is not None and self.anchor_bos_token_id < 0:
+            raise ValueError('anchor_bos_token_id must be non-negative.')
+        if self.anchor_position_ids_type not in {'zeros', 'chunk_end'}:
+            raise ValueError("anchor_position_ids_type must be either 'zeros' or 'chunk_end'.")
+        if self.anchor_embedding_type not in {'learned', 'placeholder', 'chunk_end'}:
+            raise ValueError("anchor_embedding_type must be one of 'learned', 'placeholder', or 'chunk_end'.")
+        if self.anchor_embedding_init_from not in {'random', 'placeholder', 'bos', 'vocab_mean'}:
+            raise ValueError(
+                "anchor_embedding_init_from must be one of 'random', 'placeholder', 'bos', or 'vocab_mean'.")
+        if self.anchor_embedding_init_scale is not None and self.anchor_embedding_init_scale < 0:
+            raise ValueError('anchor_embedding_init_scale must be non-negative.')
+        if self.hsd_anchor_embedding_grad_scale is not None and self.hsd_anchor_embedding_grad_scale < 0:
+            raise ValueError('hsd_anchor_embedding_grad_scale must be non-negative.')
+        if self.hsd_anchor_embedding_lr_mult is not None and self.hsd_anchor_embedding_lr_mult <= 0:
+            raise ValueError('hsd_anchor_embedding_lr_mult must be positive.')
+        if self.max_text_length is not None and self.max_text_length <= 0:
+            raise ValueError('max_text_length must be positive when provided.')
+        if (self.max_text_length is not None and self.max_position_embeddings is not None
+                and self.max_text_length > self.max_position_embeddings):
+            raise ValueError('max_text_length must not exceed max_position_embeddings.')
+        if self.linear_expand_v <= 0:
+            raise ValueError('linear_expand_v must be positive.')
+        if self.hsd_anchor_embedding_grad_scale_steps < 0:
+            raise ValueError('hsd_anchor_embedding_grad_scale_steps must be non-negative.')
+        for name, value in (
+                ('hsd_anchor_embedding_grad_scale_start', self.hsd_anchor_embedding_grad_scale_start),
+                ('hsd_anchor_embedding_grad_scale_end', self.hsd_anchor_embedding_grad_scale_end)):
+            if value is not None and value < 0:
+                raise ValueError(f'{name} must be non-negative.')
+        if self.hsd_anchor_embedding_grad_scale_steps > 0:
+            if (self.hsd_anchor_embedding_grad_scale_start is None
+                    or self.hsd_anchor_embedding_grad_scale_end is None):
+                raise ValueError(
+                    'hsd_anchor_embedding_grad_scale_start and hsd_anchor_embedding_grad_scale_end are required '
+                    'when hsd_anchor_embedding_grad_scale_steps > 0.')
+        super().__post_init__()
+
+        self._check_npu()
+        if self.mcore_model_type is None:
+            self.mcore_model_type = get_mcore_model_type(self.hf_model_type)
+        self.model_meta = get_model_meta(self.mcore_model_type)
+        self.is_multimodal = self.model_meta.visual_cls is not None
+        self.support_multimodal = self.is_multimodal and getattr(self.model_meta.visual_cls, 'support_multimodal', True)
+        if self.is_multimodal and self.hf_config is None:
+            raise ValueError('Multimodal model must specify hf_config.')
+        self.is_moe_model = self.num_moe_experts is not None
+        self.bridge = self.model_meta.bridge_cls(self)
+
+    def _format_config(self):
+        if self.window_size is not None:
+            self.window_size = tuple_type(self.window_size)
+        if self.window_attn_skip_freq is not None:
+            self.window_attn_skip_freq = moe_freq_type(self.window_attn_skip_freq)
+        if self.no_rope_freq is not None:
+            self.no_rope_freq = no_rope_freq_type(self.no_rope_freq)
+        if self.moe_layer_freq is not None:
+            self.moe_layer_freq = moe_freq_type(self.moe_layer_freq)
+        if self.linear_attention_freq is not None:
+            self.linear_attention_freq = linear_attn_freq_type(self.linear_attention_freq)
+            if isinstance(self.linear_attention_freq, int):
+                self.linear_attention_freq = [
+                    0 if ((i + 1) % self.linear_attention_freq == 0) else 1 for i in range(self.num_layers)
+                ]
+
+    def _check_npu(self):
+        MAX_NPU_EXPERTS_PER_EP = 128
+        num_experts = self.num_moe_experts
+        expert_model_parallel_size = mpu.get_expert_model_parallel_world_size()
+        if is_torch_npu_available() and num_experts and num_experts > MAX_NPU_EXPERTS_PER_EP:
+            required_ep = (num_experts + MAX_NPU_EXPERTS_PER_EP - 1) // MAX_NPU_EXPERTS_PER_EP
+            if expert_model_parallel_size < required_ep:
+                logger.warning(f'{">" * 20} WARNING {"<" * 20}\n'
+                               f'MindSpeed on NPU supports up to {MAX_NPU_EXPERTS_PER_EP} experts per EP group. '
+                               f'num_experts={num_experts}, '
+                               f'expert_model_parallel_size={expert_model_parallel_size}. '
+                               f'Please set expert_model_parallel_size (EP) to {required_ep} '
+                               f'(num_experts / {MAX_NPU_EXPERTS_PER_EP}) or higher.')
+
+    def __deepcopy__(self, memo):
+        cls = self.__class__
+        new_obj = cls.__new__(cls)
+        memo[id(self)] = new_obj
+        for k, v in self.__dict__.items():
+            if k == 'bridge':
+                setattr(new_obj, k, v)
+            else:
+                setattr(new_obj, k, copy.deepcopy(v, memo))
+        return new_obj

@@ -1,0 +1,5 @@
+# CPU regression dependencies, independent of the Megatron CUDA installation.
+torch==2.11.0
+transformers==5.5.4
+safetensors==0.7.0
+pytest==9.0.3
