@@ -1,6 +1,15 @@
-# MARCH / Safin-1
+# Safin-1 · MARCH
 
-[中文说明](README_CN.md) · [GitHub](https://github.com/AI45Lab/Safin-1)
+**MARCH: Scaling Recurrent Memory with Content-Routed State Anchors**
+
+[Paper](https://arxiv.org/abs/2608.12435) ·
+[Technical document (PDF)](Safin-1.pdf) ·
+[Models](https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596) ·
+[Quick start](docs/march/quickstart.md) ·
+[Arch Space](https://github.com/InternLM/archspace) ·
+[中文](README_CN.md)
+
+Training and inference code is available for **Safin-1 4B** and **Safin-1 35B-A3B**.
 
 MARCH extends Qwen3.5's Gated Delta Network with **memory anchors** and HSD
 historical-state reading. Safin-1 includes a 4B dense model and a 35B-A3B MoE
@@ -83,3 +92,17 @@ and notices; model/data terms are described in the model materials. See
 
 Built on [ModelScope ms-swift](https://github.com/modelscope/ms-swift), Qwen3.5
 and the [vendored projects](third_party/VENDORED_COMPONENTS.md).
+
+## Citation
+
+```bibtex
+@misc{march2026,
+  title={MARCH: Scaling Recurrent Memory with Content-Routed State Anchors},
+  author={Ming Zhang and Kaisen Yang and Shu Yu and Ermo Hua and Ning Ding and Xia Hu and Bowen Zhou and Chaochao Lu and Youbang Sun},
+  year={2026},
+  eprint={2608.12435},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2608.12435}
+}
+```

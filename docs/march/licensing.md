@@ -16,8 +16,7 @@ notice is retained in
 When merging this code into the public repository, preserve the existing landing
 materials and keep that original notice with them. Use the delivered Apache-2.0
 LICENSE and NOTICE for the new code distribution. The source archive, sdist and
-project wheel must preserve the applicable license files. This preparation has
-not changed the remote repository.
+project wheel must preserve the applicable license files. The original landing history and technical PDF are retained in the repository.
 
 Weights, baselines and training data have separate licenses on their model/data
 pages. This code-release decision does not assign those licenses.
