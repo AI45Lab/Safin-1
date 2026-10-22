@@ -88,22 +88,9 @@ tracing requires `MEGATRON_PRECISION_TRACE_PARAM_CHAIN_REGEX` or
 selected implicitly. Reference implementations, fallback controls, numerical
 precision modes and required Graph sidecars remain available.
 
-The 2026-10-13 refactor passed 185 CPU tests and 21 subtests (52 optional tests
-skipped), and 229 tests and 21 subtests on one H200 (8 optional tests skipped).
-The GPU difference includes 44 CUDA cases: recurrence/gradients, sparse top-k,
-paged cache and Graph reuse, and persistent-memory train/save/reload fixtures.
-Four fixed-seed tiny model cases compared 408 tensors before/after with zero
-difference, including weights, logits, loss, all parameter gradients and cached
-logits. The four production-family checkpoint configs and weight indexes were
-read-only audited before retiring variants; they had no enabled retired variant
-or matching extra projection/MLP weights.
+Test commands and results are collected in [validation](validation.md).
 
-This batch did not rerun production-size 4B/35B Megatron training, TP/DP serving,
-prefix engine acceptance or throughput. The existing production reports retain
-their original scope. No original checkpoint files were changed.
-
-
-## Shared schema/generation cleanup (2026-10-14)
+## Shared schema and generation
 
 `configuration_common.py` defines the common typed runtime fields and the
 validation mixin. Both variants use the same defaults; saved values take
@@ -127,7 +114,7 @@ artifacts remain loadable. Each output file is replaced atomically; the checksum
 rejects inconsistent file pairs from interrupted or concurrent saves.
 
 
-## Backend and large-file cleanup (2026-10-14)
+## Backend modules
 
 `gdn_cache.py` owns HF row-cache slicing/merging and recurrent-state cache adapters.
 `gdn_recurrence.py` owns convolution, decode recurrence, segmented recurrence and
@@ -145,10 +132,10 @@ including the bridge adapter's shared state. No kernel formula was changed.
 longer switch process environment variables. Inactive schema metadata remains
 serializable, while fixed unused GDN instance attributes and vacuous retired-branch
 statements are removed. See [the acceptance report](validation.md#inference)
-for CPU/packaging results and the pending CUDA gate.
+for the current test matrix.
 
 
-## Capacity and dispatch cleanup
+## Capacity and dispatch
 
 Single append/replacement validates both storage and graph metadata capacities
 before changing cache state. Three dedicated ordinary-decode paths own Top4,
@@ -160,5 +147,5 @@ profiling ownership remain intact.
 Diagnostic contexts restore nested state on exceptions and isolate concurrent
 host collectors. Active runtime metadata comes from the common config fields,
 including persistent state. Internal source snapshots account for untracked
-modules and record file fingerprints. Latest results and the outstanding GPU gate
-are in [cache/runtime acceptance](validation.md#inference).
+modules and record file fingerprints. Current results are listed in
+[validation](validation.md#inference).

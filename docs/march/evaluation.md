@@ -30,12 +30,9 @@ The reference task definitions are:
 | `ifeval` | `google/IFEval` | Complete `punkt_tab/english` files; installed `[ifeval]` extra |
 | `mmlu_pro` | `TIGER-Lab/MMLU-Pro` | Dataset cache |
 
-These are the public reference task choices, not a claim of completed full
-benchmark accuracy acceptance. The vendored harness retains the upstream task
-catalog; other tasks may require their own extras, resources and validation.
-The wrappers validate IFEval packages and all four English punkt files before
-allocating the model. Importing IFEval never downloads resources, including
-when `OFFLINE=0`; missing resources produce preparation instructions.
+The vendored harness also contains upstream task definitions. Prepare each
+task's datasets and optional extras before running. IFEval checks its packages
+and English punkt files at startup and reports missing local resources.
 
 ## HF and vLLM commands
 
@@ -54,9 +51,8 @@ bash scripts/march/eval_vllm.sh
 ```
 
 The wrappers default to `OFFLINE=1`, so model/configuration and dataset lookup
-also remain offline. `LIMIT=16` is a usage smoke, not a final benchmark result.
-`TP_SIZE=4` is an interface example; production TP/DP acceptance remains a
-separate gate. Set `TASKS=ifeval,mmlu_pro` for both reference tasks.
+also use the local cache. `LIMIT=16` selects a small first run; remove `LIMIT`
+for the full task. Set `TASKS=ifeval,mmlu_pro` to evaluate both reference tasks.
 
 Use `DRY_RUN=1` to inspect the command, structured model arguments and kernel
 controls without importing vLLM or loading weights. Checkpoint paths containing
@@ -78,19 +74,9 @@ is retained, including `False`; the caller's dictionary is not modified.
 Enabling thinking requires `think_end_token` and is checked before engine
 allocation. Thinking and non-thinking metrics must be reported separately.
 
-## Validation boundary
+## Result records
 
-The [current integration record](validation.md#inference) includes
-completed HF and vLLM fixture evaluations on the 4B SFT export, with two effective rows per task.
-Full-model cross-process numerical checks remain conditional, including an
-unchanged-source 4B control. The small evaluation scores do not establish
-backend equivalence or benchmark accuracy.
-
-Small synthetic evaluation smokes test task loading, prompt handling,
-generation, metric execution and result writing. They do not estimate model
-quality. Preserve software/source fingerprints, seeds, templates, backend
-profiles and generation limits with full benchmark results.
-
-The existing [Graph/eager numerical diagnosis](validation.md#numerical-limits)
-remains applicable. Sharing a profile fixes configuration drift between serving
-and evaluation; it does not establish HF/vLLM or Graph/eager numerical parity.
+Keep task and dataset versions, seed, chat template, thinking settings,
+backend profile and generation limits with each result. Use the same inputs
+and settings when comparing HF and vLLM. Runtime precision notes are in
+[validation](validation.md#numerical-limits).

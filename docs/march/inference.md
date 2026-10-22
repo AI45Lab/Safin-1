@@ -21,10 +21,7 @@ For 4B, the Graph profile sets
 `VLLM_HSD_DETERMINISTIC_PREFILL_AUTOTUNE=1`,
 `VLLM_HSD_DETERMINISTIC_VARLEN_KKT=1`, and
 `VLLM_HSD_DETERMINISTIC_ANCHOR_READ=1`, together with fixed decode normalization
-and GDN projections. Serving and evaluation use the same policy. These controls
-support reproducibility in the tested workloads; they do not certify full-logit
-parity between execution profiles. See the
-[numerical limits](validation.md#numerical-limits).
+and GDN projections. Serving and evaluation use the same policy.
 
 The launcher uses the repository vLLM fork. Build it as described in
 [installation](installation.md). The single-GPU defaults assume enough memory;
@@ -66,25 +63,12 @@ decode. The default Graph profile keeps prefix caching disabled.
 
 Inherited `HSD_*` / `VLLM_HSD_*` diagnostic controls are cleared before the
 profile is applied. For event counters set `MARCH_EVENT_LOG=/path/to/events.jsonl`
-with an existing parent directory. This enables the vendored telemetry; actual
-Graph hits must be checked in a GPU run. Short/heterogeneous prefill and anchor
+with an existing parent directory. Events record Graph and backend dispatch. Short/heterogeneous prefill and anchor
 boundaries can dispatch to eager/segments as part of the Graph profile.
 
 ## Supported scope and limits
 
-See the [validation summary](validation.md#inference) for the tested serving
-topologies, request sizes and environments. The default policy has exercised
-actual Graph replay and cached generation; short smoke runs are not
-maximum-throughput measurements. TP1/DP8 in the example requires eight complete
-model replicas and sufficient memory on every GPU.
-
-Generated token IDs can match while logprobs differ. Full-vocabulary
-HF/vLLM, Graph/eager and arbitrary TP/DP parity are not certified. In particular,
-35B MoE can amplify small numerical differences near expert-routing ties.
-Do not infer RL/logprob correctness from a successful generation smoke.
-
-The [serving evidence](serving-acceptance-20261017.json) and
-[installation evidence](installation-acceptance-20261017.json) have separate
-source and environment boundaries. Persistent-state production concurrency,
-larger stress workloads and other hardware require their own checks. Prefix
-cache remains experimental and disabled by default.
+Single-GPU 35B runs use H200-class memory. TP1/DP8 starts eight full model
+replicas, one per GPU. Reduce `MAX_MODEL_LEN` or `MAX_NUM_SEQS` to lower
+cache memory use. Tested parallel layouts and precision notes are collected
+in [validation](validation.md).

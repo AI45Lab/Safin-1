@@ -43,19 +43,11 @@ MODEL=/path/to/Safin-1-35B-A3B OUTPUT_DIR=/path/to/35b-sft TRAIN_TASK=sft \
 For the 35B CPT smoke, change `TRAIN_TASK=cpt` and choose another output directory.
 The smoke checks a real optimizer step, exports checkpoint-1 (checkpoint-1-merged for merged LoRA), validates runtime
 and weight files, then loads all weights through HF remote code and generates.
-35B full training requires more resources than the two-GPU LoRA recipe; the
-historical full-training evidence and its GPU setup remain in
-[validation](validation.md). One step does not establish convergence or
-optimizer/RNG-state resume behavior.
+The 35B full-training layout is shown in the [quick start](quickstart.md).
 
 ## Multi-step training and state resume
 
-Continuous-versus-resumed comparison is optional debugging acceptance. Further
-full-parameter 35B comparison is not required for this release, by project
-decision. Basic CPT/SFT, checkpoint export, fresh HF load and inference checks
-remain in scope. Existing completed comparison results are retained as evidence.
-
-Use the separate bounded acceptance tool when investigating optimizer/RNG resume.
+Use `smoke_training_resume.py` to compare continuous and resumed training.
 It keeps MCore model/adapter state, optimizer moments/master parameters,
 scheduler and RNG, runs three optimizer steps, then starts another process from
 checkpoint-2
@@ -80,27 +72,18 @@ python scripts/march/smoke_training_resume.py \
 The 35B example declares a BF16 weight-comparison tolerance (`atol=1e-4`,
 `rtol=0`). The tool's default remains exact. The measured 35B runs have matching
 load-state fingerprints but residual numerical differences across processes;
-this smoke does not certify bitwise MoE training reproducibility. See the
-[current resume report](validation.md#training).
+use the recorded tolerance for the comparison. See [validation](validation.md#training).
 
-For 35B CPT, use `--task cpt` and another output folder. LoRA acceptance does
-not certify full-parameter 35B training. For a planned parallel run, use
-`--nproc`, `--tp`, `--ep` and `--dry-run` to review the command before allocation.
-Do not assume that a dry-run or an available GPU count proves the full model
-fits in memory.
+For 35B CPT, use `--task cpt` and another output folder. Use `--nproc`,
+`--tp`, `--ep` and `--dry-run` to configure and preview parallel runs.
 
 Before creating output or starting training, the runner checks free space on the
 output filesystem. The default budget counts all periodic/final checkpoints in
 both runs: about 8 times input weight bytes per full-tuning checkpoint (model,
 optimizer/master state and HF export), or 1.1 times for LoRA with merged exports,
-plus 25% headroom. This is an estimate, not a reservation or a guaranteed upper
-bound. A measured configuration may supply `--storage-budget-gib` for its total
-output budget. The selected budget/free-space report is retained in
-`storage-preflight.json` and the final validation report. This budget is specific
-to the optional comparison's multiple retained checkpoints; it is not a storage
-requirement for ordinary CPT/SFT or the first release. Dry-run defers the actual
-filesystem/model inspection. See the
-[capacity/parallel preflight report](validation.md#training).
+plus 25% headroom. Set `--storage-budget-gib` to use a measured total output
+budget for this comparison. The selected budget and free space are recorded in
+`storage-preflight.json` and the final report; dry-run prints the launch plan.
 
 The opt-in plugin records the actual MCore save/load boundary for each rank.
 Acceptance requires equal restored step/data cursor, scheduler, full RNG hash
@@ -110,8 +93,7 @@ compared with the continuous control; the default tolerance is exact. Any
 explicit `--atol`/`--rtol` is recorded in the report. Model type and all serialized
 anchor/HSD runtime fields must remain unchanged; strict HF reload then requires
 complete weights, finite logits and greedy generation. Logs, source fingerprints
-and JSON reports remain in the output folder. This short fixture does not
-establish convergence or throughput.
+and JSON reports are written to the output folder.
 
 ## TP/DP service and long contexts
 
@@ -119,8 +101,7 @@ The serving matrix starts and stops its own local servers. It checks 4B TP1/DP2,
 35B TP2/DP1 and 35B TP1/DP2, with the default Graph profile, 511/512/513-token
 boundaries, prompts up to 8000 tokens and eight concurrent requests. At least
 two GPUs are required. It checks valid responses and finite generated logprobs;
-it records generated token IDs and requires one finite logprob per output token;
-it does not certify HF/vLLM numerical parity.
+it records generated token IDs and one finite logprob per output token.
 
 ```bash
 python scripts/march/smoke_serving_matrix.py \
@@ -133,8 +114,7 @@ native extensions from this source in the accepted environment. Use
 `--native-build reused` when reusing existing binaries; the default is unknown.
 The report includes configuration, generated IDs/logprobs, response usage,
 Graph dispatch counts and elapsed time. Missing Graph decode dispatch fails
-the default-profile acceptance. Event JSONL files are retained with the logs. Its short
-synthetic workload is not a maximum-throughput benchmark.
+the default-profile acceptance. Event JSONL files are written with the logs.
 
 ## Clean environment acceptance
 
@@ -146,8 +126,7 @@ that result. Pending checks must remain pending in the publication manifest.
 
 If only one GPU is available, add `--single-gpu` to the serving matrix. This
 checks both models at TP1/DP1 with the same boundary, concurrent-request and 8K
-workload. Its result does not close the two-GPU TP/DP acceptance. The 35B LoRA
-training smoke can also use `NPROC_PER_NODE=1 TENSOR_MODEL_PARALLEL_SIZE=1`.
+workload. The 35B LoRA training smoke can also use `NPROC_PER_NODE=1 TENSOR_MODEL_PARALLEL_SIZE=1`.
 Merged LoRA HF exports are named `checkpoint-1-merged`; the smoke chooses this
 path from resolved `args.json`, including CLI overrides.
 

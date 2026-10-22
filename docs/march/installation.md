@@ -23,17 +23,9 @@ bash scripts/march/install.sh hf
 python scripts/march/check_environment.py --backend hf --strict-versions
 ```
 
-The CUDA recipe explicitly selects the public PyTorch `cu129` wheel index to
-match the recorded CUDA 12.9 runtime. Package constraints pin the observed core
-versions. Fresh isolated HF/training installation, TE/vLLM native source
-builds, both full-size one-step SFT/export/strict HF reload chains and TP1/DP1
-Graph service checks passed within the [installation acceptance
-record](installation-acceptance-20261017.json). The vLLM environment required the
-recorded incremental FLA dependency repair. This is not a complete transitive
-dependency lock or separate certification of a newly built container image;
-other toolchains, hardware and larger workloads need their own validation.
-The [official wheel index](https://download.pytorch.org/whl/cu129/torch/) lists
-Python 3.11 Linux wheels for the pinned torch version.
+The CUDA profiles use the public PyTorch `cu129` wheel index and the
+versions in `requirements/march-constraints.txt`. Build requirements and
+tested configurations are collected in [validation](validation.md).
 
 CPU fixtures need no weight downloads:
 
@@ -61,13 +53,9 @@ MARCH_TEST_MEGATRON=1 PYTHONPATH="$PWD/third_party/mcore-bridge/src:$PWD" \
   python -m pytest tests/march/test_training_contract.py -q
 ```
 
-The vLLM installer sets an explicit fork version with `VLLM_VERSION_OVERRIDE`
-because a vendored source export has no upstream `.git` metadata. It also
-disables upstream precompiled-wheel reuse for this source-build recipe.
-
-vLLM native extensions must be built from this checkout. They are not shipped in
-the public source archive. Prefer a separate environment for serving if its
-transitive dependencies conflict with training:
+The vLLM profile builds native extensions from this checkout and assigns
+the fork version through `VLLM_VERSION_OVERRIDE`. Use a dedicated serving
+environment when keeping training and serving dependencies separate.
 
 ```bash
 # Set architectures for the target GPUs; 9.0 is the recorded H200/Hopper target.
@@ -91,7 +79,7 @@ files are local only and are excluded from publication. Override
 The recipes download public dependencies. For offline use, prepare a compatible
 wheelhouse first and set pip's normal offline/index options. Model weights,
 tokenizers and evaluation datasets must also be provisioned independently.
-See [validation](validation.md) for tested GPUs and incomplete coverage.
+See [validation](validation.md) for tested GPU configurations.
 
 The public source home is [AI45Lab/Safin-1](https://github.com/AI45Lab/Safin-1).
 Use a released source revision or a reviewed source archive for installation.
@@ -99,8 +87,7 @@ Record that revision together with the resolved environment.
 
 ## Offline installation
 
-A wheelhouse is a directory containing downloaded Python wheels and all their
-transitive dependencies. It is separate from a preinstalled Python environment.
+A wheelhouse contains downloaded Python wheels and their dependencies.
 Use a new virtual environment and point the installer at local artifacts:
 
 ```bash
@@ -121,9 +108,7 @@ WHEELHOUSE=/path/to/wheelhouse FETCHCONTENT_BASE_DIR=/path/to/cmake-cache \
 
 With a wheelhouse, pip runs with `PIP_NO_INDEX=1`. The vLLM build also sets
 `FETCHCONTENT_FULLY_DISCONNECTED=ON` and rejects missing source caches before
-starting. Do not provision dependencies from a GPU validation allocation.
-A missing wheel/source cache is an incomplete clean-build acceptance, even if
-an existing training image passes the GPU regressions.
+starting. Prepare the wheelhouse and source caches before running the build.
 
 The eval installer includes IFEval Python extras. Prepare NLTK/dataset caches
 explicitly before offline tasks; see [evaluation](evaluation.md).

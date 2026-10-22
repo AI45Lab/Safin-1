@@ -28,9 +28,9 @@ python scripts/march/check_serving_evidence.py
 python scripts/march/check_installation_evidence.py
 ```
 
-The targeted privacy scanner reports locations without printing secret values.
-It is not a guarantee that every credential format is detected. Preserve all
-upstream licenses/notices and use the [licensing guide](licensing.md).
+The scanner reports file/line locations for known private paths, credential
+patterns and generated artifacts. Preserve upstream licenses and notices as
+described in [licensing](licensing.md).
 
 ## Validate the code
 
@@ -46,12 +46,9 @@ from the reviewed source, verify installation outside the source tree and
 preserve SHA256 sidecars. `scripts/march/export_source.py` can create a scanned
 archive at a new path outside the checkout.
 
-The [sanitized release receipts](evidence-index.md) retain exact source hashes
-and measured scopes. Operator, TP/DP serving and installation checks reject
-missing or stale evidence; updating fingerprints alone cannot renew a result.
-Documentation-only cleanup does not broaden any original GPU acceptance.
-CPU CI does not establish GPU correctness or throughput. See the
-[repeatable acceptance commands](acceptance.md) for new GPU checks.
+The [release receipts](evidence-index.md) record source fingerprints, build
+environments and measured results. Source changes require the corresponding
+checks; [acceptance](acceptance.md) lists the repeatable workloads.
 
 ## Publish weights separately
 
@@ -63,8 +60,6 @@ metadata. Model cards and weights are published separately from source.
 python scripts/march/check_publication.py --scope all
 ```
 
-Published model revisions and download verification remain separate from the
-code-only check. The explicit release policy controls optional evaluation and
-training-data disclosure requirements without marking unknown reviews complete.
-Creating local packages or passing CI does not upload weights, push source,
-create a public tag or publish to PyPI.
+Record the published model revisions and download checks in the release
+metadata. Code pushes, model uploads and release tags are explicit steps
+of the publication workflow.

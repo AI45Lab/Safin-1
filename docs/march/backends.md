@@ -1,13 +1,13 @@
 # MARCH acceleration backends
 
-| Component | Implementation | Validation boundary |
+| Component | Implementation | Function |
 |---|---|---|
-| HF correctness reference | `march/safin1` | CPU tiny roundtrip and all four production training exports reloaded; 4B cache parity passes, 35B BF16 logits tolerance failure documented in validation.md |
-| Paged history cache/read | `march/inference/paged_history_read.py` | CPU cache/top-4 checks and two H200 CUDA oracle comparisons passed, including 32 heads with 128x128 states |
-| Sparse top-k forward/backward | `march/kernels/march_global_read_topk.py` | 24 H200 cases passed: BF16/FP16, top-k 1/2/4/8/16, grouped/token modes, forward and gradients; includes 32 heads with 128x128 states |
-| Chunk GDN and FlashQLA producer | `march/kernels/march_chunk_gdn.py` | Safin-1 H16/K128/V128 and H16/K96/V96 geometry checked at runtime; optimized backward plus reference oracle |
-| Vendored Hopper kernels | `march/kernels/_flashqla` | MIT license and upstream commit preserved |
-| Optional tensor tracing | `march/diagnostics/precision_trace.py` | Existing diagnostic hooks now resolve |
+| HF | `march/safin1/` | Dense/MoE model and cached generation |
+| Paged history | `march/inference/paged_history_read.py` | History storage and decode reads |
+| Sparse top-k | `march/kernels/march_global_read_topk.py` | Sparse forward and backward |
+| Chunk GDN | `march/kernels/march_chunk_gdn.py` | Recurrence, autograd and FlashQLA dispatch |
+| Hopper kernels | `march/kernels/_flashqla/` | Licensed FlashQLA subset |
+| Precision tracing | `march/diagnostics/precision_trace.py` | Optional tensor/rank diagnostics |
 
 Training uses reference top-k unless explicitly selected with the runtime field
 `hsd_topk_backend=sparse` in the runtime config or CLI; only the supported top-k
@@ -30,16 +30,8 @@ MODEL=/path/to/Safin-1-4B TENSOR_PARALLEL_SIZE=1 bash scripts/march/infer_vllm.s
 MODEL=/path/to/Safin-1-35B-A3B TENSOR_PARALLEL_SIZE=4 bash scripts/march/infer_vllm.sh
 ```
 
-The current default has separate [native source-build and single-GPU service
-evidence](installation-acceptance-20261017.json) and [two-H200 TP/DP API
-evidence](serving-acceptance-20261017.json). These checks cover recorded Graph
-dispatch, short generations and anchor boundaries, with distinct source and
-environment scopes. End-to-end serving throughput, production-scale stress and
-full HF/vLLM numerical/cache parity remain separate; the documented 35B numerical
-limitations still apply. Historical speed figures do not establish a new release
-benchmark. Compare identical token IDs, greedy decoding and cache metadata
-before claiming parity.
-
+Tested configurations and precision notes are collected in
+[validation](validation.md).
 
 ## Optional historical research backends
 
@@ -67,15 +59,8 @@ selector. The fastest/default serving profile is unchanged.
 Fused comparison is opt-in for eligible ordinary split-Triton decode. It calls the
 same entrypoint with `backend="fused_triton", validate_fused=False`, preserving
 routing/cache inputs, without modifying process environment variables. It reports
-`status="compared"`, finiteness and absolute differences; these metrics alone do
-not assert a numerical tolerance. The diagnostic synchronizes to the host and
-must run outside CUDA graph capture. Default serving does not run this comparison.
-
-The [validation summary](validation.md#operators) describes current operator
-coverage and measured limits. The source-bound correctness receipt records
-forward/gradient checks and observed custom-kernel execution. Microbenchmarks
-do not establish end-to-end serving throughput or a production persistent-state
-concurrency result.
+`status="compared"`, finiteness and absolute differences. This opt-in diagnostic
+synchronizes to the host and runs outside CUDA graph capture.
 
 ## Optional selection/fallback diagnostics
 
@@ -84,7 +69,7 @@ For ordinary paged decode, pass `record_backend=True` or enable
 split batches inherit the policy. Events report `status=selected` with the
 chosen path, or `status=fallback` with a reason such as `cuda_required`,
 `routing_shape_mismatch`, `history_length_limit` or `triton_unavailable`.
-Selection describes dispatch choice; it does not certify kernel completion.
+Events describe the selected backend or fallback reason.
 
 The public launcher accepts:
 

@@ -65,6 +65,4 @@ A 请求保留自己的 cache 时，先运行另一批 B 请求，再复制/重�
 PYTHONPATH="$PWD" python -m pytest tests/march/test_persistent_batch_isolation.py -q
 ```
 
-这是启用该功能的小模型 CPU 验证。完整模型的 vLLM 并发和速度任务使用标准
-checkpoint，其 persistent state 关闭；启用该功能的完整 checkpoint 仍需单独
-记录 GPU 验收，不能用上述 CPU 结果或标准模型结果代替。
+完整模型的并发配置与当前验证进度见[验证说明](validation.md#numerical-limits)。

@@ -14,13 +14,11 @@ the quick start. Normal training and inference use `scripts/march/`.
 | Evaluate with fixed task/template settings | [Evaluation](evaluation.md) |
 | Understand memory anchors and HSD | [Architecture](architecture.md) |
 | Inspect optional prefix reuse | [Prefix cache](prefix-cache.md) |
-| Check supported combinations and numerical limits | [Release scope](first-release-scope.md), [validation](validation.md) |
+| Check tested configurations and compatibility | [Release scope](first-release-scope.md), [validation](validation.md) |
 
 The optional [0.8B HSD-GDN/FLA research workspace](../../research/hsd_gdn/README.md)
 has its own model types, environment selection and training recipes. Its
 `tile_online` reader and historical `summary_*` schema are separate from the
 Safin-1 checkpoint/backend settings.
 
-For source changes, diagnostics, validation reports or release packaging, use
-the [maintainer guide](maintenance.md). The public evidence index retains only the sanitized receipts needed by
-release checks; personal run reports are excluded.
+For source changes and release tooling, use the [maintainer guide](maintenance.md).

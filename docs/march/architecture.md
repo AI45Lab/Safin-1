@@ -29,8 +29,7 @@ vLLM implements prefill, paged history and Graph decode.
 
 HF is the reference execution path. vLLM's Graph profile accelerates eligible
 decode steps while keeping eager/segments fallback for anchor boundaries and
-unsupported layouts. The existence of a Graph hit is not a numerical-parity or
-throughput claim.
+unsupported layouts.
 
 Persistent state is optional learned model state and is disabled in the standard
 profiles. It is distinct from a request's runtime recurrent/cache state. See

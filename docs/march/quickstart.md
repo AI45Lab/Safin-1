@@ -1,7 +1,7 @@
 # MARCH / Safin-1 使用
 
 从仓库根目录运行命令。先按[安装说明](installation.md)安装所需 backend，再准备
-[审核过的模型目录](model-release.md)。这里的路径由使用者自行设置，不依赖内部盘。
+[模型目录](model-release.md)，将示例路径替换为本地路径。
 
 ```bash
 export SAFIN1_4B_MODEL=/path/to/Safin-1-4B
@@ -19,16 +19,16 @@ MODEL="$SAFIN1_35B_A3B_MODEL" PROMPT='介绍一下 memory anchor。' \
   bash scripts/march/infer_hf.sh
 ```
 
-当前 HF shell 示例使用原始文本输入和 greedy generation。对话评测必须明确记录
-chat template、thinking 设置、采样参数与 token IDs，不能将原始文本 smoke 当成对话评测。
+HF shell 示例使用原始文本输入和 greedy generation。对话请求可使用下方的
+OpenAI 兼容 API；评测的 chat template 和 thinking 设置见[评测说明](evaluation.md)。
 
 构建 vendored vLLM 后，启动 OpenAI 兼容服务：
 
 ```bash
-# 4B 单卡；单卡 35B 的已有记录使用 H200 级显存。
+# 4B 单卡
 MODEL="$SAFIN1_4B_MODEL" bash scripts/march/infer_vllm.sh --port 8000
 
-# 35B 多卡配置示例；具体 TP 组合需按验证矩阵验收。
+# 35B 四卡 tensor parallel
 MODEL="$SAFIN1_35B_A3B_MODEL" TP_SIZE=4 \
   bash scripts/march/infer_vllm.sh --port 8000
 ```
@@ -58,9 +58,10 @@ CUDA_VISIBLE_DEVICES='' python scripts/march/check_environment.py \
 python scripts/march/verify_checkpoint.py "$SAFIN1_4B_MODEL"
 ```
 
-检查 35B 时替换模型路径。旧 checkpoint 的 remote-code 刷新方式见[验收说明](acceptance.md)。
+检查 35B 时替换模型路径。旧 checkpoint 的 remote-code 更新方式见[迁移指南](naming.md)。
 
-CPT 示例每行包含 `text`，SFT 示例每行包含 `messages`：
+CPT 示例每行包含 `text`，SFT 示例每行包含 `messages`。CPT 命令中的
+`DRY_RUN=1` 用于预览，移除后启动训练：
 
 ```bash
 MODEL="$SAFIN1_4B_MODEL" DATASET=examples/march/cpt.jsonl \
@@ -71,22 +72,21 @@ MODEL="$SAFIN1_4B_MODEL" DATASET=examples/march/sft.jsonl \
 OUTPUT_DIR=/path/to/output/sft MAX_LENGTH=1024 TUNER_TYPE=full \
   bash scripts/march/train_sft.sh --train_iters 1
 
-# 35B 已有一步 full-parameter smoke 使用 8×H200、EP=8。
+# 35B 全参数训练：8×H200、EP=8
 MODEL="$SAFIN1_35B_A3B_MODEL" DATASET=examples/march/sft.jsonl \
 OUTPUT_DIR=/path/to/output/35b-sft MAX_LENGTH=1024 TUNER_TYPE=full \
 NPROC_PER_NODE=8 EXPERT_MODEL_PARALLEL_SIZE=8 \
   bash scripts/march/train_sft.sh --train_iters 1
 ```
 
-SFT 脚本的默认 tuner 是 LoRA；上述已验证 full-parameter 路径显式传 `TUNER_TYPE=full`。
+SFT 脚本的默认 tuner 是 LoRA；全参数训练显式传 `TUNER_TYPE=full`。
 LoRA 合并导出的 HF 权重位于 `checkpoint-<step>-merged`；全参数导出位于
 `checkpoint-<step>`。使用 HF/vLLM 推理时指定含 `config.json` 和 safetensors 的
 导出目录。需要单独分享 HF adapter 时，可显式设置 `--save_safetensors true
 --merge_lora false`；目录中应同时包含 `adapter_model.safetensors` 和
 `adapter_config.json`，加载时仍需同一份 Safin-1 基础模型及 runtime。MARCH 投影
 的 A/B 与 modules_to_save 权重会保存；单独训练的原始 gate/norm/persistent state
-需要合并导出，不能通过 adapter 文件静默省略。见[独立 adapter 验收](validation.md#training)。
-LoRA 与并行服务的最新验收范围见[验收报告](validation.md)。
+使用 `--merge_lora true` 合并导出。LoRA 参数说明见[配置指南](configuration.md)。
 已有 checkpoint 默认保留自身 runtime；
 从基础 Qwen3.5 初始化才默认应用 `configs/march/`。
 
@@ -108,8 +108,8 @@ MODEL="$SAFIN1_4B_MODEL" TASKS=ifeval OUTPUT_DIR=/path/to/evaluation \
 LIMIT=16 bash scripts/march/eval_hf.sh
 ```
 
-以上 LIMIT 是使用 smoke，正式结果需要完整任务集与固定版本、seed、prompt 配置。
+设置 `LIMIT=16` 可先运行小样本；完整评测时移除 `LIMIT`。
 OOM 时先降低 `MAX_MODEL_LEN` / `MAX_NUM_SEQS` 或训练 `MAX_LENGTH`。
-已执行的资源、精度边界与仍待覆盖的组合见[验证矩阵](validation.md)。
+已验证环境与兼容说明见[验证说明](validation.md)。
 
 HF/vLLM 共用的评测配置、thinking 开关和离线资源要求见[评测说明](evaluation.md)。
