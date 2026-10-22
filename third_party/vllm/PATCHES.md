@@ -145,12 +145,12 @@ in planning, and a later sidecar failure can follow the native state update.
 The existing caller's fallback behavior is preserved. This batch does not
 redesign retry semantics or make cache writes transactional.
 
-The [batched decode report](../../docs/march/vllm-batch-decode-acceptance-20261016.md)
-records ordered-statement equivalence, visible CPU cache comparisons and the
-separate current-source GPU status. The earlier
-[decode acceptance](../../docs/march/vllm-decode-acceptance-20261015.md) covers its
-own frozen source. Python reorganization does not establish a throughput
-improvement; per-forward phase-object overhead has not been measured.
+The [validation summary](../../docs/march/validation.md#inference) describes
+the measured inference scope and numerical limits. Root helper tests check
+dispatch order and visible cache behavior; the source-bound serving and operator
+receipts retain their own workload boundaries. Python reorganization does not
+establish a throughput improvement; per-forward phase-object overhead has not
+been measured.
 
 ## Memory-anchor rows and MoE data parallelism
 
