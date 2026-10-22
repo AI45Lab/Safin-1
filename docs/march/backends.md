@@ -31,8 +31,8 @@ MODEL=/path/to/Safin-1-35B-A3B TENSOR_PARALLEL_SIZE=4 bash scripts/march/infer_v
 ```
 
 The current default has separate [native source-build and single-GPU service
-evidence](installation-acceptance-20261017.md) and [two-H200 TP/DP API
-evidence](serving-acceptance-20261017.md). These checks cover recorded Graph
+evidence](installation-acceptance-20261017.json) and [two-H200 TP/DP API
+evidence](serving-acceptance-20261017.json). These checks cover recorded Graph
 dispatch, short generations and anchor boundaries, with distinct source and
 environment scopes. End-to-end serving throughput, production-scale stress and
 full HF/vLLM numerical/cache parity remain separate; the documented 35B numerical
@@ -71,15 +71,11 @@ routing/cache inputs, without modifying process environment variables. It report
 not assert a numerical tolerance. The diagnostic synchronizes to the host and
 must run outside CUDA graph capture. Default serving does not run this comparison.
 
-The [structural cleanup report](validation.md#inference)
-records 258 passed CPU tests, 21 passed subtests and 62 optional skips. The subsequent
-[cache/runtime acceptance](validation.md#inference) passed 357 H200
-tests, including 54 CUDA cases for the reorganized code. The
-[operator measurements](validation.md#operators) add forward/gradient,
-latency and incremental-memory comparisons, including the public split Graph
-path and persistent state. These are microbenchmarks; end-to-end serving
-throughput remains unmeasured for this release snapshot.
-
+The [validation summary](validation.md#operators) describes current operator
+coverage and measured limits. The source-bound correctness receipt records
+forward/gradient checks and observed custom-kernel execution. Microbenchmarks
+do not establish end-to-end serving throughput or a production persistent-state
+concurrency result.
 
 ## Optional selection/fallback diagnostics
 

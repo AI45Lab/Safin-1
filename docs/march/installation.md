@@ -28,7 +28,7 @@ match the recorded CUDA 12.9 runtime. Package constraints pin the observed core
 versions. Fresh isolated HF/training installation, TE/vLLM native source
 builds, both full-size one-step SFT/export/strict HF reload chains and TP1/DP1
 Graph service checks passed within the [installation acceptance
-record](installation-acceptance-20261017.md). The vLLM environment required the
+record](installation-acceptance-20261017.json). The vLLM environment required the
 recorded incremental FLA dependency repair. This is not a complete transitive
 dependency lock or separate certification of a newly built container image;
 other toolchains, hardware and larger workloads need their own validation.

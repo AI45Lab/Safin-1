@@ -7,11 +7,17 @@ and [validation summary](validation.md) describe what the code supports.
 
 ## Review the source
 
-Export a reviewed snapshot with `scripts/march/export_source.py`. Start public
-Git history from that snapshot with a public contributor identity. The
-development checkout's Git history, local sharing overlays, personal run logs
-and build outputs are outside the public distribution. Do not copy the complete
-development directory as a release.
+Publish the reviewed tracked source directly from this Git checkout. Verify a
+clean worktree, the intended public remote and public commit identities before
+pushing. Local sharing overlays, personal run logs and build outputs must remain
+untracked. An older private development history must not be reachable from the
+public branches or tags.
+
+```bash
+git status --short
+git log --oneline --decorate -5
+git remote get-url origin
+```
 
 ```bash
 python scripts/march/check_public_release.py . --history --report /tmp/march-source-audit.json
@@ -26,18 +32,19 @@ The targeted privacy scanner reports locations without printing secret values.
 It is not a guarantee that every credential format is detected. Preserve all
 upstream licenses/notices and use the [licensing guide](licensing.md).
 
-## Validate and package
+## Validate the code
 
 ```bash
 python -m pytest tests/march -q
 MARCH_TEST_MEGATRON=1 PYTHONPATH="$PWD/third_party/mcore-bridge/src:$PWD" \
   python -m pytest tests/march/test_training_contract.py -q
-python -m build
-python scripts/march/export_source.py --output /path/to/Safin-1-source.tar.gz
 ```
 
-Use a new archive path outside the checkout. Verify source-to-sdist-to-wheel
-installation outside the source tree and preserve SHA256 sidecars.
+Source archives and wheels are optional installation artifacts; they are not
+required to publish the Git repository. If distributing them separately, build
+from the reviewed source, verify installation outside the source tree and
+preserve SHA256 sidecars. `scripts/march/export_source.py` can create a scanned
+archive at a new path outside the checkout.
 
 The [sanitized release receipts](evidence-index.md) retain exact source hashes
 and measured scopes. Operator, TP/DP serving and installation checks reject

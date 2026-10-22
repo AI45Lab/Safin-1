@@ -140,13 +140,7 @@ CUDA execution and request batches 1/4 on one H200. Eviction under pressure,
 TP/DP, larger batches, abort/preemption and full RL integration remain untested.
 The public training CLI continues to expose CPT/SFT/export.
 
-## Verification record
-
-On 2026-10-10, the full repository CPU suite completed with **174 passed,
-21 subtests passed and 48 skipped**. The skipped tests require explicit
-production-model or optional-backend acceptance settings; this result does not
-include a CUDA run. All 17 changed Python files parsed successfully, the
-focused syntax/name checks passed, and the patch passed git diff --check.
+## Verification
 
 Use this repository's mcore bridge on PYTHONPATH so an editable installation
 from a different checkout cannot supply the training bridge:
@@ -162,7 +156,7 @@ All eight model/profile/batch groups passed the recorded H200 regression
 with four generated tokens per request. Batch 1 compares full-vocabulary
 logprobs; batch 4 compares selected-token logprobs. Every group checks real
 weight-update invalidation. Graph groups require completed FULL replay and
-unchanged captured storage. See [the executed matrix and cross-profile
-limits](gpu-prefix-regression-20261010.md). The opt-in pytest matrix uses the
+unchanged captured storage. See [validation scope and numerical
+limits](validation.md#numerical-limits). The opt-in pytest matrix uses the
 longer 16-token runner default, which was not executed in this run. Both prefix
 profiles remain experimental; default Graph remains prefix-off.

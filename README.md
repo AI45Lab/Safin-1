@@ -96,4 +96,4 @@ are disclosed separately in [model delivery](docs/march/model-release.md). Prese
 attribution to [ModelScope ms-swift](https://github.com/modelscope/ms-swift),
 Qwen3.5 and the [vendored projects](third_party/VENDORED_COMPONENTS.md).
 
-Historical HSD-GDN 0.8B / FLA baseline source, launchers and training records are available in the [optional research workspace](research/hsd_gdn/README.md).
+Historical HSD-GDN 0.8B / FLA baseline source, model configurations and training launchers are available in the [optional research workspace](research/hsd_gdn/README.md).

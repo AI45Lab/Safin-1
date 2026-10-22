@@ -73,4 +73,4 @@ OUTPUT_DIR=/path/to/output MAX_LENGTH=1024 TUNER_TYPE=full \
 原公开页面的 MIT 声明单独保留，合入安排见[代码许可证说明](docs/march/licensing.md)。
 本项目基于 ms-swift、Qwen3.5 和[第三方组件](third_party/VENDORED_COMPONENTS.md)。
 
-旧 HSD-GDN 0.8B 与 FLA baseline 的配置、训练/推理入口和历史记录见 [独立研究目录](research/hsd_gdn/README.md)。
+旧 HSD-GDN 0.8B 与 FLA baseline 的模型配置和训练/推理入口见 [独立研究目录](research/hsd_gdn/README.md)。
