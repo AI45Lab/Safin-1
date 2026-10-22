@@ -882,14 +882,14 @@ def direct_a_chunk_bwd_inline_dd_prototype(
     )
     if any(tensor.dtype != torch.bfloat16 for tensor in low_precision_inputs):
         raise TypeError(
-            "The fixed H200 prototype requires BF16 "
+            "The fixed GPU prototype requires BF16 "
             "q/k/v/a/beta/do/chunk states."
         )
     if g_cumsum.dtype != torch.float32:
         raise TypeError("g_cumsum must use FP32.")
     if cu_seqlens.dtype != torch.int32:
         raise TypeError(
-            "The H200 direct-A kernel requires int32 "
+            "The GPU direct-A kernel requires int32 "
             "cu_seqlens/chunk_indices."
         )
     if not all(

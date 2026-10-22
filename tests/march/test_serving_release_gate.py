@@ -96,7 +96,8 @@ def evidence(tmp_path):
         "profile": "graph",
         "prefix_cache": False,
         "offline": True,
-        "hardware": "two NVIDIA H200 GPUs",
+        "hardware": "two CUDA GPUs",
+        "gpu_count": 2,
         "native_build": "reused",
         "max_model_len": 8192,
         "max_num_seqs": 32,
@@ -352,3 +353,10 @@ def test_real_publication_cli_cannot_override_missing_or_stale_evidence(
     assert report["ready"] == (change == "valid")
     if change != "valid":
         assert "acceptance.batch_dp_long_context.evidence" in report["pending"]
+
+
+@pytest.mark.parametrize("count", [None, 0, 1, 3, True, "2"])
+def test_serving_requires_recorded_two_gpu_topology(evidence, count):
+    checker, root, data = evidence
+    data["gpu_count"] = count
+    assert not checker.review(root, data)["ready"]

@@ -1222,7 +1222,7 @@ class _HSDSparseTopKGlobalReadFunction(torch.autograd.Function):
         )
         block_n = _env_int("HSD_TOPK_BLOCK_N", 64, allowed={16, 32, 64, 128})
         block_k = _env_int("HSD_TOPK_BLOCK_K", 64, allowed={16, 32, 64})
-        # H200 production shape (Dv=384) is substantially faster at 64 than
+        # GPU production shape (Dv=384) is substantially faster at 64 than
         # 128 because the extra V tile occupancy outweighs the additional
         # loop iterations.  Keep small dimensions on their natural power of 2.
         default_block_v = 64 if value_dim >= 64 else _next_power_of_2(value_dim)
@@ -1236,7 +1236,7 @@ class _HSDSparseTopKGlobalReadFunction(torch.autograd.Function):
             allowed={1, 2, 4, 8, 16},
         )
         groups = batch * heads * anchor_count
-        # H200 production measurements show that the one-launch atomic path is
+        # GPU production measurements show that the one-launch atomic path is
         # faster for K4/K8/K16 across 4K--128K.  It also removes the
         # selection-by-BV staged buffer and the six compute/reduce launch
         # pairs.  Keep the staged implementation as an explicit low-workspace

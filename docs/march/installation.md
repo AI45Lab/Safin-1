@@ -58,7 +58,7 @@ the fork version through `VLLM_VERSION_OVERRIDE`. Use a dedicated serving
 environment when keeping training and serving dependencies separate.
 
 ```bash
-# Set architectures for the target GPUs; 9.0 is the recorded H200/Hopper target.
+# Set the target GPU compute capability; 9.0 is an example.
 TORCH_CUDA_ARCH_LIST=9.0 MAX_JOBS=4 bash scripts/march/install.sh vllm
 python scripts/march/check_environment.py --backend vllm --strict-versions
 ```

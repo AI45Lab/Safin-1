@@ -72,7 +72,7 @@ MODEL="$SAFIN1_4B_MODEL" DATASET=examples/march/sft.jsonl \
 OUTPUT_DIR=/path/to/output/sft MAX_LENGTH=1024 TUNER_TYPE=full \
   bash scripts/march/train_sft.sh --train_iters 1
 
-# 35B 全参数训练：8×H200、EP=8
+# 35B 全参数训练：8 张 GPU、EP=8
 MODEL="$SAFIN1_35B_A3B_MODEL" DATASET=examples/march/sft.jsonl \
 OUTPUT_DIR=/path/to/output/35b-sft MAX_LENGTH=1024 TUNER_TYPE=full \
 NPROC_PER_NODE=8 EXPERT_MODEL_PARALLEL_SIZE=8 \

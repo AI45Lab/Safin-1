@@ -219,7 +219,7 @@
   "public_cleanup": {
     "date": "2026-10-20",
     "baseline_revision": "2672d58a",
-    "changes": "Remove OLMo3 model profiles, reordered norm and z-loss; remove low-rank history storage. Inactive historical metadata is consumed, enabled retired variants are rejected. Dense history/query-LoRA math and reader/producer kernel source remain unchanged.",
+    "changes": "Remove OLMo3 model profiles, reordered norm and z-loss; remove low-rank history storage. Inactive historical metadata is consumed, enabled retired variants are rejected. Dense history/query-LoRA math and reader/producer kernel computation remain unchanged. Hardware-specific source annotations and error messages are generalized; computation is unchanged.",
     "changed_sources": {
       "loglinear/hsd/configuration_hsd_gated_deltanet.py": {
         "restored_sha256": "6397659d8960974b72a7aff309b208dfbab75f3b71287ae470d21faac573a624",
@@ -228,6 +228,36 @@
       "loglinear/hsd/modeling_hsd_gated_deltanet.py": {
         "restored_sha256": "3cda0855a34df478bec8935ea3acb15b6aaafedf02e5132c7470b41ee4cec3fd",
         "current_sha256": "f209d595cb18995b6e86ee890fb66d32c36daee25a017c111f7dab44e2f0fa2b"
+      },
+      "loglinear/hsd/hsd_chunk_gdn.py": {
+        "restored_sha256": "a8c3da67fbe1afae4e193a4b4fc1756e8cd83e2fcac953f4d68647c92b153b9f",
+        "current_sha256": "de3dcb5a983597f0bf1b72c896655b7e0c780ecc66ed4b4021f6172aae49cdeb",
+        "change_type": "source_annotations_only",
+        "computation_unchanged": true
+      },
+      "loglinear/hsd/hsd_global_read_topk.py": {
+        "restored_sha256": "77c21f4c72b794a5aa294e53980c1679e25f1b71aed749e69a5db9fe6a03f721",
+        "current_sha256": "9569ad63b9b0c60537704c3eef09613b736d57c551333e1434d7844ff4288633",
+        "change_type": "source_annotations_only",
+        "computation_unchanged": true
+      },
+      "loglinear/hsd/hsd_route_topk.py": {
+        "restored_sha256": "84c013dd43877dc9007dcbebc6d6b7a653fae047b8cc3463ea1c16700e867ec4",
+        "current_sha256": "032f8b81adde0052160c44a9614562cb1b417bff400f854e43266edb031dfb17",
+        "change_type": "source_annotations_only",
+        "computation_unchanged": true
+      },
+      "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd_inline_dd.py": {
+        "restored_sha256": "1e9cc981a7546025e844027a6f7073eccd4f12ae096c99045231ee262a67aa35",
+        "current_sha256": "285597d27029e4c5116e451ebf2647151206431942da28997595ddf6710437fa",
+        "change_type": "source_annotations_only",
+        "computation_unchanged": true
+      },
+      "loglinear/hsd/_flashqla/ops/gated_delta_rule/chunk/hopper/direct_a_chunk_bwd_inline_dd_noatomic.py": {
+        "restored_sha256": "e5d9ea49758f9285177d2d79444bf287c41e5e3c4c91bb6c048ba2474fd3052f",
+        "current_sha256": "9be367e751b760cc88c1cde6e909cf422ecbe3dc446daa032d46ac656300439f",
+        "change_type": "source_annotations_only",
+        "computation_unchanged": true
       }
     },
     "removed_sources": [

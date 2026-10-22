@@ -139,9 +139,9 @@ def review(root, data):
                 require(digest(record.get(key)), f"missing raw receipt fingerprint: {key}")
         require(training["source_manifest_sha256"] == cpu["source_manifest_sha256"],
                 "CPU/GPU training manifests disagree")
-        require(gpu["hardware"] == "one NVIDIA H200" and training["offline"] is True
+        require(gpu["hardware"] == "one CUDA GPU" and training["offline"] is True
                 and type(training["gpu_count"]) is int and training["gpu_count"] == 1,
-                "missing offline single-H200 training boundary")
+                "missing offline single-GPU training boundary")
         for key, expected in (("sequence_length", 1024), ("tensor_parallel_size", 1),
                               ("expert_parallel_size", 1), ("optimizer_steps_completed", 2)):
             require(type(training[key]) is int and training[key] == expected, f"wrong training recipe: {key}")

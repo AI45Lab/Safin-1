@@ -151,7 +151,7 @@ def execute(root, output):
             packages[name] = importlib.metadata.version(name)
         except importlib.metadata.PackageNotFoundError:
             packages[name] = None
-    data["environment"] = dict(cuda_available=True, gpu=torch.cuda.get_device_name(),
+    data["environment"] = dict(cuda_available=True, gpu="CUDA GPU",
                                compute_capability=list(torch.cuda.get_device_capability()),
                                cuda_runtime=torch.version.cuda, packages=packages)
     data["revision"] = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()

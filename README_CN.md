@@ -77,7 +77,7 @@ OUTPUT_DIR=/path/to/output/sft MAX_LENGTH=1024 TUNER_TYPE=full \
 | 0.8B 实验和 FLA baseline | [独立研究目录](research/hsd_gdn/README.md) |
 | 代码结构和贡献方式 | [仓库结构](docs/march/repository-layout.md)、[贡献指南](CONTRIBUTING_CN.md) |
 
-已有 H200 上的训练、保存、HF 重载、原生后端构建和 TP/DP API 验证。
+已有 GPU 上的训练、保存、HF 重载、原生后端构建和 TP/DP API 验证。
 具体软件版本与结果见验证说明，首个 `v0.1.0` 代码版本的发布流程见
 [发行指南](docs/march/release.md)。
 

@@ -24,15 +24,14 @@ For 4B, the Graph profile sets
 and GDN projections. Serving and evaluation use the same policy.
 
 The launcher uses the repository vLLM fork. Build it as described in
-[installation](installation.md). The single-GPU defaults assume enough memory;
-the historical 35B single-GPU measurements used H200 GPUs.
+[installation](installation.md). The single-GPU defaults require enough memory for the full model weights and cache.
 
 ```bash
 MODEL=/path/to/Safin-1-4B bash scripts/march/infer_vllm.sh --port 8000
 MODEL=/path/to/Safin-1-35B-A3B TENSOR_PARALLEL_SIZE=4 \
   bash scripts/march/infer_vllm.sh --port 8000
 
-# Eight independent model replicas for aggregate throughput on 8 H200 GPUs.
+# Eight independent model replicas for aggregate throughput on 8 CUDA GPUs.
 MODEL=/path/to/Safin-1-35B-A3B TP_SIZE=1 DP_SIZE=8 \
   bash scripts/march/infer_vllm.sh --port 8000
 
@@ -68,7 +67,7 @@ boundaries can dispatch to eager/segments as part of the Graph profile.
 
 ## Supported scope and limits
 
-Single-GPU 35B runs use H200-class memory. TP1/DP8 starts eight full model
+Single-GPU 35B runs require enough memory for the full model weights and cache. TP1/DP8 starts eight full model
 replicas, one per GPU. Reduce `MAX_MODEL_LEN` or `MAX_NUM_SEQS` to lower
 cache memory use. Tested parallel layouts and precision notes are collected
 in [validation](validation.md).

@@ -283,3 +283,10 @@ def test_standalone_checker_does_not_import_torch(evidence):
     )
     assert result.returncode == 0, result.stderr
     assert json.loads(result.stdout)['ready']
+
+
+@pytest.mark.parametrize("count", [None, 0, 2, True, "1"])
+def test_installation_requires_recorded_single_gpu_training(evidence, count):
+    checker, root, data = evidence
+    data["gpu_clean_build"]["training_full_size"]["gpu_count"] = count
+    assert not checker.review(root, data)["ready"]

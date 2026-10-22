@@ -14,7 +14,7 @@ except Exception:  # pragma: no cover - optional CUDA/Triton dependency.
 
 _SUPPORTED_TOPK = {1, 2, 4, 8, 16}
 
-# H200 production defaults selected by the paired 10-warmup/50-repetition
+# GPU production defaults selected by the paired 10-warmup/50-repetition
 # Q6/K1/R64 route sweep.  All remain explicit environment-controlled launch
 # choices so the pre-optimization schedule is a one-line rollback:
 #
@@ -422,7 +422,7 @@ class _HSDFusedRouteTopKFunction(torch.autograd.Function):
         null_prob = torch.empty(
             batch, text_len, value_heads, 1 if has_null else 0, device=q.device, dtype=torch.float32
         )
-        # The selected H200 production profile amortizes each route-key load
+        # The selected GPU production profile amortizes each route-key load
         # across 32 query tokens.  The prior BLOCK_T=16 schedule remains an
         # explicit environment rollback.
         block_t, route_num_warps = _route_forward_launch_config()

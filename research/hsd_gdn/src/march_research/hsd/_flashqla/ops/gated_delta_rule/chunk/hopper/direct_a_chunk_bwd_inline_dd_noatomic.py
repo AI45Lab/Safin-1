@@ -69,7 +69,7 @@ def tilelang_direct_a_chunk_bwd_inline_dd_noatomic(
 
     ``dk_diagnostic_mode`` is intentionally limited to this isolated
     correctness candidate.  ``all`` is the real backward.  The other modes
-    publish only one output-driven ``dK`` contribution so H200 tests can
+    publish only one output-driven ``dK`` contribution so GPU tests can
     distinguish a mathematical error from an incompatible TileLang fragment
     layout.
     """
@@ -817,7 +817,7 @@ def direct_a_chunk_bwd_inline_dd_noatomic_prototype(
     )
     if any(tensor.dtype != torch.bfloat16 for tensor in low_precision_inputs):
         raise TypeError(
-            "The fixed H200 prototype requires BF16 "
+            "The fixed GPU prototype requires BF16 "
             "q/k/v/a/beta/do/chunk states."
         )
     if g_cumsum.dtype != torch.float32:

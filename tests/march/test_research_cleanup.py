@@ -71,7 +71,12 @@ def test_frozen_online_kernel_sources_still_match_the_restoration_snapshot():
     import hashlib
     manifest=json.loads((RESEARCH/'SOURCE_MANIFEST.json').read_text())
     for name in ('hsd_global_read.py','hsd_global_read_tile.py','hsd_global_read_tile_online_bwd.py','hsd_chunk_gdn.py'):
-        expected=manifest['hsd_sources']['loglinear/hsd/'+name]['restored_sha256']
+        original='loglinear/hsd/'+name
+        update=manifest.get('public_cleanup',{}).get('changed_sources',{}).get(original)
+        expected=update['current_sha256'] if update else manifest['hsd_sources'][original]['restored_sha256']
+        if update:
+            assert update['change_type']=='source_annotations_only'
+            assert update['computation_unchanged'] is True
         assert hashlib.sha256((RESEARCH/'src/march_research/hsd'/name).read_bytes()).hexdigest()==expected
 
 

@@ -37,7 +37,7 @@ data-list entries. Naming does not establish exact realized token counts or
 data redistribution rights; the companion training-data note records the known recipe.
 
 One-step full-parameter CPT/SFT and export/fresh HF reload have been recorded on
-8×H200, EP=8 with synthetic public data at length 1024. This does not establish
+8 GPUs, EP=8 with synthetic public data at length 1024. This does not establish
 convergence, optimizer-state resume, long-context quality or throughput. See
 the validation matrix for cached-logits and HF/vLLM limitations.
 

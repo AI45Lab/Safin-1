@@ -80,7 +80,7 @@ API requests, dry-runs and evaluation.
 | HSD-GDN 0.8B and FLA baselines | [Research workspace](research/hsd_gdn/README.md) |
 | Source structure and contributions | [Repository layout](docs/march/repository-layout.md), [contributing](CONTRIBUTING.md) |
 
-H200 validation covers training/export/HF reload, native backend builds and
+GPU validation covers training/export/HF reload, native backend builds and
 TP/DP API serving. Detailed versions and results are in the validation guide.
 The [release guide](docs/march/release.md) tracks the initial `v0.1.0` code release.
 

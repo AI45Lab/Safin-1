@@ -32,7 +32,7 @@ restore and recurrent-replay probes are not part of this profile.
 ## Serving
 
 Start at max sequences 1 for the first GPU check. Request batches 1 and 4
-have passed the recorded single-H200 regression; larger batches and TP/DP
+have passed the recorded single-GPU regression; larger batches and TP/DP
 require separate acceptance.
 
 ~~~bash
@@ -136,7 +136,7 @@ methods with CPU tensors and real paged history storage. They cover cloning,
 top-4 history-read equivalence, all-layer preflight, stale generations,
 malformed snapshots, delayed notifications and failed weight loads. The
 [production GPU regression](validation.md#inference) covers native
-CUDA execution and request batches 1/4 on one H200. Eviction under pressure,
+CUDA execution and request batches 1/4 on one GPU. Eviction under pressure,
 TP/DP, larger batches, abort/preemption and full RL integration remain untested.
 The public training CLI continues to expose CPT/SFT/export.
 
@@ -152,7 +152,7 @@ MARCH_TEST_MEGATRON=1 MARCH_TEST_VLLM_PREFIX_CACHE=0 \
 .venv/bin/python -m pytest -q tests/march
 ~~~
 
-All eight model/profile/batch groups passed the recorded H200 regression
+All eight model/profile/batch groups passed the recorded GPU regression
 with four generated tokens per request. Batch 1 compares full-vocabulary
 logprobs; batch 4 compares selected-token logprobs. Every group checks real
 weight-update invalidation. Graph groups require completed FULL replay and

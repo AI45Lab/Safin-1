@@ -100,8 +100,9 @@ def review(root, data):
         )
         require(
             data.get("offline") is True
-            and data.get("hardware") == "two NVIDIA H200 GPUs",
-            "missing offline two-H200 execution evidence",
+            and data.get("hardware") == "two CUDA GPUs"
+            and type(data.get("gpu_count")) is int and data["gpu_count"] == 2,
+            "missing offline two-GPU execution evidence",
         )
         for key, expected in (
             ("max_model_len", 8192),

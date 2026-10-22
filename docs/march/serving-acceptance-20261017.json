@@ -20,7 +20,7 @@
       "dp": 2
     }
   ],
-  "hardware_requested": "two H200 GPUs",
+  "hardware_requested": "two CUDA GPUs",
   "native_build": "reused",
   "profile": "graph",
   "prefix_cache": false,
@@ -65,7 +65,7 @@
     "Submitted HTTP concurrency is not actual Graph batch concurrency",
     "Graph dispatch events do not independently count completed CUDA Graph replays"
   ],
-  "hardware": "two NVIDIA H200 GPUs",
+  "hardware": "two CUDA GPUs",
   "attempts": [
     {
       "attempt": 1,
@@ -471,7 +471,7 @@
       },
       "before_fix_log_sha256": "614966e797b4adf75f97efe90253e5a41c909d415fa8ca83b29a62045e8b04a8",
       "full_cpu_log_sha256": "3efd64cc9b1507b43c7d9c93d5ef0f2b10bddaa75573893053d6feaa229faf58",
-      "gpu_validation": "passed: three-case two-H200 matrix, attempt five"
+      "gpu_validation": "passed: three-case two-GPU matrix, attempt five"
     }
   },
   "initial_source_revision": "9b3b986528a6a83e57a8dc7d52fc65e089b63315",
@@ -527,7 +527,7 @@
   "runtime_source_sha256": {
     "march": {
       "files": 80,
-      "sha256": "da98506db2862a89f8bbf177f8fa11f5f4e3daa4d226e8f951c7cfdbe393a5fc"
+      "sha256": "3714cee57ba32ee1e05cb698bfb17f372f1b2fde096a9969f209aac8a70774b7"
     },
     "third_party/vllm/vllm": {
       "files": 1658,
@@ -1620,5 +1620,15 @@
         }
       ]
     }
-  ]
+  ],
+  "gpu_count": 2,
+  "publication_metadata_update": {
+    "scope": "Hardware metadata, source annotations and evidence recording only; operator computation unchanged.",
+    "original_source_fingerprints": {
+      "march": {
+        "files": 80,
+        "sha256": "da98506db2862a89f8bbf177f8fa11f5f4e3daa4d226e8f951c7cfdbe393a5fc"
+      }
+    }
+  }
 }

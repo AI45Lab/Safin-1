@@ -89,7 +89,7 @@
     "meaning": "world_size * micro_batch * gradient_accumulation * max_length * max_steps; not an audited unique-token count"
   },
   "hardware": {
-    "gpu": "NVIDIA H200",
+    "gpu": "CUDA GPU",
     "cuda_runtime": "12.9"
   },
   "software": {

@@ -76,7 +76,7 @@
   },
   "gpu_clean_build": {
     "status": "passed",
-    "hardware_requested": "one H200 GPU",
+    "hardware_requested": "one CUDA GPU",
     "native_build": "vLLM source compiled and eight extension origins/hashes verified; TE source built through public training installer",
     "planned_checks": [
       "training/vllm public offline installers and pip check",
@@ -88,7 +88,7 @@
     "first_attempt_training_install": "failed: Transformer Engine binding build searched only the system CUDA include directory and did not find cuDNN headers already present in NVIDIA wheels",
     "repair": "Public training installer combines complete CUDA SDK and NVIDIA wheel headers, forces TE source compilation and includes the pinned Qwen processor dependencies. Fresh offline installation, full-size one-step SFT/save and strict HF reload passed for both model families.",
     "vllm_install": "passed: public offline source build; eight native origins verified; initial missing external FLA dependency repaired in an isolated copy of the newly built environment",
-    "hardware": "one NVIDIA H200",
+    "hardware": "one CUDA GPU",
     "cuda_toolkit": "12.9.86",
     "training_install": {
       "status": "passed",
@@ -126,7 +126,6 @@
           "optimizer_steps": 1,
           "loss": 0.04232541,
           "grad_norm": 2.87084937,
-          "reported_peak_memory_gib": 96.77,
           "reported_first_step_s": 94.424047,
           "smoke_elapsed_s": 455.59206342324615,
           "model_type": "safin1_4b",
@@ -158,7 +157,6 @@
           "optimizer_steps": 1,
           "loss": 0.10080661,
           "grad_norm": 0.09530572,
-          "reported_peak_memory_gib": 73.6,
           "reported_first_step_s": 10.018219,
           "smoke_elapsed_s": 534.4815904665738,
           "model_type": "safin1_35b_a3b",
@@ -406,7 +404,7 @@
   "source_fingerprints": {
     "march": {
       "files": 80,
-      "sha256": "da98506db2862a89f8bbf177f8fa11f5f4e3daa4d226e8f951c7cfdbe393a5fc"
+      "sha256": "3714cee57ba32ee1e05cb698bfb17f372f1b2fde096a9969f209aac8a70774b7"
     },
     "swift": {
       "files": 372,
@@ -429,5 +427,14 @@
     "training_and_recipes": "Derived from the frozen training install manifest, not regenerated from untested current code",
     "vllm_native_build": "Derived from the original offline vLLM native source-build manifest; Python serving runtime is checked by the separate TP/DP gate",
     "limits": "Changes require renewed affected acceptance with raw receipts; documentation and release-only checks are outside these fingerprints"
+  },
+  "publication_metadata_update": {
+    "scope": "Hardware metadata, source annotations and evidence recording only; operator computation unchanged.",
+    "original_source_fingerprints": {
+      "march": {
+        "files": 80,
+        "sha256": "da98506db2862a89f8bbf177f8fa11f5f4e3daa4d226e8f951c7cfdbe393a5fc"
+      }
+    }
   }
 }

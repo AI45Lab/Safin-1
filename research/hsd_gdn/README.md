@@ -50,7 +50,7 @@ Python environment. Normal Safin-1 entrypoints do not prepend this directory.
 All model, tokenizer and dataset inputs must be local. Execution sets the HF,
 Datasets, Transformers and evaluator offline switches. Prepare any missing
 dependencies and files before starting a GPU job. The FlashQLA producer is a
-Hopper path; the original 0.8B experiment is being checked on H200. Other
+Hopper path; the original 0.8B experiment is being checked on GPU. Other
 hardware requires separate validation.
 
 ## Train

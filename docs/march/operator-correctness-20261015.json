@@ -59,7 +59,7 @@
     "march/kernels/chunk_scan_triton.py": "e7758570dbcd4360bccaf259a60a18e067dd2596725b67f90f405f7374d2e5a3",
     "march/kernels/march_chunk_gdn.py": "94f5113f207287173befb99584ff3f8730555aeb02793608e477759baa246c03",
     "march/kernels/march_global_read.py": "cfb3406e0f0f00efc68ff5319c7dc94d0d745d11f19c6f835570406a3f0357e9",
-    "march/kernels/march_global_read_topk.py": "b8d1c2ba78064b4689157b37d6265351d878d3b638d80a7b695e1ea2e8efa651",
+    "march/kernels/march_global_read_topk.py": "12f3cbef18c9c7ec57f3ec2960bdf1d5f9a65a2bf09e246e1208869b7e3bcac4",
     "march/safin1/__init__.py": "ce984b4bb0cb3b58929fe1419e8901e261f249fb1fe3fa8962fc1cc267fa9800",
     "march/safin1/anchor_layout.py": "da98e421d6dd3b0e0a909a0c1a897369f9392fe32191681689b8292b9f0a68c4",
     "march/safin1/cache_utils.py": "c7c509a6ca55c687dc22d02ea23c78db68f9d4d3a880eb2ca1cace934b6d420a",
@@ -83,7 +83,7 @@
     "march/training/__init__.py": "2b9855e45c1798db1f9602c09c67e819adca77731895514b217b612f7fedf447",
     "march/training/anchor_batch.py": "906df8660b6641e076f9fc1aa05b54d5d8259c2e7b938256b5104070c0bbd01a",
     "scripts/march/_training_common.sh": "8efc4f557f52a9c3274d5f5acce5ec8770ccfd5c11a13728c10200b6bfe623f1",
-    "scripts/march/check_operator_correctness.py": "7240f1c7581b74ae11ce33ecd525f28856f1f1e81b598f4330635e494e0daf7b",
+    "scripts/march/check_operator_correctness.py": "1c22c9ef7e3000387bfe606264949fda3f633d2c7fb9b112edd604e620c92139",
     "scripts/march/train_cpt.sh": "fe9e9deb2b1a6b4764e6cfa26b7f169911c3c2365d94d00c8af3f1be35b2b582",
     "scripts/march/train_sft.sh": "06ba792cdf99a856e0c8dbd8237cc4317beeeb7d93f8e1dee6ebce01cd88f1b6",
     "swift/megatron/init.py": "4ea0d98df1a946555128104c4138a1e15bd28ca8e0d8d910f67027915a31db6e",
@@ -3651,7 +3651,7 @@
   "collected": 322,
   "environment": {
     "cuda_available": true,
-    "gpu": "NVIDIA H200",
+    "gpu": "CUDA GPU",
     "compute_capability": [
       9,
       0
@@ -3677,6 +3677,13 @@
     "custom_triton_kernels": 43,
     "status_counts": {
       "passed": 322
+    }
+  },
+  "publication_metadata_update": {
+    "scope": "Hardware metadata, source annotations and evidence recording only; operator computation unchanged.",
+    "original_source_fingerprints": {
+      "march/kernels/march_global_read_topk.py": "b8d1c2ba78064b4689157b37d6265351d878d3b638d80a7b695e1ea2e8efa651",
+      "scripts/march/check_operator_correctness.py": "7240f1c7581b74ae11ce33ecd525f28856f1f1e81b598f4330635e494e0daf7b"
     }
   }
 }

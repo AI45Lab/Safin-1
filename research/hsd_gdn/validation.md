@@ -7,7 +7,7 @@ curves are excluded from the source distribution.
 
 CPU contracts check all seven model geometries, model-type registration,
 launcher arguments, source provenance, generation masks and strict tiny-model
-save/load. H200 checks have exercised dense HSD-GDN training, checkpoint
+save/load. GPU checks have exercised dense HSD-GDN training, checkpoint
 save/resume, strict reload and cached generation across a 512-token anchor
 boundary. The recommended dense rank-32-query recipe has also completed its
 32-GPU training schedule. These checks do not certify arbitrary-workload

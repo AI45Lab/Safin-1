@@ -6,7 +6,7 @@ are in the [evidence index](evidence-index.md).
 
 ## Training
 
-Safin-1 4B and 35B-A3B have H200 CPT/SFT optimizer-step, checkpoint-export and
+Safin-1 4B and 35B-A3B have GPU CPT/SFT optimizer-step, checkpoint-export and
 strict HF-reload checks. Bounded resume comparisons cover 4B full training and
 35B LoRA; the latter uses `atol=1e-4`, `rtol=0` for BF16 weights.
 
@@ -30,7 +30,7 @@ The default vLLM profile uses Graph V3, Triton GDN/varlen prefill and paged
 history; MoE adds numeric-safe capture. Prefix caching is disabled. Set
 `MARCH_INFERENCE_PROFILE=eager` for eager execution.
 
-The two-H200 API matrix covers 4B TP1/DP2, 35B TP2/DP1 and 35B TP1/DP2:
+The two-GPU API matrix covers 4B TP1/DP2, 35B TP2/DP1 and 35B TP1/DP2:
 39 responses, 511/512/513-token boundaries, prompts up to 8,000 tokens and eight
 submitted concurrent requests. This matrix reused native binaries; native
 source-build results are recorded in the installation receipt.
@@ -54,7 +54,7 @@ future integration work.
 
 ## Operators
 
-The H200 correctness receipt records **322 passed CUDA cases**, zero skips and
+The GPU correctness receipt records **322 passed CUDA cases**, zero skips and
 observed launches of **43 custom Triton kernels**. It covers the recorded MARCH
 geometry and Hopper FlashQLA paths. The checker verifies the associated source
 fingerprints:
@@ -71,7 +71,7 @@ measurements on a chosen workload.
 
 The tested environment uses Python 3.11, PyTorch 2.11.0+cu129,
 Transformers 5.5.4, Megatron-Core 0.16.1, Transformer Engine 2.14.1,
-FLA 0.5.0, Triton 3.6.0 and NVIDIA H200 GPUs.
+FLA 0.5.0, Triton 3.6.0 and CUDA GPU GPUs.
 
 Fresh-environment checks cover TE/vLLM native builds, one-step 4B full / 35B LoRA
 SFT, save and strict HF reload. Package checks cover source/sdist, wheel

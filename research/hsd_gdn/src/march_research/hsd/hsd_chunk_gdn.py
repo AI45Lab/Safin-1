@@ -3746,7 +3746,7 @@ def hsd_flashqla_tile_gated_delta_rule_with_summary_states(
     # FlashQLA's packed Hopper kernels are specialized around int32 metadata.
     # Keeping the public HSD sidecars as int64 is harmless, but lowering the
     # TileLang direct-A kernel with int64 indices currently produces a kernel
-    # that compiles yet fails at launch on H200.  Sequence lengths in this
+    # that compiles yet fails at launch on GPU.  Sequence lengths in this
     # fixed training backend are far below the int32 limit, so canonicalize
     # only the private producer metadata here.
     text_cu, summary_cu, boundary, packed_layout_valid = (

@@ -15,7 +15,7 @@ An additional 202 helper and 10 worker cases pass with zero skips. See the
 [completed reproducibility follow-up](validation.md#numerical-limits).
 The earlier maintenance and adapter/export reports retain their original scope.
 
-The run used one NVIDIA H200 with PyTorch 2.11.0+cu129 / CUDA runtime 12.9,
+The run used one CUDA GPU with PyTorch 2.11.0+cu129 / CUDA runtime 12.9,
 Triton 3.6.0, FLA 0.5.0 and TileLang 0.1.9. All **43 retained custom Triton
 kernels** have actual launch evidence associated with passing tests. The report
 binds 171 source/test files; it includes admitted FlashQLA training/inference,

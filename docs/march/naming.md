@@ -111,7 +111,7 @@ python -m unittest discover -s tests/march -p 'test_runtime_loading.py' -v
 ```
 
 Validation on 2026-09-11 first used Python 3.11.15, PyTorch 2.11.0+cu129 and
-Transformers 5.5.4 on a CPU node. On 2026-09-11 to 2026-09-12, H200 runs loaded
+Transformers 5.5.4 on a CPU node. On 2026-09-11 to 2026-09-12, GPU runs loaded
 both production checkpoints, completed CPT/SFT optimizer steps and HF reloads,
 and generated through the default vLLM Graph profile. Source metadata and all
 original training shards remained unchanged. The prepared copies use only
