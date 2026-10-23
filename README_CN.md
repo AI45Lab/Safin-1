@@ -1,15 +1,17 @@
 # Safin-1 · MARCH
 
-**MARCH: Scaling Recurrent Memory with Content-Routed State Anchors**
+**MARCH 是底层架构，Safin-1 是基于该架构训练的模型系列。**
 
-[论文](https://arxiv.org/abs/2608.12435) ·
+[MARCH 论文](https://arxiv.org/abs/2608.12435) ·
+[Safin-1 论文](https://arxiv.org/abs/2609.00092) ·
 [技术文档 PDF](Safin-1.pdf) ·
 [模型](https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596) ·
 [快速开始](docs/march/quickstart.md) ·
 [Arch Space](https://github.com/InternLM/archspace) ·
 [English](README.md)
 
-**Safin-1 4B 与 35B-A3B 的训练和推理代码已提供。**
+Safin-1 是采用 MARCH 架构训练的基础模型系列。本仓库统一维护 **MARCH 架构实现**，
+以及 **Safin-1 4B 与 35B-A3B 共用的训练和推理代码**。
 
 MARCH 在 Qwen3.5 的 Gated Delta Network 上加入 **memory anchor（记忆锚点）**
 和 HSD 历史状态读取。Safin-1 包含 4B dense 与 35B-A3B MoE 两款模型。

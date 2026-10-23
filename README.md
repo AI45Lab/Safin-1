@@ -1,15 +1,18 @@
 # Safin-1 · MARCH
 
-**MARCH: Scaling Recurrent Memory with Content-Routed State Anchors**
+**MARCH is the architecture; Safin-1 is the model family built on it.**
 
-[Paper](https://arxiv.org/abs/2608.12435) ·
+[MARCH paper](https://arxiv.org/abs/2608.12435) ·
+[Safin-1 paper](https://arxiv.org/abs/2609.00092) ·
 [Technical document (PDF)](Safin-1.pdf) ·
 [Models](https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596) ·
 [Quick start](docs/march/quickstart.md) ·
 [Arch Space](https://github.com/InternLM/archspace) ·
 [中文](README_CN.md)
 
-Training and inference code is available for **Safin-1 4B** and **Safin-1 35B-A3B**.
+Safin-1 is a family of foundation models trained using the MARCH architecture.
+This repository brings together the **MARCH implementation** and the shared
+**training and inference code for Safin-1 4B and Safin-1 35B-A3B**.
 
 MARCH extends Qwen3.5's Gated Delta Network with **memory anchors** and HSD
 historical-state reading. Safin-1 includes a 4B dense model and a 35B-A3B MoE
