@@ -24,6 +24,10 @@ a vendored vLLM backend and optional persistent state.
 Existing checkpoints retain their saved runtime. History-read settings use
 `hsd_*`; memory-anchor settings and weights use `anchor_*`.
 
+Published weights: [Safin-1 35B-A3B](https://huggingface.co/AI45Research/Safin-1-35B-A3B)
+and [matched SFT baselines](docs/march/model-release.md#published-checkpoints).
+The model guide provides pinned download commands. Safin-1 4B weights require repository access.
+
 ## Get started
 
 Use Linux, Python 3.11 and a dedicated environment. Install from this checkout:

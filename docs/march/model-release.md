@@ -70,58 +70,57 @@ checkpoint header/index validation remains a separate check. The flag does not
 exempt credentials, private paths or training state files. Run actual
 HF loading and generation in a fresh process/cache before approving each model.
 
+## Published checkpoints
+
+The Safin-1 35B-A3B checkpoint and both matched Qwen3.5 SFT baselines are public
+in the [Safin-1 collection](https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596).
+
+| Model | Hugging Face repository | Revision |
+|---|---|---|
+| Safin-1-4B | `AI45Research/Safin-1-4B` | Private; access required |
+| Safin-1-35B-A3B | [AI45Research/Safin-1-35B-A3B](https://huggingface.co/AI45Research/Safin-1-35B-A3B) | `41c218d270bfd9100ee60e557dd6216097f36357` |
+| Qwen3.5-4B-Intern50B-NemotronSFT30B | [AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B](https://huggingface.co/AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B) | `001d23108dc17acbaf520c774f87e8c119101c6d` |
+| Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B | [AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B](https://huggingface.co/AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B) | `77a406b1a6442b3524fb2d8307f6351b5450091e` |
+
+Safin-1 4B is private. Users with repository access can authenticate with
+`hf auth login` before downloading it. The table pins the three public models.
+
+Pinned revisions are stored in [publication.json](../../configs/release/publication.json).
+The [Hub publication record](hf-publication-20261023.json) records the public
+file and index checks. All 35 published weight shards have Hub SHA-256 values
+matching the prepared checkpoint inventory.
+
+Download a pinned checkpoint and run HF inference:
+
+```bash
+MODEL_ID=AI45Research/Safin-1-35B-A3B
+MODEL_REVISION=41c218d270bfd9100ee60e557dd6216097f36357
+hf download "$MODEL_ID" --revision "$MODEL_REVISION" --local-dir /path/to/Safin-1-35B-A3B
+MODEL=/path/to/Safin-1-35B-A3B PROMPT='Explain MARCH.' bash scripts/march/infer_hf.sh
+```
+
+Safin-1 loading uses `trust_remote_code=True`. The two native Qwen3.5 baselines
+use the conditional-generation loader described above. Their download commands
+use the same pattern with the model IDs and revisions in the table.
+
 ## Hugging Face upload layout
 
-Confirmed namespace: `AI45Research`. The destination is the
-[Safin-1 collection](https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596). A collection groups model repositories;
-each model retains its own repository and root-level inference files.
+Each checkpoint has its own model repository. Its root contains `config.json`,
+tokenizer/processor assets, the weight index and referenced shards, the model
+card, license files and `SHA256SUMS`. Safin-1 also includes the complete
+remote-code dependency closure selected by `auto_map`.
 
-| Local model directory | Planned HF repository |
-|---|---|
-| `Safin-1-4B` | `AI45Research/Safin-1-4B` |
-| `Safin-1-35B-A3B` | `AI45Research/Safin-1-35B-A3B` |
-| `Qwen3.5-4B-Intern50B-NemotronSFT30B` | `AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B` |
-| `Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B` | `AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B` |
-
-These are assigned publication targets. No candidate has been uploaded by
-this preparation step, and no published commit revision is recorded yet.
-
-The two Safin-1 models and two native baselines use four independent HF model
-repositories. Upload each checkpoint directory at the root of its own repository;
-its root must contain `config.json`, the tokenizer/processor assets, the weight
-index and referenced shards, its model card and the required remote-code files.
-Do not upload the parent bundle as one model. Local `checkpoints.env`, delivery
-receipts and preparation plans belong outside the uploaded model roots.
-
-After verifying the prepared model files and HF organization write access,
-upload one model directory to its assigned repository:
+Upload one prepared model directory to its repository:
 
 ```bash
 MODEL_ID=AI45Research/Safin-1-4B
-: "${HF_MODEL_DIR:?Set one model directory, not the parent bundle}"
+: "${HF_MODEL_DIR:?Set one model directory}"
 hf upload "$MODEL_ID" "$HF_MODEL_DIR" .
 ```
 
-Use the same pattern for the other three directories. A local hardlink is a
-regular file: the upload reads its full content; a downloaded Hub snapshot does
-not depend on the original GPFS path. Uploading does not by itself verify model
-numerics, finish a model card or enable a stock vLLM hosted-inference backend.
-Safin-1 uses custom code and requires `trust_remote_code=True`; its card includes
-the pinned Transformers load example. Baselines use the native conditional-
-generation loader. See the [HF upload guide](https://huggingface.co/docs/huggingface_hub/guides/upload)
-and [custom-model guide](https://huggingface.co/docs/transformers/custom_models).
-
-After model IDs and revisions are assigned, users can download with `hf`:
-
-```bash
-: "${MODEL_ID:?Set the approved organization/model ID}"
-: "${MODEL_REVISION:?Set the reviewed model revision}"
-hf download "$MODEL_ID" --revision "$MODEL_REVISION" --local-dir /path/to/model
-MODEL=/path/to/model PROMPT='Explain MARCH.' bash scripts/march/infer_hf.sh
-```
-
-Pin both code and weights for reproducible runs. No command in this checkout
-creates or uploads a remote model repository automatically.
+Keep local environment files and delivery receipts outside model roots. Refresh
+`SHA256SUMS` whenever changing a model card or another listed file. Verify a
+downloaded model directory with `sha256sum -c SHA256SUMS`.
 
 ## Prepared release materials — 2026-10-17
 
@@ -140,9 +139,9 @@ their checksums before upload. Integrity is separate from numerical correctness.
 
 CPT provenance remains undocumented and a formal benchmark table is not supplied.
 The 2026-10-18 maintainer decision permits weight sharing with those disclosures.
-Final Hub revisions still require successful uploads. Historical metrics retain
+Published Hub revisions are listed in the table above. Historical metrics retain
 their own protocols and limits; they are not current-release quality acceptance.
-No remote upload or repository visibility change was performed by this step.
+The preparation record retains its original date and scope.
 
 ## Publication decision — 2026-10-18
 
@@ -151,6 +150,6 @@ disclosed as undocumented and a formal current-release benchmark score table
 is optional. Neither unknown field is changed into a completed review or a score.
 The [explicit decision](model-release-policy-20261018.json) controls those two
 metadata requirements; model IDs/revisions, licenses and technical checks remain.
-The [HF publication receipt](hf-publication-20261018.json) records uploads and
-download checks separately. Source pushes and release tags wait for regression
-completion. This updates the publication prerequisites stated in older records.
+The [current Hub publication receipt](hf-publication-20261023.json) records
+public model revisions and file checks. Release tags are created explicitly
+after selecting code and weight revisions.

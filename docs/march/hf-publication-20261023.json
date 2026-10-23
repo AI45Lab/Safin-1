@@ -1,0 +1,70 @@
+{
+  "observed_on": "2026-10-23",
+  "status": "partially_published",
+  "collection": "https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596",
+  "verification": "Pinned public metadata, weight indexes and Hub LFS SHA-256 values compared with the prepared checkpoint inventory.",
+  "models": [
+    {
+      "name": "Safin-1-4B",
+      "model_id": "AI45Research/Safin-1-4B",
+      "revision": null,
+      "status": "private",
+      "access": "repository_permission_required",
+      "visibility_verified_with_authentication": true
+    },
+    {
+      "name": "Safin-1-35B-A3B",
+      "model_id": "AI45Research/Safin-1-35B-A3B",
+      "revision": "41c218d270bfd9100ee60e557dd6216097f36357",
+      "status": "public",
+      "model_type": "safin1_35b_a3b",
+      "text_model_type": "safin1_35b_a3b_text",
+      "config_sha256": "8cab92662b64ba2f74174ba2f1d78fcb13e13709097141875f4f5131a6dbb733",
+      "readme_sha256": "9f5228b91572f9903509c08c996f979805410fe05e0316405df05256a22ce360",
+      "sha256sums_sha256": "3fc84ae19fc0d81547a75d4b0f4ba79770574348c139b17339941ee26bf19b98",
+      "weight_shards": 17,
+      "hub_sha256_matches": 17,
+      "all_indexed_shards_available": true,
+      "downloaded_metadata_checksums_verified": 31,
+      "legacy_summary_config_keys": 0,
+      "weight_payloads_downloaded": false
+    },
+    {
+      "name": "Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
+      "revision": "001d23108dc17acbaf520c774f87e8c119101c6d",
+      "status": "public",
+      "model_type": "qwen3_5",
+      "text_model_type": "qwen3_5_text",
+      "config_sha256": "929bcafc60817d0a598e756fbe511d6c6c03a4eb7280e2080c2714f045ecc4c6",
+      "readme_sha256": "f1b15c35c896358b15a9a166e47dfdc27496c8b02b625a137ca6735022a39c8a",
+      "sha256sums_sha256": "43a9afeae2ad3250f42888fb9b5c5c5b183039f2087fa413930a132751e066b8",
+      "weight_shards": 2,
+      "hub_sha256_matches": 2,
+      "all_indexed_shards_available": true,
+      "downloaded_metadata_checksums_verified": 12,
+      "legacy_summary_config_keys": 0,
+      "weight_payloads_downloaded": false
+    },
+    {
+      "name": "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "model_id": "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
+      "revision": "77a406b1a6442b3524fb2d8307f6351b5450091e",
+      "status": "public",
+      "model_type": "qwen3_5_moe",
+      "text_model_type": "qwen3_5_moe_text",
+      "config_sha256": "d239f59dd6a5e65c0f7659f480072e0267010b0a46de1dbefcbbaea384917bb4",
+      "readme_sha256": "7589c685f53e16b76a9ea31d940ddabe43c9c5e3bb5654e69ea14aba35a664b7",
+      "sha256sums_sha256": "5f4534d232455f2e1b8f3c41ed1b58daddfff8929aa081df66b9457b6e2dc5e9",
+      "weight_shards": 16,
+      "hub_sha256_matches": 16,
+      "all_indexed_shards_available": true,
+      "downloaded_metadata_checksums_verified": 13,
+      "legacy_summary_config_keys": 0,
+      "weight_payloads_downloaded": false
+    }
+  ],
+  "weight_shards_verified": 35,
+  "weight_payloads_downloaded": false,
+  "downloaded_weight_runtime_test_performed": false
+}

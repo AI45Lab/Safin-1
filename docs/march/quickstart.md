@@ -3,6 +3,17 @@
 从仓库根目录运行命令。先按[安装说明](installation.md)安装所需 backend，再准备
 [模型目录](model-release.md)，将示例路径替换为本地路径。
 
+35B-A3B 的公开权重可按固定版本下载，其他模型入口见[模型指南](model-release.md#published-checkpoints)：
+
+```bash
+hf download AI45Research/Safin-1-35B-A3B \
+  --revision 41c218d270bfd9100ee60e557dd6216097f36357 \
+  --local-dir /path/to/Safin-1-35B-A3B
+```
+
+Safin-1 4B 权重目前为私有仓库，需要访问权限；有权限的用户先运行 `hf auth login`。
+下面的模型变量指向本地完整模型目录。
+
 ```bash
 export SAFIN1_4B_MODEL=/path/to/Safin-1-4B
 export SAFIN1_35B_A3B_MODEL=/path/to/Safin-1-35B-A3B

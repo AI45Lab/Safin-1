@@ -11,7 +11,7 @@ and [acceptance commands](acceptance.md) to repeat the checks.
 | Evidence | Receipt |
 |---|---|
 | `checkpoint-delivery` | [checkpoint-delivery-20261017.json](checkpoint-delivery-20261017.json) |
-| `hf-publication` | [hf-publication-20261018.json](hf-publication-20261018.json) |
+| `hf-publication` | [hf-publication-20261023.json](hf-publication-20261023.json) |
 | `historical-evaluation` | [historical-evaluation-20261017.json](historical-evaluation-20261017.json) |
 | `installation-acceptance` | [installation-acceptance-20261017.json](installation-acceptance-20261017.json) |
 | `license-release` | [license-release-20261017.json](license-release-20261017.json) |

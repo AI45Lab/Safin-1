@@ -26,19 +26,19 @@
     {
       "name": "Safin-1-35B-A3B",
       "model_id": "AI45Research/Safin-1-35B-A3B",
-      "revision": null,
+      "revision": "41c218d270bfd9100ee60e557dd6216097f36357",
       "card": "docs/march/model-cards/Safin-1-35B-A3B.md"
     },
     {
       "name": "Qwen3.5-4B-Intern50B-NemotronSFT30B",
       "model_id": "AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B",
-      "revision": null,
+      "revision": "001d23108dc17acbaf520c774f87e8c119101c6d",
       "card": "docs/march/model-cards/Qwen3.5-4B-SFT-Baseline.md"
     },
     {
       "name": "Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
       "model_id": "AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B",
-      "revision": null,
+      "revision": "77a406b1a6442b3524fb2d8307f6351b5450091e",
       "card": "docs/march/model-cards/Qwen3.5-35B-A3B-SFT-Baseline.md"
     }
   ],
@@ -60,7 +60,8 @@
     "training_data_inventory": "docs/march/training-data-20261017.json",
     "historical_evaluation": "docs/march/historical-evaluation-20261017.json",
     "model_file_integrity": "docs/march/model-weight-integrity-20261017.json",
-    "model_release_policy": "docs/march/model-release-policy-20261018.json"
+    "model_release_policy": "docs/march/model-release-policy-20261018.json",
+    "hf_publication": "docs/march/hf-publication-20261023.json"
   },
   "model_namespace": "AI45Research",
   "model_collection": "https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596",
