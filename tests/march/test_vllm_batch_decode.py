@@ -9,7 +9,7 @@ from torch import nn
 
 
 @pytest.fixture(scope="module")
-def modules():
+def modules(vllm_cpu_runtime):
     import ast
     import copy
     import importlib

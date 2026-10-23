@@ -14,7 +14,7 @@ PACKAGE = ROOT / "third_party/vllm/vllm/model_executor/models/march"
 
 
 @pytest.fixture(scope="module")
-def helpers():
+def helpers(vllm_cpu_runtime):
     name = "_safin1_decode_contract"
     spec = importlib.util.spec_from_file_location(
         name, PACKAGE / "__init__.py", submodule_search_locations=[str(PACKAGE)]
