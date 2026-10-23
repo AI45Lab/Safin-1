@@ -8,14 +8,18 @@ jobs:
     timeout-minutes: 30
     env:
       PYTHONPATH: .
-      HF_HOME: ${{ runner.temp }}/huggingface
-      XDG_CACHE_HOME: ${{ runner.temp }}/cache
-      TORCH_EXTENSIONS_DIR: ${{ runner.temp }}/torch-extensions
       HF_HUB_OFFLINE: "1"
       HF_DATASETS_OFFLINE: "1"
       TRANSFORMERS_OFFLINE: "1"
     steps:
       - uses: actions/checkout@v4
+      - name: Configure writable caches
+        shell: bash
+        run: |
+          printf '%s\n' \
+            "HF_HOME=$RUNNER_TEMP/huggingface" \
+            "XDG_CACHE_HOME=$RUNNER_TEMP/cache" \
+            "TORCH_EXTENSIONS_DIR=$RUNNER_TEMP/torch-extensions" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
