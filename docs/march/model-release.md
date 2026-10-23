@@ -72,20 +72,19 @@ HF loading and generation in a fresh process/cache before approving each model.
 
 ## Published checkpoints
 
-The Safin-1 35B-A3B checkpoint and both matched Qwen3.5 SFT baselines are public
+Both Safin-1 checkpoints (4B and 35B-A3B) and both matched Qwen3.5 SFT baselines are public
 in the [Safin-1 collection](https://huggingface.co/collections/AI45Research/safin-1-6a90457bfa414a1453744596).
 
 | Model | Hugging Face repository | Revision |
 |---|---|---|
-| Safin-1-4B | `AI45Research/Safin-1-4B` | Private; access required |
+| Safin-1-4B | [AI45Research/Safin-1-4B](https://huggingface.co/AI45Research/Safin-1-4B) | `b6a3d21ed3c57cda78a2c0f2b2be92c516abd6f0` |
 | Safin-1-35B-A3B | [AI45Research/Safin-1-35B-A3B](https://huggingface.co/AI45Research/Safin-1-35B-A3B) | `41c218d270bfd9100ee60e557dd6216097f36357` |
 | Qwen3.5-4B-Intern50B-NemotronSFT30B | [AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B](https://huggingface.co/AI45Research/Qwen3.5-4B-Intern50B-NemotronSFT30B) | `001d23108dc17acbaf520c774f87e8c119101c6d` |
 | Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B | [AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B](https://huggingface.co/AI45Research/Qwen3.5-35B-A3B-Intern50B-NemotronSFT30B) | `77a406b1a6442b3524fb2d8307f6351b5450091e` |
 
-Safin-1 4B is private. Users with repository access can authenticate with
-`hf auth login` before downloading it. The table pins the three public models.
+All four checkpoints are publicly downloadable. The table pins a revision for each model.
 
-Pinned revisions are stored in [publication.json](../../configs/release/publication.json).
+See also the original release metadata in [publication.json](../../configs/release/publication.json).
 The [Hub publication record](hf-publication-20261023.json) records the public
 file and index checks. All 35 published weight shards have Hub SHA-256 values
 matching the prepared checkpoint inventory.

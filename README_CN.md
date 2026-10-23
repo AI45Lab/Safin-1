@@ -25,9 +25,10 @@ MARCH 在 Qwen3.5 的 Gated Delta Network 上加入 **memory anchor（记忆锚�
 加载已有 checkpoint 时保留其 runtime。历史读取使用 `hsd_*` 配置，记忆锚点相关
 配置与权重使用 `anchor_*`。
 
-已公开 [Safin-1 35B-A3B 权重](https://huggingface.co/AI45Research/Safin-1-35B-A3B)
-和[配套 SFT baseline](docs/march/model-release.md#published-checkpoints)，固定版本下载命令见模型指南。
-Safin-1 4B 权重目前需要仓库访问权限。
+已公开 [Safin-1 4B](https://huggingface.co/AI45Research/Safin-1-4B)、
+[Safin-1 35B-A3B](https://huggingface.co/AI45Research/Safin-1-35B-A3B)
+和[配套 SFT baseline](docs/march/model-release.md#published-checkpoints) 共四个 checkpoint，
+固定版本下载命令见模型指南。
 
 ## 快速使用
 
